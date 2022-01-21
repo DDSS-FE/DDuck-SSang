@@ -9,13 +9,21 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "lint-staged": "^12.2.2",
     "next": "12.0.8",
+    "prettier": "^2.5.1",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "sass": "^1.49.0"
   },
   "devDependencies": {
     "@types/react": "17.0.38",
+    "@typescript-eslint/eslint-plugin": "^5.10.0",
+    "@typescript-eslint/parser": "^5.10.0",
     "eslint": "8.7.0",
+    "eslint-config-airbnb-typescript": "^16.1.0",
     "eslint-config-next": "12.0.8",
     "typescript": "4.5.5"
   }

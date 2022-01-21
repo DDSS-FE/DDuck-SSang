@@ -1,0 +1,97 @@
+@mixin position($p: absolute, $t: null, $b: null, $l: null, $r: null) {
+  position: $p;
+  top: $t;
+  bottom: $b;
+  left: $l;
+  right: $r;
+}
+
+@mixin flexCenter() {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+@mixin flexAllCenter() {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@mixin btnNone() {
+  background: none;
+  border: 0;
+}
+
+@mixin wordClear() {
+  display: inline-block;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+@mixin bgNone {
+  background: url(../img/01.png) center center;
+  background-size: cover;
+}
+
+@mixin fontSize($fs: null, $fw: null) {
+  font-size: $fs;
+  font-weight: $fw;
+}
+
+@mixin margin($mt: null, $mb: null, $ml: null, $mr: null) {
+  margin-top: $mt;
+  margin-bottom: $mb;
+  margin-left: $ml;
+  margin-right: $mr;
+}
+
+@mixin padding($pt: null, $pb: null, $pl: null, $pr: null) {
+  padding-top: $pt;
+  padding-bottom: $pb;
+  padding-left: $pl;
+  padding-right: $pr;
+}
+
+@mixin clearBoth() {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+@mixin border-bottom {
+  border-bottom: 1px solid #d7d7d7;
+}
+
+@mixin box-shadow {
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+@mixin top-button {
+  @include position(fixed, $r: 18.854%, $b: 147px);
+  width: 86px;
+  height: 86px;
+  background: url('../img/top-button.png') no-repeat;
+  background-size: contain;
+  text-indent: -9999px;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+@mixin sources {
+  text-align: right;
+  color: #a9a9a9;
+  font: {
+    size: 15px;
+  }
+}
