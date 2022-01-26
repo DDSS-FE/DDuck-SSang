@@ -21,7 +21,7 @@ Steps to reproduce the behavior:
 A clear and concise description of what you expected to happen.
 
 ## 🌋 실제 결과 ##
-A clear and concise description of what you expected to happen.
+A clear and concise description of what actually happened.
 
 ## 📸 스크린샷 ##
 If applicable, add screenshots to help explain your problem.
