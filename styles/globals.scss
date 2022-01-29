@@ -52,3 +52,8 @@ table {
   filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(84deg) brightness(102%)
     contrast(95%);
 }
+// NavBar와 관련된 margin-bottom 설정을 위한 임시 코드
+.ly_footer {
+  background-color: red;
+  margin-bottom: 48px;
+}

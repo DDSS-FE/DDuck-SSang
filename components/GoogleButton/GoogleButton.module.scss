@@ -1,0 +1,25 @@
+.el_googleBtn {
+  display: inline-block;
+  width: 186px;
+
+  max-width: 100%;
+  padding: 20px 10px;
+  border: 2px solid transparent;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  color: #fff;
+  font-size: 1.125rem;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.25s;
+
+  background: url('../../styles/aseets/btn_google_signin_light_normal_web.png')
+    no-repeat top center;
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+
+  &:focus,
+  &:hover {
+    color: #fff;
+  }
+}

@@ -1,0 +1,45 @@
+.ly_customPageContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2vmin;
+
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgb(55, 53, 47);
+  caret-color: rgb(55, 53, 47);
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica,
+    'Apple Color Emoji', Arial, sans-serif, 'Segoe UI Emoji', 'Segoe UI Symbol';
+
+  &_inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    .el_title {
+      font-size: 2.5rem;
+      font-weight: bold;
+      margin-bottom: 1.5rem;
+    }
+  }
+}
+
+.ly_imgWrapper {
+  width: 80vw; // 모바일에서 80vw, 반응형 필요
+  height: 50vh;
+  position: relative;
+
+  .el_img {
+    width: 100%;
+    height: 100%;
+    position: relative !important;
+    object-fit: cover; // Optional
+  }
+}

@@ -1,0 +1,25 @@
+.bl_vertPosts {
+  margin: 15px 0;
+  &_item {
+    padding: 0 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+
+    &:first-child {
+      padding-top: 0;
+    }
+  }
+
+  &_link {
+    display: flex;
+    justify-content: space-between;
+    text-decoration: none;
+    transition: 0.25s;
+
+    &:focus,
+    &:hover {
+      color: rgb(180, 180, 180);
+    }
+  }
+}

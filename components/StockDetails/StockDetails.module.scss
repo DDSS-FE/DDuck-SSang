@@ -1,0 +1,66 @@
+.ly_header {
+  border-bottom: 1px solid #ddd;
+
+  &_inner {
+    max-width: 1230px;
+    padding: 4px 15px;
+    display: flex;
+    justify-content: space-between;
+
+    .ly_btnWrapper {
+      display: flex;
+      align-items: center;
+      text-align: right;
+
+      i {
+        font-size: 1.25rem;
+        margin-left: 8px;
+      }
+    }
+  }
+}
+
+.bl_stockHeading {
+  &_ttl {
+    font-weight: bold;
+  }
+
+  &_standard {
+    font-size: 0.875rem;
+    color: #666;
+  }
+}
+
+.bl_marketPriceHeading {
+  &_price {
+    display: flex;
+    justify-content: bottom;
+    align-items: center;
+
+    h2 {
+      margin-right: 10px;
+    }
+
+    p {
+      color: red;
+    }
+  }
+
+  &_standard {
+    font-size: 0.875rem;
+    color: gray;
+  }
+}
+
+.ly_cont {
+  max-width: 1230px;
+  padding: 60px 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  canvas {
+    width: 100%;
+    height: 300px;
+    background-color: red;
+  }
+}
