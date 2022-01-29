@@ -1,0 +1,24 @@
+.bl_nav {
+  background-color: #222;
+  position: fixed;
+  font-size: 15px;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+
+  &_inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;
+
+    & > div {
+      height: 60px;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+  }
+}
