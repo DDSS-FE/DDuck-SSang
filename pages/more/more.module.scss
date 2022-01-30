@@ -1,0 +1,25 @@
+.bl_moreMenu_item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:nth-child(1) {
+    margin-top: 80px;
+  }
+}
+
+.el_btn_socialGoggle {
+  border-style: none;
+  color: white;
+  font-weight: 600;
+  padding: 12px;
+  width: 100%;
+  height: 50px;
+  background: #4284f3;
+}
+
+.el_btn_menu {
+  border-style: none;
+  background: white;
+  border-bottom: 1px solid #dee2e6;
+  width: 100%;
+}

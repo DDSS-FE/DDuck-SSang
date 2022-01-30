@@ -1,0 +1,32 @@
+.bl_errPg {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+
+  & button {
+    border-style: none;
+    border-radius: 3px;
+    color: #fff;
+    background-color: #2ca0f3;
+    width: 160px;
+    height: 50px;
+  }
+}
+
+.bl_errPg_header {
+  font-size: 50px;
+  margin-bottom: 30px;
+}
+
+.el_errPg_msg {
+  margin-bottom: 30px;
+  padding: 10px;
+
+  & > div:nth-child(1) {
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+}

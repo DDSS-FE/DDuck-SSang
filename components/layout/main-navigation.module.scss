@@ -1,8 +1,4 @@
-@import 'mixins';
-@import 'variables';
-@import 'fonts';
-
-.bottom__nav {
+.ly_footer_nav {
   background: #f1f1f1;
   position: fixed;
   bottom: 0;
@@ -10,17 +6,19 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
+  align-items: center;
 
-  & .nav_icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  & .ly_footer_nav_icon {
     margin-bottom: 8px;
     font-size: 20px;
   }
 }
 
-.bottom__nav__icon {
+.ly_footer_nav_menu {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   margin-top: 10px;
   text-decoration: none;
   color: #adb5bd;
