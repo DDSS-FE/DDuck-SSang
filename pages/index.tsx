@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import Navigator from '../components/Navigator/Navigator';
+import Loading from '../components/Loading/Loading';
 
 const Home: NextPage = () => {
-  return <Navigator />;
+  return <Loading />;
 };
 
 export default Home;
