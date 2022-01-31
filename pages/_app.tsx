@@ -8,6 +8,7 @@ import { useState, useEffect, Fragment } from 'react';
 import Spinner from '../components/ui/spinner';
 import MoreHeader from '../components/layout/more-header';
 import MainNavigation from '../components/layout/main-navigation';
+import TickerHeader from '../components/layout/ticker-header';
 config.autoAddCss = false;
 
 function MyApp({ Component, pageProps, ...appProps }: AppProps) {
@@ -36,6 +37,16 @@ function MyApp({ Component, pageProps, ...appProps }: AppProps) {
         <Fragment>
           {isLoading && <Spinner />}
           <MoreHeader />
+          <Component {...pageProps} />
+          <MainNavigation />
+        </Fragment>
+      );
+
+    if ([`/chart`].includes(appProps.router.pathname))
+      return (
+        <Fragment>
+          {isLoading && <Spinner />}
+          <TickerHeader />
           <Component {...pageProps} />
           <MainNavigation />
         </Fragment>

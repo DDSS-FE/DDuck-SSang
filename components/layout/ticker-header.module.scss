@@ -1,0 +1,32 @@
+.ly_header {
+  display: flex;
+  align-items: center;
+  background: #f1f1f1;
+  width: 100%;
+  height: 50px;
+  cursor: pointer;
+}
+
+.ly_header_ticker {
+  margin-left: 30px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ly_header_icon1 {
+  position: absolute;
+  left: 5px;
+  font-size: 15px;
+}
+
+.ly_header_icon2 {
+  position: absolute;
+  right: 70px;
+  font-size: 20px;
+}
+
+.ly_header_icon3 {
+  position: absolute;
+  right: 20px;
+  font-size: 20px;
+}
