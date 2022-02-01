@@ -7,15 +7,16 @@ const StockDetails = (): JSX.Element => {
     <>
       <header className={styles.ly_header}>
         <div className={styles.ly_header_inner}>
-          <span className={styles.bl_stockHeading}>
+          <div className={styles.bl_stockHeading}>
             <p className={styles.bl_stockHeading_ttl}>코스피 지수</p>
             <p className={styles.bl_stockHeading_standard}>28/01 | 서울</p>
-          </span>
-          <div className={styles.ly_btnWrapper}>
+          </div>
+          {/* /.bl_stockHeading */}
+          <div className={styles.bl_btnWrapper}>
             <i className={(styles.el_btn, 'fas fa-search')} />
             <i className={(styles.el_btn, 'far fa-star')} />
           </div>
-          {/* /.ly_btnWrapper */}
+          {/* /.bl_btnWrapper */}
         </div>
         {/* /.ly_header_inner */}
 
