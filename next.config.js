@@ -19,4 +19,7 @@ module.exports = {
     // ordered list of acceptable optimized image formats (mime types)
     formats: ['image/webp'],
   },
+  env: {
+    GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+  },
 };
