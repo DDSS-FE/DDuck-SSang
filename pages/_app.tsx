@@ -6,6 +6,7 @@ import Head from 'next/head';
 import '../styles/globals.scss';
 
 import Spinner from '../components/ui/spinner';
+import NavBar from '../components/NavBar/NavBar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false);
@@ -41,6 +42,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {isLoading && <Spinner />}
       <Component {...pageProps} />
+      <NavBar />
     </>
   );
 }
