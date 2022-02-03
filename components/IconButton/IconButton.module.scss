@@ -1,0 +1,10 @@
+.el_btn {
+  outline: 0;
+  border: none;
+  background: none;
+  line-height: 1;
+
+  &:focus {
+    outline: none;
+  }
+}
