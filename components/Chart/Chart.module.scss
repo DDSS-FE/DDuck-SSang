@@ -1,50 +1,30 @@
 .ly_chart {
-  text-align: center;
-  width: 100%;
-  & > ul {
-    width: 100%;
-    display: inline-flex;
-    justify-content: space-around;
-    color: #adb5bd;
-  }
-}
-
-#chart {
   border: 1px solid #adb5bd;
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 100px;
-  display: block;
+  margin-bottom: 1.5rem;
   width: 100%;
-}
 
-.chart__view {
-  font-size: 14px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  cursor: pointer;
-}
+  & > ul {
+    width: 100%;
+    display: inline-flex;
+    justify-content: space-around;
+    padding-bottom: 7px;
+    color: #adb5bd;
 
-.chart__view .active {
-  border-bottom: 2px solid #adb5bd;
-  padding-bottom: 5px;
-}
+    .bl_chartViewMenu {
+      cursor: pointer;
 
-.chart__info__item {
-  text-align: left;
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  margin-bottom: 20px;
-  margin-left: 5px;
-  border-bottom: 1px solid #e9ecef;
-}
+      &_item {
+        font-size: 14px;
 
-.chart__info__item > div {
-  text-align: left;
-  padding-right: 13.3%;
-  width: 185px;
-  font-size: 15px;
+        &.is_active {
+          border-bottom: 2px solid #adb5bd;
+          color: var(--theme-page-text);
+        }
+      }
+    }
+  }
 }

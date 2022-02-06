@@ -1,0 +1,19 @@
+// _variables.scss로 색상 이동 필요
+
+.light {
+  --theme-color: #a80000;
+  --theme-page-background: #fff;
+  --theme-page-text: #111;
+
+  --theme-btn-text: #111;
+  --theme-btn-background: #a80000;
+}
+
+.dark {
+  --theme-color: #0000a8;
+  --theme-page-background: #111;
+  --theme-page-text: #fff;
+
+  --theme-btn-text: #fff;
+  --theme-btn-background: #0000a8;
+}
