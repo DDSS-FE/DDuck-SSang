@@ -2,7 +2,7 @@
 
 A clear and concise description of what you do.
 
-## 🪄 작업 내용
+## ✏️ 작업 내용
 
 A clear and concise description of what you do.
 
