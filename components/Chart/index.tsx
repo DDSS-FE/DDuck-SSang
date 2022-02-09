@@ -1,8 +1,21 @@
-import { useRef } from 'react';
-import classes from './chart.module.scss';
+import { useEffect, useRef } from 'react';
+import useQuote from '../../hooks/useQuote';
+import classes from './Chart.module.scss';
 
 const Chart = (): JSX.Element => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const { fetchQuote, data, loading, error } = useQuote(
+    'http://localhost:4000/market'
+  );
+
+  useEffect(() => {
+    fetchQuote();
+  }, []);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div className={classes.ly_chart}>
