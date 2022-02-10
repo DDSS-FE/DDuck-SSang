@@ -21,5 +21,6 @@ module.exports = {
   },
   env: {
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
+    SERVER_API: process.env.SERVER_API,
   },
 };

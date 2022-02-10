@@ -2,6 +2,7 @@ import dynamic from 'next/dynamic';
 
 import styles from './Chart.module.scss';
 
+import { CRYPTO_LINE_API } from '../../utils/config';
 import drawChart from '../../utils/drawChart';
 import useAxios from '../../hooks/useAxios';
 
@@ -10,7 +11,7 @@ const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
 });
 
 function Chart(): JSX.Element {
-  const { data } = useAxios('http://localhost:4000/crypto/line');
+  const { data } = useAxios(CRYPTO_LINE_API);
 
   return (
     <div className={styles.ly_chart}>
