@@ -1,24 +1,28 @@
 import { LegacyRef, useEffect, useRef } from 'react';
 
-import styles from './Canvas.module.scss';
+import styles from './ChartCanvas.module.scss';
+
+import { ChartData } from '../../utils/drawChart';
 
 interface CanvasProps {
-  draw: (context: CanvasRenderingContext2D) => void;
+  data: ChartData;
+  drawChart: (data: ChartData, context: CanvasRenderingContext2D) => void;
   height?: number;
   width?: number;
 }
 
-const Canvas = ({
-  draw,
+function ChartCanvas({
+  data,
+  drawChart,
   height = 300,
   width = 330,
-}: CanvasProps): JSX.Element => {
+}: CanvasProps): JSX.Element {
   const canvas = useRef<HTMLCanvasElement>();
 
   useEffect(() => {
     const context = canvas.current?.getContext('2d');
-    draw(context as CanvasRenderingContext2D);
-  }, [draw]);
+    drawChart(data, context as CanvasRenderingContext2D);
+  }, [data, drawChart]);
 
   return (
     <canvas
@@ -28,6 +32,6 @@ const Canvas = ({
       width={width}
     />
   );
-};
+}
 
-export default Canvas;
+export default ChartCanvas;

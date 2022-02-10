@@ -1,34 +1,21 @@
-import { useEffect } from 'react';
-import useQuote from '../../hooks/useQuote';
-import styles from './Chart.module.scss';
 import dynamic from 'next/dynamic';
 
-const DynamicCanvas = dynamic(() => import('./Canvas'), {
+import styles from './Chart.module.scss';
+
+import drawChart from '../../utils/drawChart';
+import useAxios from '../../hooks/useAxios';
+
+const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
   ssr: false,
 });
 
-const draw = (c: CanvasRenderingContext2D) => {
-  // TODO: draw chart
-  console.log(c);
-};
-
-const Chart = (): JSX.Element => {
-  const { fetchQuote, data, loading, error } = useQuote(
-    'http://localhost:4000/market'
-  );
-
-  useEffect(() => {
-    fetchQuote();
-  }, []);
-
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+function Chart(): JSX.Element {
+  const { data } = useAxios('http://localhost:4000/crypto/line');
 
   return (
     <div className={styles.ly_chart}>
       <div className={styles.ly_chart_view}>
-        <DynamicCanvas draw={draw} />
+        <DynamicCanvas drawChart={drawChart} data={data} />
       </div>
 
       <ul className={styles.bl_horizViewMenu}>
@@ -41,6 +28,6 @@ const Chart = (): JSX.Element => {
       </ul>
     </div>
   );
-};
+}
 
 export default Chart;
