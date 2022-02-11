@@ -2,14 +2,14 @@ import { NextPage } from 'next';
 
 import styles from './Market.module.scss';
 
-import StockDetail from '../../components/StockDetail';
+import MarketDetail from '../../components/MarketDetail';
 
-const MarketDetail: NextPage = () => {
+const MarketDetailPage: NextPage = () => {
   return (
     <div className={styles.ly_market}>
-      <StockDetail />
+      <MarketDetail />
     </div>
   );
 };
 
-export default MarketDetail;
+export default MarketDetailPage;
