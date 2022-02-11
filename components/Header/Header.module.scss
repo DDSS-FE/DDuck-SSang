@@ -2,20 +2,19 @@
   border-bottom: 1px solid #ddd;
 
   &_inner {
-    max-width: 1230px;
-    padding: 4px 15px;
     display: flex;
     justify-content: space-between;
+    padding: 6px 15px;
+    max-width: 1230px;
+    margin: 0 auto;
 
     .ly_btnWrapper {
       display: flex;
       align-items: center;
       text-align: right;
 
-      i {
-        color: #000;
-        padding: 0 5px;
-        font-size: 1.25rem;
+      svg {
+        margin-left: 10px;
       }
     }
   }
