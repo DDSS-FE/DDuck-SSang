@@ -2,8 +2,7 @@ import dynamic from 'next/dynamic';
 
 import styles from './Chart.module.scss';
 
-import { CRYPTO_LINE_API } from '../../utils/config';
-import drawChart from '../../utils/drawChart';
+import { CRYPTO_CANDLE_API } from '../../utils/config';
 import useAxios from '../../hooks/useAxios';
 
 const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
@@ -11,12 +10,12 @@ const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
 });
 
 function Chart(): JSX.Element {
-  const { data } = useAxios(CRYPTO_LINE_API);
+  const { data } = useAxios(CRYPTO_CANDLE_API);
 
   return (
     <div className={styles.ly_chart}>
       <div className={styles.ly_chart_view}>
-        <DynamicCanvas drawChart={drawChart} data={data} />
+        {data ? <DynamicCanvas data={data} /> : null}
       </div>
 
       <ul className={styles.bl_horizViewMenu}>
