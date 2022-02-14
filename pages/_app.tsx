@@ -8,7 +8,7 @@ import '../styles/globals.scss';
 import '../styles/theme.scss';
 
 import Spinner from '../components/ui/spinner';
-import NavBar from '../components/NavBar/NavBar';
+import NavBar from '../components/NavBar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false);

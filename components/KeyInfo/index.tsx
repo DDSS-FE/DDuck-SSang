@@ -1,8 +1,8 @@
-import styles from './StockInfoList.module.scss';
+import styles from './KeyInfo.module.scss';
 
-const StockInfoList = (): JSX.Element => {
+const KeyInfo = (): JSX.Element => {
   return (
-    <ul className={styles.bl_stockInfoList}>
+    <ul className={styles.bl_keyInfo}>
       <li>
         <p>일일 변동폭</p>
         <p>2591.53 ~ 2668.59</p>
@@ -39,4 +39,4 @@ const StockInfoList = (): JSX.Element => {
   );
 };
 
-export default StockInfoList;
+export default KeyInfo;

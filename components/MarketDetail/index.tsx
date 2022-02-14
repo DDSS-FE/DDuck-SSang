@@ -1,25 +1,22 @@
-import clsx from 'clsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-regular-svg-icons';
 
-import styles from './StockDetail.module.scss';
+import styles from './MarketDetail.module.scss';
 
-import StockInfoList from '../StockInfoList';
+import KeyInfo from '../KeyInfo';
 import Chart from '../Chart';
 import Header from '../Header';
 import IconButton from '../IconButton';
-import DetailHeader from '../DetailHeader';
+import DetailNav from '../DetailNav';
 
-const StockDetail = (): JSX.Element => {
+const MarketDetail = (): JSX.Element => {
   return (
     <>
       <Header>
         <IconButton>
-          <i
-            className={clsx('fas fa-search fa-2x', styles.el_darkModeIcon)}
-            aria-hidden="true"
-          />
-        </IconButton>
-        <IconButton>
-          <i className={clsx('far fa-star fa-2x', styles.el_darkModeIcon)} />
+          <FontAwesomeIcon className={styles.el_Icon} icon={faSearch} />
+          <FontAwesomeIcon className={styles.el_Icon} icon={faStar} />
         </IconButton>
       </Header>
 
@@ -36,15 +33,13 @@ const StockDetail = (): JSX.Element => {
           </span>
         </div>
       </header>
-
-      <DetailHeader />
+      <DetailNav />
 
       <main>
         <article>
           <section className={styles.ly_cont}>
             <Chart />
-
-            <StockInfoList />
+            <KeyInfo />
           </section>
         </article>
       </main>
@@ -52,4 +47,4 @@ const StockDetail = (): JSX.Element => {
   );
 };
 
-export default StockDetail;
+export default MarketDetail;

@@ -34,28 +34,10 @@
     &.is_active {
       color: var(--theme-page-background);
     }
+  }
 
-    &::before {
-      display: block;
-      font-style: normal;
-      font-variant: normal;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-    }
-
-    &__market::before {
-      content: '\f200';
-    }
-    &__news::before {
-      content: '\f1ea';
-    }
-    &__star::before {
-      content: '\f005';
-    }
-    &__more::before {
-      content: '\f0c9';
-    }
+  &_icon {
+    width: 20px;
+    height: 20px;
   }
 }

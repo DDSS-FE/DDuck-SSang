@@ -31,7 +31,7 @@ export default function More() {
 
       <div className={styles.ly_more_darkModeBtnWrapper}>
         <Toggle
-          className="el_darkModeToggle"
+          className={styles.el_darkModeToggle}
           checked={isMounted && theme === 'light'}
           onChange={switchTheme}
           icons={{ checked: '🌙', unchecked: '🔆' }}

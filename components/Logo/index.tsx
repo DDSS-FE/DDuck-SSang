@@ -7,13 +7,12 @@ const Logo = (): JSX.Element => {
   return (
     <Link href="/">
       <a className={styles.el_logo}>
-        <Image
-          src="http://placeimg.com/100/36/any"
-          alt="logo"
-          width={140}
-          height={45}
-        />
+        <Image src="/logo.png" alt="logo" width={36} height={36} />
       </a>
+      {/* TODO : footer나 다른 섹션에 배치 필요 */}
+      {/* <a href="https://www.flaticon.com/free-icons/growth" title="growth icons">
+        Growth icons created by Freepik - Flaticon
+      </a> */}
     </Link>
   );
 };
