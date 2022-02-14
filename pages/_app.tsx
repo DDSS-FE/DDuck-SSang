@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react';
 import Router from 'next/router';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
+import { ThemeProvider } from 'next-themes';
 
 import '../styles/globals.scss';
+import '../styles/theme.scss';
 
 import Spinner from '../components/ui/spinner';
 import NavBar from '../components/NavBar/NavBar';
@@ -41,7 +43,9 @@ function MyApp({ Component, pageProps }: AppProps) {
         />
       </Head>
       {isLoading && <Spinner />}
-      <Component {...pageProps} />
+      <ThemeProvider attribute="class">
+        <Component {...pageProps} />
+      </ThemeProvider>
       <NavBar />
     </>
   );

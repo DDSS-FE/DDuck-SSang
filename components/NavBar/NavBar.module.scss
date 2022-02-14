@@ -28,11 +28,11 @@
 
     &:focus,
     &:hover {
-      color: #fff;
+      color: var(--theme-page-background);
     }
 
     &.is_active {
-      color: #fff;
+      color: var(--theme-page-background);
     }
 
     &::before {

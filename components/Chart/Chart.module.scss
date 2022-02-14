@@ -1,27 +1,30 @@
 .ly_chart {
-  text-align: center;
+  border: 1px solid #adb5bd;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 1.5rem;
+  width: 100%;
 
   & > ul {
     width: 100%;
     display: inline-flex;
     justify-content: space-around;
+    padding-bottom: 7px;
     color: #adb5bd;
+
+    .bl_chartViewMenu {
+      cursor: pointer;
+
+      &_item {
+        font-size: 14px;
+
+        &.is_active {
+          border-bottom: 2px solid #adb5bd;
+          color: var(--theme-page-text);
+        }
+      }
+    }
   }
-}
-
-.bl_horizViewMenu {
-  font-size: 14px;
-  margin-top: 10px;
-  margin-bottom: 15px;
-  cursor: pointer;
-
-  & .active {
-    border-bottom: 2px solid #adb5bd;
-    padding-bottom: 5px;
-  }
-}
-
-.el_canvas {
-  border: 1px solid #adb5bd;
-  width: 100%;
 }

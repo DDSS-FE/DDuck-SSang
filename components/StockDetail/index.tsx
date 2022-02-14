@@ -1,3 +1,5 @@
+import clsx from 'clsx';
+
 import styles from './StockDetail.module.scss';
 
 import StockInfoList from '../StockInfoList';
@@ -11,8 +13,13 @@ const StockDetail = (): JSX.Element => {
     <>
       <Header>
         <IconButton>
-          <i className={(styles.el_btn, 'fas fa-search')} />
-          <i className={(styles.el_btn, 'far fa-star')} />
+          <i
+            className={clsx('fas fa-search fa-2x', styles.el_darkModeIcon)}
+            aria-hidden="true"
+          />
+        </IconButton>
+        <IconButton>
+          <i className={clsx('far fa-star fa-2x', styles.el_darkModeIcon)} />
         </IconButton>
       </Header>
 

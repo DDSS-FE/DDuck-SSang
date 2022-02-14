@@ -15,7 +15,7 @@ const IconButton = ({
 }): JSX.Element => {
   return (
     <button
-      className={styles.el_btn}
+      className={styles.el_iconBtn}
       style={{ width: width, height: height, backgroundColor: backgroundColor }}
       onClick={onClick}
     >

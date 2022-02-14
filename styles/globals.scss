@@ -52,3 +52,22 @@ table {
   filter: invert(80%) sepia(0%) saturate(0%) hue-rotate(84deg) brightness(102%)
     contrast(95%);
 }
+
+.react-toggle-track {
+  width: 60px;
+
+  > * {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+  }
+}
+
+.react-toggle:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: white !important;
+}
+
+.react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
+  background-color: black !important;
+}

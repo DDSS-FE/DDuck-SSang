@@ -1,4 +1,5 @@
 import { NextComponentType } from 'next';
+
 import classes from './DetailHeader.module.scss';
 
 const DetailHeader: NextComponentType = () => {

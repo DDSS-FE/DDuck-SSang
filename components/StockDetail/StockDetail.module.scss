@@ -11,11 +11,6 @@
       display: flex;
       align-items: center;
       text-align: right;
-
-      i {
-        font-size: 1.25rem;
-        margin-left: 8px;
-      }
     }
   }
 }
@@ -57,4 +52,9 @@
   padding: 0px 15px 60px;
   margin-right: auto;
   margin-left: auto;
+}
+
+// 다크모드 적용 아이콘
+.el_darkModeIcon {
+  color: var(--theme-btn-text) !important;
 }
