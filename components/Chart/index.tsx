@@ -1,14 +1,26 @@
-import { useRef } from 'react';
-import classes from './chart.module.scss';
+import dynamic from 'next/dynamic';
 
-const Chart = (): JSX.Element => {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+import styles from './Chart.module.scss';
+
+import { CRYPTO_LINE_API } from '../../utils/config';
+import drawChart from '../../utils/drawChart';
+import useAxios from '../../hooks/useAxios';
+
+const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
+  ssr: false,
+});
+
+function Chart(): JSX.Element {
+  const { data } = useAxios(CRYPTO_LINE_API);
 
   return (
-    <div className={classes.ly_chart}>
-      <canvas ref={canvasRef} id="chart"></canvas>
-      <ul className={classes.chart__view}>
-        <li className={classes.active}>1일</li>
+    <div className={styles.ly_chart}>
+      <div className={styles.ly_chart_view}>
+        <DynamicCanvas drawChart={drawChart} data={data} />
+      </div>
+
+      <ul className={styles.bl_horizViewMenu}>
+        <li className={styles.active}>1일</li>
         <li>1주</li>
         <li>1달</li>
         <li>1년</li>
@@ -17,6 +29,6 @@ const Chart = (): JSX.Element => {
       </ul>
     </div>
   );
-};
+}
 
 export default Chart;
