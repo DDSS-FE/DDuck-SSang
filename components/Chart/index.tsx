@@ -1,8 +1,13 @@
 import dynamic from 'next/dynamic';
+import clsx from 'clsx';
 
 import styles from './Chart.module.scss';
 
-import { CRYPTO_CANDLE_API } from '../../utils/config';
+import {
+  STOCK_CANDLE_API,
+  CRYPTO_CANDLE_API,
+  CRYPTO_LINE_API,
+} from '../../utils/config';
 import useAxios from '../../hooks/useAxios';
 
 const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
@@ -10,7 +15,7 @@ const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
 });
 
 function Chart(): JSX.Element {
-  const { data } = useAxios(CRYPTO_CANDLE_API);
+  const { data } = useAxios(STOCK_CANDLE_API);
 
   return (
     <div className={styles.ly_chart}>
@@ -18,13 +23,15 @@ function Chart(): JSX.Element {
         {data ? <DynamicCanvas data={data} /> : null}
       </div>
 
-      <ul className={styles.bl_horizViewMenu}>
-        <li className={styles.active}>1일</li>
-        <li>1주</li>
-        <li>1달</li>
-        <li>1년</li>
-        <li>5년</li>
-        <li>최대</li>
+      <ul className={styles.bl_chartViewMenu}>
+        <li className={clsx(styles.bl_chartViewMenu_item, styles.is_active)}>
+          1일
+        </li>
+        <li className={styles.bl_chartViewMenu_item}>1주</li>
+        <li className={styles.bl_chartViewMenu_item}>1달</li>
+        <li className={styles.bl_chartViewMenu_item}>1년</li>
+        <li className={styles.bl_chartViewMenu_item}>5년</li>
+        <li className={styles.bl_chartViewMenu_item}>최대</li>
       </ul>
     </div>
   );

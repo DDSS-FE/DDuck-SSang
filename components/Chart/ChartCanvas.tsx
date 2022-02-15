@@ -18,7 +18,8 @@ function ChartCanvas({
   const canvasRef = useRef<HTMLCanvasElement>();
 
   useEffect(() => {
-    if (canvasRef.current !== undefined) renderChart(canvasRef.current, data);
+    if (canvasRef.current !== undefined)
+      renderChart(canvasRef.current, data.candleData, data.timeLineData);
   }, [data]);
 
   return (
