@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import Link from 'next/link';
-import classes from './custom404.module.scss';
+import classes from 'pages/custom404.module.scss';
 
 export default function Custom404() {
   return (
