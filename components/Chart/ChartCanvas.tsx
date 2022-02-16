@@ -1,33 +1,35 @@
-import { LegacyRef, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
 
 import styles from './ChartCanvas.module.scss';
 
-import { ChartData, renderChart } from '../../utils/renderChart';
+import { CandleChart, CanvasProps } from '../../utils/chart';
 
-interface CanvasProps {
-  data: ChartData;
-  height?: number;
-  width?: number;
-}
-
-function ChartCanvas({
-  data,
-  height = 300,
-  width = 330,
-}: CanvasProps): JSX.Element {
-  const canvasRef = useRef<HTMLCanvasElement>();
+function ChartCanvas({ data }: CanvasProps): JSX.Element {
+  const { candleData, timeLineData } = data;
+  const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
-    if (canvasRef.current !== undefined)
-      renderChart(canvasRef.current, data.candleData, data.timeLineData);
-  }, [data]);
+    const ctx = canvasRef.current?.getContext('2d');
+    if (!!ctx) {
+      new CandleChart(
+        ctx,
+        {
+          margin: 30,
+          lineWidth: 5,
+          candleColorB: 'rgb(93,200,135)',
+          candleColorS: 'rgb(225,84,96)',
+        },
+        { candleData, timeLineData }
+      );
+    }
+  }, [candleData, timeLineData]);
 
   return (
     <canvas
       className={styles.el_canvas}
-      ref={canvasRef as LegacyRef<HTMLCanvasElement>}
-      height={height}
-      width={width}
+      ref={canvasRef}
+      height={window.innerHeight / 2}
+      width={window.innerWidth - 5}
     />
   );
 }
