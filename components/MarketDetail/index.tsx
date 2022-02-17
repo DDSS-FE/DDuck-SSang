@@ -4,11 +4,11 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './MarketDetail.module.scss';
 
-import KeyInfo from '../KeyInfo';
-import Chart from '../Chart';
-import Header from '../Header';
-import IconButton from '../IconButton';
-import DetailNav from '../DetailNav';
+import KeyInfo from 'components/KeyInfo';
+import Chart from 'components/Chart';
+import Header from 'components/Header';
+import IconButton from 'components/IconButton';
+import DetailNav from 'components/DetailNav';
 
 const MarketDetail = (): JSX.Element => {
   return (

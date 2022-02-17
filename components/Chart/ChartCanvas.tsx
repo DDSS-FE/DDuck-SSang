@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 
 import styles from './ChartCanvas.module.scss';
 
-import { CandleChart, CanvasProps } from '../../utils/chart';
+import { CandleChart, CanvasProps } from 'utils/chart';
 
 function ChartCanvas({ data }: CanvasProps): JSX.Element {
   const { candleData, timeLineData } = data;

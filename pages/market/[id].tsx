@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 
 import styles from './Market.module.scss';
 
-import MarketDetail from '../../components/MarketDetail';
+import MarketDetail from 'components/MarketDetail';
 
 const MarketDetailPage: NextPage = () => {
   return (

@@ -17,7 +17,10 @@
     "baseUrl": ".",
     "paths": {
       "pages/*": ["pages/*"],
-      "components/*": ["components/*"]
+      "components/*": ["components/*"],
+      "utils/*": ["utils/*"],
+      "hooks/*": ["hooks/*"],
+      "styles/*": ["styles/*"]
     }
   },
 

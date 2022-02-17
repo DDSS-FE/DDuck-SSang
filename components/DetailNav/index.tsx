@@ -1,6 +1,6 @@
 import { NextComponentType } from 'next';
 
-import styles from 'components/DetailNav/DetailNav.module.scss';
+import styles from './DetailNav.module.scss';
 
 const DetailNav: NextComponentType = () => {
   return (

@@ -1,6 +1,11 @@
-import Chart from './chart';
-import { Candle, CandleChartOption, CandleData, TimeLineData } from './types';
-import { chartStyle } from './chart';
+import {
+  Chart,
+  Candle,
+  CandleChartOption,
+  CandleData,
+  TimeLineData,
+  chartStyle,
+} from 'utils/chart';
 
 export default class CandleChart extends Chart<Candle> {
   options: CandleChartOption;

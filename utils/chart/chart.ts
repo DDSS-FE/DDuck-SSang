@@ -1,11 +1,6 @@
+import { chartStyle } from '.';
 import { formatDate } from '../formatDate';
 import { Candle, Line, TimeLineData } from './types';
-
-export const chartStyle = {
-  AXIS_COLOR: '#bbb',
-  FONT: '1.8rem Sans-serif',
-  SPACING: 25,
-};
 
 export default class Chart<T = Candle | Line> {
   ctx: CanvasRenderingContext2D;

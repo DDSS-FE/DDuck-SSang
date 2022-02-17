@@ -3,8 +3,8 @@ import clsx from 'clsx';
 
 import styles from './Chart.module.scss';
 
-import { STOCK_CANDLE_API } from '../../utils/config';
-import useAxios from '../../hooks/useAxios';
+import { STOCK_CANDLE_API } from 'utils/config';
+import useAxios from 'hooks/useAxios';
 
 const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
   ssr: false,
