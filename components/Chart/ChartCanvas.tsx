@@ -2,27 +2,24 @@ import { useEffect, useRef } from 'react';
 
 import styles from './ChartCanvas.module.scss';
 
-import { CandleChart, CanvasProps } from 'utils/chart';
+import { CanvasProps, Chart } from 'utils/chart';
 
 function ChartCanvas({ data }: CanvasProps): JSX.Element {
-  const { candleData, timeLineData } = data;
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d');
     if (!!ctx) {
-      new CandleChart(
-        ctx,
-        {
-          margin: 30,
-          lineWidth: 5,
-          candleColorB: 'rgb(93,200,135)',
-          candleColorS: 'rgb(225,84,96)',
-        },
-        { candleData, timeLineData }
-      );
+      new Chart(ctx, {
+        type: 'candle',
+        data,
+        // option: {
+        //   candleColorB: 'rgb(93,200,135)',
+        //   candleColorS: 'rgb(225,84,96)',
+        // },
+      });
     }
-  }, [candleData, timeLineData]);
+  }, [data]);
 
   return (
     <canvas
