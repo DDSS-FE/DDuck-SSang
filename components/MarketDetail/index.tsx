@@ -4,13 +4,17 @@ import { faStar } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './MarketDetail.module.scss';
 
-import KeyInfo from '../KeyInfo';
-import Chart from '../Chart';
-import Header from '../Header';
-import IconButton from '../IconButton';
-import DetailNav from '../DetailNav';
+import useAxios from 'hooks/useAxios';
+import KeyInfo from 'components/KeyInfo';
+import Chart from 'components/Chart';
+import Header from 'components/Header';
+import IconButton from 'components/IconButton';
+import DetailNav from 'components/DetailNav';
+import { MARKET_INFO_API } from 'utils/config';
 
 const MarketDetail = (): JSX.Element => {
+  const { data } = useAxios(MARKET_INFO_API);
+
   return (
     <>
       <Header>
@@ -28,7 +32,7 @@ const MarketDetail = (): JSX.Element => {
               <p>+6.69 (+0.25%)</p>
             </div>
             <div className={styles.bl_marketPriceHeading_standard}>
-              13:16:20 - 실시간. KRW 통화
+              10:00:00 - 실시간. KRW 통화
             </div>
           </span>
         </div>
@@ -39,7 +43,7 @@ const MarketDetail = (): JSX.Element => {
         <article>
           <section className={styles.ly_cont}>
             <Chart />
-            <KeyInfo />
+            {data ? <KeyInfo data={data} /> : null}
           </section>
         </article>
       </main>
