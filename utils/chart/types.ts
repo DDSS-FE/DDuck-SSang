@@ -1,11 +1,11 @@
 export interface ChartOption {
   margin: number;
   lineWidth: number;
-}
-
-export interface CandleChartOption extends ChartOption {
-  candleColorB?: string;
-  candleColorS?: string;
+  candleColorB: string;
+  candleColorS: string;
+  axisColor: string;
+  font: string;
+  spacing: number;
 }
 
 export interface Candle {
@@ -17,13 +17,12 @@ export interface Candle {
 
 export type CandleData = Candle[];
 
-export interface Line {
-  c: number;
-}
-
-export type LineData = Line[];
-
 export type TimeLineData = number[];
+
+export interface ChartData {
+  candleData: CandleData;
+  timeLineData: TimeLineData;
+}
 
 export interface CanvasProps {
   data: {

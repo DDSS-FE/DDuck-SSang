@@ -1,6 +1,6 @@
 import styles from './Header.module.scss';
 
-import Logo from '../Logo';
+import Logo from 'components/Logo';
 
 const Header = ({ children }: { children?: React.ReactNode }): JSX.Element => {
   return (

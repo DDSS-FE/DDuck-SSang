@@ -4,11 +4,11 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
 
-import '../styles/globals.scss';
-import '../styles/theme.scss';
+import 'styles/globals.scss';
+import 'styles/theme.scss';
 
-import Spinner from '../components/ui/spinner';
-import NavBar from '../components/NavBar';
+import Spinner from 'components/Spinner';
+import NavBar from 'components/NavBar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false);
