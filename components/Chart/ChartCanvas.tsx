@@ -28,8 +28,8 @@ function ChartCanvas({ data }: CanvasProps): JSX.Element {
     <canvas
       className={styles.el_canvas}
       ref={canvasRef}
-      height={window.innerHeight / 2}
-      width={window.innerWidth - 5}
+      height={window.innerHeight}
+      width={window.innerWidth * 2}
     />
   );
 }
