@@ -3,5 +3,5 @@ const formatUSDate = (unixTime: number) =>
 
 export const formatDate = (unixTime: number) => {
   const [day, month, year] = formatUSDate(unixTime).slice(0, 10).split('/');
-  return [`${year}`, `${month}-${day}`];
+  return { year, month: `${month}-${day}` };
 };

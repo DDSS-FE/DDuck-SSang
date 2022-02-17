@@ -1,5 +1,6 @@
 import Chart from './chart';
 import { Candle, CandleChartOption, CandleData, TimeLineData } from './types';
+import { chartStyle } from './chart';
 
 export default class CandleChart extends Chart<Candle> {
   options: CandleChartOption;
@@ -56,15 +57,21 @@ export default class CandleChart extends Chart<Candle> {
       const yCPoint = yOpenPoint === c ? c + this.ctx.lineWidth : c;
 
       this.ctx.beginPath();
-      this.ctx.moveTo(xPoint, h);
-      this.ctx.lineTo(xPoint, l);
+      this.ctx.moveTo(xPoint + chartStyle.SPACING, h + chartStyle.SPACING);
+      this.ctx.lineTo(xPoint + chartStyle.SPACING, l + chartStyle.SPACING);
       this.ctx.stroke();
 
       this.ctx.lineWidth =
         (widthPercent / 100) * (100 - (this.options.margin as number));
       this.ctx.beginPath();
-      this.ctx.moveTo(xPoint, yOpenPoint);
-      this.ctx.lineTo(xPoint, yCPoint);
+      this.ctx.moveTo(
+        xPoint + chartStyle.SPACING,
+        yOpenPoint + chartStyle.SPACING
+      );
+      this.ctx.lineTo(
+        xPoint + chartStyle.SPACING,
+        yCPoint + chartStyle.SPACING
+      );
       this.ctx.stroke();
     });
   }

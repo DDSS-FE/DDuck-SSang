@@ -1,9 +1,10 @@
 import { formatDate } from '../formatDate';
 import { Candle, Line, TimeLineData } from './types';
 
-const chartStyle = {
+export const chartStyle = {
   AXIS_COLOR: '#bbb',
-  FONT: '10.5px Sans-serif',
+  FONT: '1.8rem Sans-serif',
+  SPACING: 25,
 };
 
 export default class Chart<T = Candle | Line> {
@@ -27,8 +28,8 @@ export default class Chart<T = Candle | Line> {
 
   constructor(ctx: CanvasRenderingContext2D) {
     this.ctx = ctx;
-    this.width = ctx.canvas.width - 50;
-    this.height = ctx.canvas.height - 50;
+    this.width = ctx.canvas.width - 100;
+    this.height = ctx.canvas.height - 100;
     this._chartData = [];
     this._timeLineData = [];
     this.maxPrice = -Infinity;
@@ -37,41 +38,41 @@ export default class Chart<T = Candle | Line> {
     this.minPeriod = +Infinity;
   }
 
-  drawXYAxis() {
-    this.ctx.beginPath();
-    this.ctx.strokeStyle = chartStyle.AXIS_COLOR;
-    this.ctx.moveTo(this.width, 0);
-    this.ctx.lineTo(this.width, this.height);
-    this.ctx.lineTo(0, this.height);
-    this.ctx.stroke();
-  }
-
   drawYAxisText(gridNum: number) {
-    const BASIC_MARGIN = 10;
+    const XAXIS_MARGIN = 8;
+    const YAXIS_MARGIN = 4.5;
     const MAX_MIN_DIFF = this.maxPrice - this.minPrice;
 
     for (let i = 0; i <= gridNum; i++) {
       this.ctx.fillText(
         `${(this.maxPrice - (MAX_MIN_DIFF / gridNum) * i).toFixed(2)}`,
-        this.width + BASIC_MARGIN,
-        (this.height / gridNum) * i + 4.5 // fontsize / 2 - strokeWeight / 2
+        this.width + XAXIS_MARGIN + chartStyle.SPACING,
+        (this.height / gridNum) * i + YAXIS_MARGIN + chartStyle.SPACING
       );
     }
   }
 
   drawXAxisText(gridNum: number) {
-    const BASIC_MARGIN = 15;
+    const YAXIS_MARGIN = 30;
+    const XAXIS_MARGIN = 19;
+    const TEXT_MARGIN = 15;
     const period = this.maxPeriod - this.minPeriod;
 
     for (let i = 0; i <= gridNum; i++) {
-      const date = formatDate(this.minPeriod + (period / gridNum) * i);
-      date.forEach((day, idx) => {
-        this.ctx.fillText(
-          day,
-          (this.width / gridNum) * i - BASIC_MARGIN,
-          this.height + BASIC_MARGIN * idx + 10
-        );
-      });
+      const { year, month } = formatDate(
+        this.minPeriod + (period / gridNum) * i
+      );
+
+      this.ctx.fillText(
+        year,
+        (this.width / gridNum) * i + chartStyle.SPACING - XAXIS_MARGIN,
+        this.height + chartStyle.SPACING + YAXIS_MARGIN
+      );
+      this.ctx.fillText(
+        month,
+        (this.width / gridNum) * i + chartStyle.SPACING - XAXIS_MARGIN,
+        this.height + chartStyle.SPACING + TEXT_MARGIN + YAXIS_MARGIN
+      );
     }
   }
 
@@ -79,11 +80,23 @@ export default class Chart<T = Candle | Line> {
     this.ctx.beginPath();
     this.ctx.strokeStyle = chartStyle.AXIS_COLOR;
 
-    for (let i = 0; i < gridNum; i++) {
-      this.ctx.moveTo(0, (this.height / gridNum) * (gridNum - i));
-      this.ctx.lineTo(this.width, (this.height / gridNum) * (gridNum - i));
-      this.ctx.moveTo((this.width / gridNum) * (gridNum - i), 0);
-      this.ctx.lineTo((this.width / gridNum) * (gridNum - i), this.height);
+    for (let i = 0; i <= gridNum; i++) {
+      this.ctx.moveTo(
+        chartStyle.SPACING,
+        (this.height / gridNum) * (gridNum - i) + chartStyle.SPACING
+      );
+      this.ctx.lineTo(
+        this.width + chartStyle.SPACING,
+        (this.height / gridNum) * (gridNum - i) + chartStyle.SPACING
+      );
+      this.ctx.moveTo(
+        (this.width / gridNum) * (gridNum - i) + chartStyle.SPACING,
+        chartStyle.SPACING
+      );
+      this.ctx.lineTo(
+        (this.width / gridNum) * (gridNum - i) + chartStyle.SPACING,
+        this.height + chartStyle.SPACING
+      );
     }
 
     this.ctx.stroke();
@@ -93,7 +106,6 @@ export default class Chart<T = Candle | Line> {
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.ctx.font = chartStyle.FONT;
 
-    this.drawXYAxis();
     this.drawGrid(6);
     this.drawXAxisText(6);
     this.drawYAxisText(6);
