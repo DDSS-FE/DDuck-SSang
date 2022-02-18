@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useTheme } from 'next-themes';
 import Toggle from 'react-toggle';
 
-import styles from './more.module.scss';
+import styles from 'pages/more/more.module.scss';
 import 'react-toggle/style.css';
 
 export default function More() {

@@ -1,25 +1,33 @@
-import { NextComponentType } from 'next';
+import Link from 'next/link';
+// import { useRouter } from 'next/router';
 
-import styles from './DetailNav.module.scss';
+import styles from 'components/DetailNav/DetailNav.module.scss';
 
-const DetailNav: NextComponentType = () => {
+import { NavItem } from 'components/MarketDetail';
+
+interface DetailNavProps {
+  items: NavItem[];
+}
+
+const DetailNav = ({ items }: DetailNavProps): JSX.Element => {
+  // const router = useRouter();
+
   return (
     <nav className={styles.ly_header_nav}>
-      <a href="#" className={styles.ly_header_nav_cat}>
-        <span className={styles.active}>개요</span>
-      </a>
-      <a href="#" className={styles.ly_header_nav_cat}>
-        <span>분석</span>
-      </a>
-      <a href="#" className={styles.ly_header_nav_cat}>
-        <span>주식시장</span>
-      </a>
-      <a href="#" className={styles.ly_header_nav_cat}>
-        <span>경제지표</span>
-      </a>
-      <a href="#" className={styles.ly_header_nav_cat}>
-        <span>경제뉴스</span>
-      </a>
+      {items.map(({ name, href }: NavItem, index: number) => (
+        <Link href={href} key={index}>
+          <a className={styles.ly_header_nav_cat}>
+            <span
+            // ! : TODO. NavBar와 함께 next/router 학습 후 테스트 작성
+            // className={
+            // router.pathname === name && styles.active
+            // }
+            >
+              {name}
+            </span>
+          </a>
+        </Link>
+      ))}
     </nav>
   );
 };

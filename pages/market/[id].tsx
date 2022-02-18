@@ -1,6 +1,6 @@
 import { NextPage } from 'next';
 
-import styles from './Market.module.scss';
+import styles from 'pages/Market/Market.module.scss';
 
 import MarketDetail from 'components/MarketDetail';
 

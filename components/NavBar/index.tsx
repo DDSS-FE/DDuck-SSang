@@ -1,4 +1,5 @@
 import Link from 'next/link';
+// import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -8,15 +9,23 @@ import {
   faBars,
 } from '@fortawesome/free-solid-svg-icons';
 
-import styles from './NavBar.module.scss';
+import styles from 'components/NavBar/NavBar.module.scss';
 
 const NavBar = (): JSX.Element => {
+  // const router = useRouter();
+
   return (
     <nav className={styles.bl_tabNav}>
       <ul className={styles.bl_tabNav_inner}>
         <li>
           <Link href="/">
-            <a className={clsx(styles.bl_tabNav_link, styles.is_active)}>
+            <a
+              className={clsx(
+                styles.bl_tabNav_link
+                // ! : TODO. DetailNav와 함께 next/router 학습 후 테스트 작성
+                // router.pathname === '/market' && styles.is_active
+              )}
+            >
               <FontAwesomeIcon
                 className={styles.bl_tabNav_icon}
                 icon={faChartColumn}
@@ -27,7 +36,12 @@ const NavBar = (): JSX.Element => {
         </li>
         <li>
           <Link href="/news">
-            <a className={styles.bl_tabNav_link}>
+            <a
+              className={clsx(
+                styles.bl_tabNav_link
+                // router.pathname === '/news' && styles.is_active
+              )}
+            >
               <FontAwesomeIcon
                 className={styles.bl_tabNav_icon}
                 icon={faNewspaper}
@@ -38,7 +52,12 @@ const NavBar = (): JSX.Element => {
         </li>
         <li>
           <Link href="/watchlist">
-            <a className={styles.bl_tabNav_link}>
+            <a
+              className={clsx(
+                styles.bl_tabNav_link
+                // router.pathname === '/watchlist' && styles.is_active
+              )}
+            >
               <FontAwesomeIcon
                 className={styles.bl_tabNav_icon}
                 icon={faStar}
@@ -49,7 +68,12 @@ const NavBar = (): JSX.Element => {
         </li>
         <li>
           <Link href="/more">
-            <a className={styles.bl_tabNav_link}>
+            <a
+              className={clsx(
+                styles.bl_tabNav_link
+                // router.pathname === '/more' && styles.is_active
+              )}
+            >
               <FontAwesomeIcon
                 className={styles.bl_tabNav_icon}
                 icon={faBars}

@@ -1,25 +1,20 @@
-import styles from './IconButton.module.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { IconDefinition, IconLookup } from '@fortawesome/fontawesome-svg-core';
+
+import styles from 'components/IconButton/IconButton.module.scss';
+
+export interface CustomIconConstruct extends IconDefinition, IconLookup {}
 
 const IconButton = ({
-  children,
-  width,
-  height,
-  backgroundColor,
+  icon,
   onClick,
 }: {
-  children: React.ReactNode;
-  width?: string;
-  height?: string;
-  backgroundColor?: string;
-  onClick?: () => void;
+  icon: CustomIconConstruct;
+  onClick: () => void;
 }): JSX.Element => {
   return (
-    <button
-      className={styles.el_iconBtn}
-      style={{ width: width, height: height, backgroundColor: backgroundColor }}
-      onClick={onClick}
-    >
-      {children}
+    <button className={styles.el_iconBtn} onClick={onClick}>
+      <FontAwesomeIcon className={styles.el_Icon} icon={icon} />
     </button>
   );
 };

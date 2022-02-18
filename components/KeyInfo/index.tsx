@@ -1,8 +1,7 @@
-import styles from './KeyInfo.module.scss';
+import styles from 'components/KeyInfo/KeyInfo.module.scss';
 
-import { MarketInfoProps } from '../../utils/market/types';
-
-import { formatDecimal } from '../../utils/formatDate';
+import { MarketInfoProps } from 'utils/market/types';
+import { formatDecimal } from 'utils/formatDate';
 
 const KeyInfo = ({ data }: MarketInfoProps): JSX.Element => {
   const {

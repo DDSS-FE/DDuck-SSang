@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-import styles from './ChartCanvas.module.scss';
+import styles from 'components/Chart/ChartCanvas.module.scss';
 
 import { CanvasProps, Chart } from 'utils/chart';
 

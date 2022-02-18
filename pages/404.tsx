@@ -1,6 +1,6 @@
 import Link from 'next/link';
 
-import styles from './custom404.module.scss';
+import styles from 'pages/custom404.module.scss';
 
 export default function Custom404() {
   return (

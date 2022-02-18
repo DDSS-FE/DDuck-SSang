@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic';
 import clsx from 'clsx';
 
-import styles from './Chart.module.scss';
+import styles from 'components/Chart/Chart.module.scss';
 
 import { STOCK_CANDLE_API } from 'utils/config';
 import useAxios from 'hooks/useAxios';
