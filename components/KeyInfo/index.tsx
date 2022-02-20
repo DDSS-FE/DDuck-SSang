@@ -3,7 +3,7 @@ import styles from 'components/KeyInfo/KeyInfo.module.scss';
 import { MarketInfoProps } from 'utils/market/types';
 import { formatDecimal } from 'utils/formatDate';
 
-const KeyInfo = ({ data }: MarketInfoProps): JSX.Element => {
+export const KeyInfo = ({ data }: MarketInfoProps): JSX.Element => {
   const {
     summaryDetail: {
       dayLow,
