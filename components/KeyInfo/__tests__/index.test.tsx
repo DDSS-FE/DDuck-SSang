@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
 import { KeyInfo } from 'components/KeyInfo';
-import { MarketInfoProps, MarketInfoSummary } from 'utils/market/types';
-import { formatDecimal } from 'utils/formatDate';
 
 type ComponentProps = React.ComponentProps<typeof KeyInfo>;
 
@@ -22,7 +20,7 @@ describe('KeyInfo', () => {
       volume: 1000,
       marketCap: 0,
       dividendRate: 0,
-      averageVolume: 800,
+      averageVolume: 8000,
       beta: 0,
     };
     const defaultProps: ComponentProps = {
@@ -31,55 +29,45 @@ describe('KeyInfo', () => {
       },
     };
 
-    const textNames = [
-      '일일 변동폭',
-      '52주 가격 변동폭',
-      '이전 종가',
-      '시가',
-      '거래량',
-      '평균 거래량',
-    ];
-
-    it('has keyInfo 텍스트', () => {
-      const { getAllByRole, getByText } = renderKeyInfo({ ...defaultProps });
-
-      const listItems = getAllByRole('listitem').map(
-        (listItem) => listItem.children[0].textContent
+    it.each`
+      textNames
+      ${'일일 변동폭'}
+      ${'52주 가격 변동폭'}
+      ${'이전 종가'}
+      ${'시가'}
+      ${'거래량'}
+      ${'평균 거래량'}
+    `('has keyInfo text', ({ textNames }) => {
+      renderKeyInfo({ ...defaultProps });
+      expect(screen.getByTestId('KeyInfo-component')).toHaveTextContent(
+        textNames
       );
-
-      textNames.forEach((textName, i) => {
-        expect(listItems[i]).toBe(textName);
-      });
     });
 
-    it('has keyInfo 렌더링 값', () => {
-      const { getAllByRole, getByText } = renderKeyInfo({ ...defaultProps });
+    const {
+      previousClose,
+      dayLow,
+      dayHigh,
+      open,
+      fiftyTwoWeekHigh,
+      fiftyTwoWeekLow,
+      volume,
+      averageVolume,
+    } = defaultValue;
 
-      const listItems = getAllByRole('listitem').map(
-        (listItem) => listItem.children[1].textContent
-      );
-
-      const {
-        previousClose,
-        dayLow,
-        dayHigh,
-        open,
-        fiftyTwoWeekHigh,
-        fiftyTwoWeekLow,
-        volume,
-        averageVolume,
-      } = defaultValue;
-
-      expect(listItems[0]).toBe(
-        `${formatDecimal(dayLow)} ~ ${formatDecimal(dayHigh)}`
-      );
-      expect(listItems[1]).toBe(
-        `${formatDecimal(fiftyTwoWeekLow)} ~ ${formatDecimal(fiftyTwoWeekHigh)}`
-      );
-      expect(listItems[2]).toBe(`${formatDecimal(previousClose)}`);
-      expect(listItems[3]).toBe(`${formatDecimal(open)}`);
-      expect(listItems[4]).toBe(`${volume.toLocaleString()}`);
-      expect(listItems[5]).toBe(`${averageVolume.toLocaleString()}`);
+    it.each`
+      value
+      ${previousClose}
+      ${dayLow}
+      ${dayHigh}
+      ${open}
+      ${fiftyTwoWeekHigh}
+      ${fiftyTwoWeekLow}
+      ${volume.toLocaleString()}
+      ${averageVolume.toLocaleString()}
+    `('has value text', ({ value }) => {
+      renderKeyInfo({ ...defaultProps });
+      expect(screen.getByTestId('KeyInfo-component')).toHaveTextContent(value);
     });
 
     describe('Interaction', () => {});

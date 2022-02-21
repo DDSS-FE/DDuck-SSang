@@ -17,7 +17,7 @@ export const KeyInfo = ({ data }: MarketInfoProps): JSX.Element => {
     },
   } = data;
   return (
-    <ul className={styles.bl_keyInfo}>
+    <ul className={styles.bl_keyInfo} data-testid="KeyInfo-component">
       <li>
         <p>일일 변동폭</p>
         <p>
