@@ -1,6 +1,3 @@
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { faStar } from '@fortawesome/free-regular-svg-icons';
-
 import styles from 'components/MarketDetail/MarketDetail.module.scss';
 
 import useAxios from 'hooks/useAxios';
@@ -8,15 +5,14 @@ import { MARKET_INFO_API } from 'utils/config';
 
 import KeyInfo from 'components/KeyInfo';
 import Chart from 'components/Chart';
-import Header from 'components/Header';
-import IconButton from 'components/IconButton';
 import DetailNav from 'components/DetailNav';
+import MarketDetailHeader from 'components/MarketDetailHeader';
 
 export interface NavItem {
   name: string;
   href: string;
 }
-// ! : TODO. next/router 학습 후에 url을 변경할지 여부를 결정해야 함.
+// ! : TODO. next/router -> integration test로 진행
 export const marketDetailNavItems: NavItem[] = [
   { name: '개요', href: '/overview' },
   { name: '분석', href: '/analysis' },
@@ -27,33 +23,18 @@ export const marketDetailNavItems: NavItem[] = [
 
 const MarketDetail = (): JSX.Element => {
   const { data } = useAxios(MARKET_INFO_API);
+  const marketDetailHeaderData = {
+    priceLast: 2_727.08,
+    priceChangeValue: 6.69, // + 6.69
+    priceChangePercent: 0.25, // (+ 0.25%)
+    // metadataTime: '2020-04-01T00:00:00.000Z', // 10:00:00
+    // metadataCurrency: 'KRW',
+  };
 
   return (
     <>
-      <Header>
-        <IconButton
-          onClick={() => console.log('검색 자동완성 드롭다운')}
-          icon={faSearch}
-        />
-        <IconButton
-          onClick={() => console.log('관심목록에 추가')}
-          icon={faStar}
-        />
-      </Header>
-      <section>
-        <header className={styles.ly_header}>
-          <div className={styles.ly_header_inner}>
-            <span className={styles.bl_marketPriceHeading}>
-              <div className={styles.bl_marketPriceHeading_price}>
-                <h2>2,727.08</h2>
-                <p>+6.69 (+0.25%)</p>
-              </div>
-              <div className={styles.bl_marketPriceHeading_standard}>
-                10:00:00 - 실시간. KRW 통화
-              </div>
-            </span>
-          </div>
-        </header>
+      <section role="market-detail">
+        <MarketDetailHeader {...marketDetailHeaderData} />
         <DetailNav items={marketDetailNavItems} />
         <main>
           <article>
