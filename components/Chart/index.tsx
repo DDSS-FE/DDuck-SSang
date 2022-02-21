@@ -10,7 +10,7 @@ const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
   ssr: false,
 });
 
-function Chart(): JSX.Element {
+export function Chart(): JSX.Element {
   const { data } = useAxios(STOCK_CANDLE_API);
 
   return (
@@ -20,14 +20,15 @@ function Chart(): JSX.Element {
       </div>
 
       <ul className={styles.bl_chartViewMenu}>
+        <li className={styles.bl_chartViewMenu_item}>15분</li>
+        <li className={styles.bl_chartViewMenu_item}>30분</li>
+        <li className={styles.bl_chartViewMenu_item}>60분</li>
         <li className={clsx(styles.bl_chartViewMenu_item, styles.is_active)}>
           1일
         </li>
         <li className={styles.bl_chartViewMenu_item}>1주</li>
         <li className={styles.bl_chartViewMenu_item}>1달</li>
         <li className={styles.bl_chartViewMenu_item}>1년</li>
-        <li className={styles.bl_chartViewMenu_item}>5년</li>
-        <li className={styles.bl_chartViewMenu_item}>최대</li>
       </ul>
     </div>
   );
