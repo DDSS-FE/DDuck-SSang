@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import styles from 'components/Logo/Logo.module.scss';
 
-const Logo = (): JSX.Element => {
+export const Logo = (): JSX.Element => {
   return (
     <Link href="/">
       <a className={styles.el_logo}>
