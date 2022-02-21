@@ -5,20 +5,19 @@ import { marketDetailNavItems } from 'components/MarketDetail';
 
 describe('DetailNav', () => {
   describe('Layout', () => {
-    it('has navItem 텍스트', () => {
+    it.each`
+      name          | path
+      ${'개요'}     | ${'/overview'}
+      ${'분석'}     | ${'/analysis'}
+      ${'주식시장'} | ${'/stocks'}
+      ${'경제지표'} | ${'/'}
+      ${'경제뉴스'} | ${'/'}
+    `('has navItem 텍스트', ({ name, path }) => {
       render(<DetailNav items={marketDetailNavItems} />);
 
-      expect(screen.getAllByRole('link')).toHaveLength(5);
-
-      marketDetailNavItems.forEach(({ name, href }) => {
-        expect(screen.getByText(name)).toBeInTheDocument();
-        expect(screen.getByRole('link', { name })).toHaveAttribute(
-          'href',
-          href
-        );
-      });
+      expect(screen.getByTestId('DetailNav-component')).toHaveTextContent(name);
+      expect(screen.getByRole('link', { name })).toHaveAttribute('href', path);
     });
-
-    describe('Interaction', () => {});
   });
+  describe('Interaction', () => {});
 });

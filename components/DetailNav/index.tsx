@@ -13,7 +13,7 @@ const DetailNav = ({ items }: DetailNavProps): JSX.Element => {
   // const router = useRouter();
 
   return (
-    <nav className={styles.ly_header_nav}>
+    <nav className={styles.ly_header_nav} data-testid="DetailNav-component">
       {items.map(({ name, href }: NavItem, index: number) => (
         <Link href={href} key={index}>
           <a className={styles.ly_header_nav_cat}>
