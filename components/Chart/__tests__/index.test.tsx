@@ -32,7 +32,6 @@ describe('Chart', () => {
     ${'1일'}
     ${'1주'}
     ${'1달'}
-    ${'1년'}
   `('has Chart text', async ({ textNames }) => {
     render(<Chart />);
     expect(await screen.findByRole('list')).toHaveTextContent(textNames);

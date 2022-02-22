@@ -37,6 +37,7 @@ export default class Chart {
     this.option = {
       margin: 30,
       lineWidth: 5,
+      gridLineWidth: 1,
       candleColorB: 'red',
       candleColorS: 'blue',
       axisColor: '#bbb',
@@ -68,14 +69,14 @@ export default class Chart {
     }));
   }
 
-  drawXYAxis() {
-    this.ctx.beginPath();
-    this.ctx.strokeStyle = this.option.axisColor;
-    this.ctx.moveTo(this.width, 0);
-    this.ctx.lineTo(this.width, this.height);
-    this.ctx.lineTo(0, this.height);
-    this.ctx.stroke();
-  }
+  // drawXYAxis() {
+  //   this.ctx.beginPath();
+  //   this.ctx.strokeStyle = this.option.axisColor;
+  //   this.ctx.moveTo(this.width, 0);
+  //   this.ctx.lineTo(this.width, this.height);
+  //   this.ctx.lineTo(0, this.height);
+  //   this.ctx.stroke();
+  // }
 
   drawYAxisText(gridNum: number) {
     const XAXIS_MARGIN = 8;
@@ -118,6 +119,7 @@ export default class Chart {
   drawGrid(gridNum: number) {
     this.ctx.beginPath();
     this.ctx.strokeStyle = this.option.axisColor;
+    this.ctx.lineWidth = this.option.gridLineWidth;
 
     for (let i = 0; i <= gridNum; i++) {
       this.ctx.moveTo(

@@ -6,15 +6,19 @@ const axiosConfig = {
     'Content-Type': 'application/json',
     accept: 'text/html; charset=utf-8',
   },
+  params: {
+    period: '',
+  },
 };
 
 interface ReturnType {
   data: null;
   loading: boolean;
   error: unknown;
+  fetchData: () => void;
 }
 
-function useAxios(url: string): ReturnType {
+function useAxios(url: string, period = ''): ReturnType {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<unknown>(null);
@@ -22,6 +26,7 @@ function useAxios(url: string): ReturnType {
   const fetchData = async () => {
     try {
       setLoading(true);
+      axiosConfig.params.period = period;
       const res = await axios.get(url, axiosConfig);
       if (res.status === 200) {
         setData(res.data);
@@ -37,7 +42,7 @@ function useAxios(url: string): ReturnType {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return { data, loading, error };
+  return { data, loading, error, fetchData };
 }
 
 export default useAxios;
