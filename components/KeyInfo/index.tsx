@@ -1,62 +1,63 @@
 import styles from 'components/KeyInfo/KeyInfo.module.scss';
 
-import { MarketInfoProps } from 'utils/market/types';
-import { formatDecimal } from 'utils/formatDate';
+import { MARKET_INFO_API } from 'utils/config';
+import useAxios from 'hooks/useAxios';
+import Spinner from 'components/Spinner';
 
-export const KeyInfo = ({ data }: MarketInfoProps): JSX.Element => {
-  const {
-    summaryDetail: {
-      dayLow,
-      dayHigh,
-      fiftyTwoWeekLow,
-      fiftyTwoWeekHigh,
-      previousClose,
-      open,
-      volume,
-      averageVolume,
-    },
-  } = data;
+interface MarketInfoSummary {
+  dayLow: number;
+  dayHigh: number;
+  fiftyTwoWeekLow: number;
+  fiftyTwoWeekHigh: number;
+  previousClose: number;
+  open: number;
+  volume: number;
+  averageVolume: number;
+}
+
+export const KeyInfo = ({ symbol }: { symbol: string }): JSX.Element => {
+  const { data: summaryDetail, loading } = useAxios<MarketInfoSummary>(
+    `${MARKET_INFO_API}?symbol=${symbol}`
+  );
+
   return (
-    <ul className={styles.bl_keyInfo} data-testid="KeyInfo-component">
-      <li>
-        <p>일일 변동폭</p>
-        <p>
-          {formatDecimal(dayLow)} ~ {formatDecimal(dayHigh)}
-        </p>
-      </li>
-      <li>
-        <p>52주 가격 변동폭</p>
-        <p>
-          {formatDecimal(fiftyTwoWeekLow)} ~ {formatDecimal(fiftyTwoWeekHigh)}
-        </p>
-      </li>
-      <li>
-        <p>이전 종가</p>
-        <p>{formatDecimal(previousClose)}</p>
-      </li>
-      <li>
-        <p>시가</p>
-        <p>{formatDecimal(open)}</p>
-      </li>
-      <li>
-        <p>거래량</p>
-        <p>{volume.toLocaleString()}</p>
-      </li>
-      <li>
-        <p>평균 거래량</p>
-        <p>{averageVolume.toLocaleString()}</p>
-      </li>
-      {/* 
-      이곳에 들어가는 데이터는 어디서 가져와야 할 지 논의 필요
-      <li>
-        <p># 구성종목</p>
-        <p>91.53 ~ 168.59</p>
-      </li> */}
-      {/* <li>
-        <p>1년 변동률</p>
-        <p>91.53 ~ 168.59</p>
-      </li> */}
-    </ul>
+    <>
+      {loading ? (
+        <Spinner />
+      ) : (
+        <ul className={styles.bl_keyInfo} data-testid="KeyInfo-component">
+          <li>
+            <p>일일 변동폭</p>
+            <p>
+              {summaryDetail?.dayLow} ~ {summaryDetail?.dayHigh}
+            </p>
+          </li>
+          <li>
+            <p>52주 가격 변동폭</p>
+            <p>
+              {summaryDetail?.fiftyTwoWeekLow} ~{' '}
+              {summaryDetail?.fiftyTwoWeekHigh}
+            </p>
+          </li>
+          <li>
+            <p>이전 종가</p>
+            <p>{summaryDetail?.previousClose}</p>
+          </li>
+          <li>
+            <p>시가</p>
+            <p>{summaryDetail?.open}</p>
+          </li>
+          <li>
+            <p>거래량</p>
+            <p>{summaryDetail?.volume}</p>
+          </li>
+          <li>
+            <p>평균 거래량</p>
+            <p>{summaryDetail?.averageVolume}</p>
+          </li>
+        </ul>
+      )}
+    </>
   );
 };
 

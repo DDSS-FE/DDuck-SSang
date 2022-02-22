@@ -11,4 +11,4 @@ export const formatDate = (
   return { year, month: `${month}-${day}` };
 };
 
-export const formatDecimal = (value: number) => value.toFixed(2);
+// export const formatDecimal = (value: number) => value.toFixed(2);

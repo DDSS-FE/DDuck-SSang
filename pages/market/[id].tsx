@@ -21,7 +21,7 @@ const MarketDetailPage: NextPage = () => {
         />
       </Header>
       <div className={styles.ly_market}>
-        <MarketDetail />
+        <MarketDetail symbol="AAPL" />
       </div>
     </>
   );
