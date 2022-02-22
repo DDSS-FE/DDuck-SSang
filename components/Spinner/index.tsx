@@ -1,6 +1,6 @@
 import { NextComponentType } from 'next';
 
-import styles from 'components/spinner/spinner.module.scss';
+import styles from 'components/Spinner/Spinner.module.scss';
 
 const Spinner: NextComponentType = () => {
   return (

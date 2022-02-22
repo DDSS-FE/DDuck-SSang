@@ -1,7 +1,7 @@
 import { NextPage } from 'next';
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 
-import styles from 'pages/Market/Market.module.scss';
+import styles from 'pages/market/Market.module.scss';
 
 import MarketDetail from 'components/MarketDetail';
 import Header from 'components/Header';
