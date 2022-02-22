@@ -24,7 +24,6 @@ function useAxios(url: string): ReturnType {
       setLoading(true);
       const res = await axios.get(url, axiosConfig);
       if (res.status === 200) {
-        // setLoading(false);
         setData(res.data);
       } else throw new Error();
     } catch (e) {
@@ -34,8 +33,8 @@ function useAxios(url: string): ReturnType {
 
   useEffect(() => {
     fetchData();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     return () => setLoading(false); // Cleanup
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return { data, loading, error };
