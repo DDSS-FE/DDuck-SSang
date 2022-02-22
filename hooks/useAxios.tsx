@@ -34,6 +34,7 @@ function useAxios<S>(url: string): ReturnType<S> {
 
   useEffect(() => {
     fetchData();
+    return () => setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

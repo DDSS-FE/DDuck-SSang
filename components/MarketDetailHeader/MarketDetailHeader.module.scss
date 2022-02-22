@@ -23,8 +23,11 @@
           margin-right: 10px;
         }
 
-        p {
+        .changePrice {
           color: red;
+          &__neg {
+            color: blue;
+          }
         }
       }
 
