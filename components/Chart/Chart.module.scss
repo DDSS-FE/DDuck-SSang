@@ -13,18 +13,5 @@
     justify-content: space-around;
     padding-bottom: 7px;
     color: #adb5bd;
-
-    .bl_chartViewMenu {
-      cursor: pointer;
-
-      &_item {
-        font-size: 14px;
-
-        &.is_active {
-          border-bottom: 2px solid #adb5bd;
-          color: var(--theme-page-text);
-        }
-      }
-    }
   }
 }

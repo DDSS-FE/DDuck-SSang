@@ -1,0 +1,12 @@
+.bl_chartViewMenu {
+  cursor: pointer;
+
+  &_item {
+    font-size: 14px;
+
+    &.is_active {
+      border-bottom: 2px solid #adb5bd;
+      color: var(--theme-page-text);
+    }
+  }
+}
