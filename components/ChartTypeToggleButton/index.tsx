@@ -1,13 +1,9 @@
 import Image from 'next/image';
-
 import { Dispatch, SetStateAction } from 'react';
 
-import candleIcon from 'styles/assets/candleIcon.svg';
-import lineIcon from 'styles/assets/lineIcon.svg';
-
 const chartIcon = {
-  candle: lineIcon,
-  line: candleIcon,
+  candle: '/lineIcon.svg',
+  line: '/candleIcon.svg',
 };
 
 export type ChartType = 'candle' | 'line';
@@ -19,11 +15,12 @@ const ChartTypeToggleButton = ({
   type: ChartType;
   setChartType: Dispatch<SetStateAction<ChartType>>;
 }): JSX.Element => {
-  const handleClick = () => setChartType(type === 'candle' ? 'line' : 'candle');
+  const getType = () => (type === 'candle' ? 'line' : 'candle');
+  const handleClick = () => setChartType(getType());
 
   return (
     <button onClick={handleClick}>
-      <Image src={chartIcon[type]} alt={type} />
+      <Image src={chartIcon[type]} alt={getType()} width={24} height={24} />
     </button>
   );
 };
