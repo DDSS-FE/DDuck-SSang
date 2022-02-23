@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import { Dispatch, SetStateAction } from 'react';
 
+import styles from 'components/ChartTypeToggleButton/ChartTypeToggleButton.module.scss';
+
 const chartIcon = {
   candle: '/lineIcon.svg',
   line: '/candleIcon.svg',
@@ -19,7 +21,7 @@ const ChartTypeToggleButton = ({
   const handleClick = () => setChartType(getType());
 
   return (
-    <button onClick={handleClick}>
+    <button onClick={handleClick} className={styles.el_ChartTypeToggleBtn}>
       <Image src={chartIcon[type]} alt={getType()} width={24} height={24} />
     </button>
   );

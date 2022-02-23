@@ -22,7 +22,7 @@ export const PeriodButton = ({
   return (
     <>
       <ul
-        className={styles.bl_chartViewMenu}
+        className={styles.bl_periodMenu}
         data-testid="PeriodButton-component"
         aria-label="Period"
       >
@@ -34,7 +34,7 @@ export const PeriodButton = ({
               setActiveId(id);
             }}
             className={clsx(
-              styles.bl_chartViewMenu_item,
+              styles.bl_periodMenu_item,
               activeId === id && styles.is_active
             )}
           >

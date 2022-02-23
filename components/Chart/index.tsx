@@ -41,8 +41,10 @@ export function Chart({ symbol }: { symbol: string }): JSX.Element {
         {data && <DynamicCanvas data={data} />}
       </div>
 
-      <PeriodButton callPeriod={setPeriod} />
-      <ChartTypeToggleButton type={chartType} setChartType={setChartType} />
+      <div className={styles.ly_chart_btnWrapper}>
+        <PeriodButton callPeriod={setPeriod} />
+        <ChartTypeToggleButton type={chartType} setChartType={setChartType} />
+      </div>
     </div>
   );
 }
