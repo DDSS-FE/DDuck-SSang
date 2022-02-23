@@ -9,7 +9,9 @@ function ChartCanvas({ data }: CanvasProps): JSX.Element {
 
   useEffect(() => {
     const ctx = canvasRef.current?.getContext('2d');
-    if (!!ctx) {
+
+    if (!!ctx && canvasRef.current) {
+      ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
       new Chart(ctx, {
         type: 'candle',
         data,

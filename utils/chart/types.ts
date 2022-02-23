@@ -1,6 +1,7 @@
 export interface ChartOption {
   margin: number;
   lineWidth: number;
+  gridLineWidth: number;
   candleColorB: string;
   candleColorS: string;
   axisColor: string;
