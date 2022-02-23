@@ -5,11 +5,12 @@ import styles from 'components/Chart/Chart.module.scss';
 
 import useAxios from 'hooks/useAxios';
 
-import { STOCK_CANDLE_API } from 'utils/config';
+import { STOCK_CANDLE_API, STOCK_LINE_API } from 'utils/config';
 import { ChartData } from 'utils/chart';
 
-import { PeriodButton } from 'components/PeriodButton';
 import Spinner from 'components/Spinner';
+import { PeriodButton } from 'components/PeriodButton';
+import ChartTypeToggleButton, { ChartType } from 'components/ChartTypeButton';
 
 const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
   ssr: false,
@@ -17,6 +18,7 @@ const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
 
 export function Chart(): JSX.Element {
   const [period, setPeriod] = useState('D');
+  const [chartType, setChartType] = useState<ChartType>('candle');
   const { data, loading, fetchData } = useAxios<ChartData>(
     STOCK_CANDLE_API,
     period
@@ -34,6 +36,7 @@ export function Chart(): JSX.Element {
       </div>
 
       <PeriodButton callPeriod={setPeriod} />
+      <ChartTypeToggleButton type={chartType} setChartType={setChartType} />
     </div>
   );
 }
