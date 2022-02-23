@@ -4,7 +4,7 @@ import userEvent from '@testing-library/user-event';
 
 describe('Chart Period Button', () => {
   const props = {
-    callPeriod: () => {},
+    setPeriod: () => {},
   };
   describe('Layout', () => {
     it.each`
@@ -44,19 +44,23 @@ describe('Chart Period Button', () => {
         .find((li) => li.textContent !== listitemTxt);
       expect(listitem).not.toHaveClass('is_active');
     });
-    it('has is_active class name when click 15분 button', () => {
+    it.each`
+      period
+      ${'15분'}
+      ${'30분'}
+      ${'60분'}
+      ${'1일'}
+      ${'1주'}
+      ${'1달'}
+    `('has is_active class name when click $period button', ({ period }) => {
       render(<PeriodButton {...props} />);
       const listitem = screen
-        .queryAllByRole('listitem')
-        .find((li) => li.textContent === '15분');
-      // Argument of type 'HTMLElement | undefined' is not assignable to parameter of type 'Element'.
-      // Type 'undefined' is not assignable to type 'Element'.
-      if (listitem) {
-        userEvent.click(listitem);
-        expect(listitem).toHaveClass('is_active');
-      } else {
-        expect(listitem).toHaveTextContent('15분');
-      }
+        .getAllByRole('listitem')
+        .filter((li) => li.textContent === period);
+
+      const item = listitem[0];
+      userEvent.click(item);
+      expect(item).toHaveClass('is_active');
     });
   });
 });

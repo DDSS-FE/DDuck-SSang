@@ -33,7 +33,7 @@ describe('Chart', () => {
     ${'1주'}
     ${'1달'}
   `('has Chart text', async ({ textNames }) => {
-    render(<Chart />);
+    render(<Chart symbol="" />);
     expect(await screen.findByRole('list')).toHaveTextContent(textNames);
   });
 });

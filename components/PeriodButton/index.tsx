@@ -3,8 +3,10 @@ import clsx from 'clsx';
 
 import { useState } from 'react';
 
-export const PeriodButton = (props: {
-  callPeriod: (period: string) => void;
+export const PeriodButton = ({
+  setPeriod,
+}: {
+  setPeriod: (period: string) => void;
 }): JSX.Element => {
   const [activeId, setActiveId] = useState(4);
 
@@ -22,12 +24,13 @@ export const PeriodButton = (props: {
       <ul
         className={styles.bl_chartViewMenu}
         data-testid="PeriodButton-component"
+        aria-label="Period"
       >
         {listitems.map(({ id, text, period }) => (
           <li
             key={id}
             onClick={() => {
-              props.callPeriod(period);
+              setPeriod(period);
               setActiveId(id);
             }}
             className={clsx(

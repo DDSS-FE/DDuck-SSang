@@ -6,9 +6,6 @@ const axiosConfig = {
     'Content-Type': 'application/json',
     accept: 'text/html; charset=utf-8',
   },
-  params: {
-    period: '',
-  },
 };
 
 interface ReturnType<S> {
@@ -18,7 +15,7 @@ interface ReturnType<S> {
   fetchData: () => void;
 }
 
-function useAxios<S>(url: string, period = ''): ReturnType<S> {
+function useAxios<S>(url: string): ReturnType<S> {
   const [data, setData] = useState<S | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<unknown>(null);
@@ -26,7 +23,6 @@ function useAxios<S>(url: string, period = ''): ReturnType<S> {
   const fetchData = async () => {
     try {
       setLoading(true);
-      axiosConfig.params.period = period;
       const res = await axios.get(url, axiosConfig);
       if (res.status === 200) {
         setLoading(false);
