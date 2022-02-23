@@ -27,7 +27,7 @@ const MarketDetail = ({ symbol }: { symbol: string }): JSX.Element => {
         <main>
           <article>
             <section className={styles.ly_cont}>
-              <Chart />
+              <Chart symbol={symbol} />
               <KeyInfo symbol={symbol} />
             </section>
           </article>
