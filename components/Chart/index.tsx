@@ -38,11 +38,15 @@ export function Chart({ symbol }: { symbol: string }): JSX.Element {
     <div className={styles.ly_chart}>
       <div className={styles.ly_chart_view}>
         {loading && <Spinner />}
-        {data && <DynamicCanvas data={data} />}
+        {data && !loading ? (
+          <DynamicCanvas data={data} />
+        ) : (
+          <canvas height={height} width={width}></canvas>
+        )}
       </div>
 
       <div className={styles.ly_chart_btnWrapper}>
-        <PeriodButton callPeriod={setPeriod} />
+        <PeriodButton setPeriod={setPeriod} />
         <ChartTypeToggleButton type={chartType} setChartType={setChartType} />
       </div>
     </div>
