@@ -5,13 +5,14 @@ import styles from 'components/Chart/Chart.module.scss';
 
 import { STOCK_CANDLE_API } from 'utils/config';
 import useAxios from 'hooks/useAxios';
+import { ChartData } from 'utils/chart';
 
 const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
   ssr: false,
 });
 
 export function Chart(): JSX.Element {
-  const { data } = useAxios(STOCK_CANDLE_API);
+  const { data } = useAxios<ChartData>(STOCK_CANDLE_API);
 
   return (
     <div className={styles.ly_chart}>

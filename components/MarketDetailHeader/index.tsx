@@ -1,4 +1,3 @@
-import clsx from 'clsx';
 import styles from 'components/MarketDetailHeader/MarketDetailHeader.module.scss';
 
 import Spinner from 'components/Spinner';
