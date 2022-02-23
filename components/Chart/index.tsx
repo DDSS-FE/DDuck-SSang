@@ -25,6 +25,7 @@ export function Chart({ symbol }: { symbol: string }): JSX.Element {
     fetchData();
     setHeight(window.innerHeight / 2);
     setWidth(window.innerWidth);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [period]);
 
   return (
