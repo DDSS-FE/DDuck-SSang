@@ -1,12 +1,15 @@
+import { useState, useEffect } from 'react';
 import dynamic from 'next/dynamic';
 
-import { PeriodButton } from 'components/PeriodButton';
 import styles from 'components/Chart/Chart.module.scss';
 
-import { STOCK_CANDLE_API } from 'utils/config';
 import useAxios from 'hooks/useAxios';
+
+import { STOCK_CANDLE_API } from 'utils/config';
 import { ChartData } from 'utils/chart';
-import { useState, useEffect } from 'react';
+
+import { PeriodButton } from 'components/PeriodButton';
+import Spinner from 'components/Spinner';
 
 const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
   ssr: false,
@@ -14,7 +17,10 @@ const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
 
 export function Chart(): JSX.Element {
   const [period, setPeriod] = useState('D');
-  const { data, fetchData } = useAxios<ChartData>(STOCK_CANDLE_API, period);
+  const { data, loading, fetchData } = useAxios<ChartData>(
+    STOCK_CANDLE_API,
+    period
+  );
 
   useEffect(() => {
     fetchData();
@@ -23,7 +29,8 @@ export function Chart(): JSX.Element {
   return (
     <div className={styles.ly_chart}>
       <div className={styles.ly_chart_view}>
-        {data ? <DynamicCanvas data={data} /> : null}
+        {loading && <Spinner />}
+        {data && <DynamicCanvas data={data} />}
       </div>
 
       <PeriodButton callPeriod={setPeriod} />
