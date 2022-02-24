@@ -1,32 +1,36 @@
 import dynamic from 'next/dynamic';
+import { useState, useEffect } from 'react';
 
-import { PeriodButton } from 'components/PeriodButton';
-import styles from 'components/Chart/Chart.module.scss';
-import Spinner from 'components/Spinner';
+import useAxios from 'hooks/useAxios';
 
 import { STOCK_CANDLE_API } from 'utils/config';
-import useAxios from 'hooks/useAxios';
-import { ChartData } from 'utils/chart';
-import { useState, useEffect } from 'react';
+import { ChartData, ChartType } from 'utils/chart';
+
+import styles from 'components/Chart/Chart.module.scss';
+
+import Spinner from 'components/Spinner';
+import { PeriodButton } from 'components/PeriodButton';
+import ChartTypeToggleButton from 'components/ChartTypeToggleButton';
 
 const DynamicCanvas = dynamic(() => import('./ChartCanvas'), {
   ssr: false,
 });
 
 export function Chart({ symbol }: { symbol: string }): JSX.Element {
-  const [period, setPeriod] = useState('D');
-  const [height, setHeight] = useState(0);
   const [width, setWidth] = useState(0);
-  const { data, loading, fetchData } = useAxios<ChartData>(
+  const [height, setHeight] = useState(0);
+
+  const [period, setPeriod] = useState('D');
+  const [type, setType] = useState<ChartType>('candle');
+
+  const { data, loading } = useAxios<ChartData>(
     `${STOCK_CANDLE_API}?symbol=${symbol}&period=${period}`
   );
 
   useEffect(() => {
-    fetchData();
     setHeight(window.innerHeight / 2);
     setWidth(window.innerWidth);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [period]);
+  }, [setHeight, setWidth]);
 
   return (
     <>
@@ -34,13 +38,16 @@ export function Chart({ symbol }: { symbol: string }): JSX.Element {
       <div className={styles.ly_chart}>
         <div className={styles.ly_chart_view}>
           {data && !loading ? (
-            <DynamicCanvas data={data} />
+            <DynamicCanvas type={type} data={data} />
           ) : (
             <canvas height={height} width={width}></canvas>
           )}
         </div>
 
-        <PeriodButton setPeriod={setPeriod} />
+        <div className={styles.ly_chart_btnWrapper}>
+          <PeriodButton setPeriod={setPeriod} />
+          <ChartTypeToggleButton type={type} setType={setType} />
+        </div>
       </div>
     </>
   );

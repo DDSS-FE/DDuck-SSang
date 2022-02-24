@@ -7,11 +7,9 @@
   margin-bottom: 1.5rem;
   width: 100%;
 
-  & > ul {
+  &_btnWrapper {
     width: 100%;
-    display: inline-flex;
-    justify-content: space-around;
-    padding-bottom: 7px;
-    color: #adb5bd;
+    display: flex;
+    justify-content: space-evenly;
   }
 }

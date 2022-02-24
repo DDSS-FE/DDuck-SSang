@@ -1,8 +1,11 @@
-.bl_chartViewMenu {
-  cursor: pointer;
+.bl_periodMenu {
+  width: 80%;
+  display: flex;
+  justify-content: space-between;
+  color: #adb5bd;
 
   &_item {
-    font-size: 14px;
+    font-size: 1.4rem;
 
     &.is_active {
       border-bottom: 2px solid #adb5bd;
