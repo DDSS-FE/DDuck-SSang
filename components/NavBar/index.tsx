@@ -18,7 +18,7 @@ const NavBar = (): JSX.Element => {
     <nav className={styles.bl_tabNav}>
       <ul className={styles.bl_tabNav_inner}>
         <li>
-          <Link href="/">
+          <Link href="/market">
             <a
               className={clsx(
                 styles.bl_tabNav_link
