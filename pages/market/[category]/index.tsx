@@ -7,7 +7,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
 import DetailNav, { NavItem } from 'components/DetailNav';
-import StockList from 'components/StockList';
+import MarketInfoList from 'components/MarketInfoList';
 
 export const marketNavItems: NavItem[] = [
   { name: '주식', href: '/market/stock' },
@@ -19,12 +19,14 @@ const Category: NextPage = () => {
   const router = useRouter();
   const { category } = router.query;
 
+  // TODO: FIX 404
   function notFound() {
     const isString = typeof category === 'string';
     if (isString && !['stock', 'indices', 'crypto'].includes(category)) {
       router.push('/404');
+      return <></>;
     }
-    return <></>;
+    return false;
   }
 
   return (
@@ -38,7 +40,7 @@ const Category: NextPage = () => {
             />
           </Header>
           <DetailNav items={marketNavItems} />
-          <StockList />
+          <MarketInfoList />
         </>
       )}
     </>
