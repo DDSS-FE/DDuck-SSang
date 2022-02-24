@@ -19,7 +19,7 @@ export const NewsDetailHeader = ({
 
   return (
     <>
-      <nav className={styles.bl_chartViewMenu}>
+      <nav className={styles.bl_news_nav}>
         {headerItems.map(({ id, text, value }) => (
           <button
             key={id}
@@ -28,7 +28,7 @@ export const NewsDetailHeader = ({
               setActiveId(id);
             }}
             className={clsx(
-              styles.bl_chartViewMenu_item,
+              styles.bl_news_nav_cat,
               activeId === id && styles.is_active
             )}
           >

@@ -1,4 +1,4 @@
-.bl_chartViewMenu {
+.bl_news_nav {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -8,7 +8,7 @@
   margin-bottom: 10px;
   padding: 20px;
 
-  &_item {
+  &_cat {
     text-decoration: none;
     color: #adb5bd;
     font-size: 12px;
@@ -17,9 +17,9 @@
     border: none;
     overflow: hidden;
     outline: none;
-
-    & > .is_active {
-      color: var(--theme-page-text);
-    }
+  }
+  & > .is_active {
+    border-bottom: 2px solid #adb5bd;
+    color: var(--theme-page-text);
   }
 }
