@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 const axiosConfig = {
   headers: {
@@ -20,7 +20,7 @@ function useAxios<S>(url: string): ReturnType<S> {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<unknown>(null);
 
-  const fetchData = async () => {
+  const fetchData = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get(url, axiosConfig);
@@ -32,13 +32,12 @@ function useAxios<S>(url: string): ReturnType<S> {
       setLoading(false);
       setError(e);
     }
-  };
+  }, [url]);
 
   useEffect(() => {
     fetchData();
     return () => setLoading(false);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [fetchData]);
 
   return { data, loading, error, fetchData };
 }
