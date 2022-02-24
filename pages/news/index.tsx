@@ -1,17 +1,17 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import classes from 'pages/news/news.module.scss';
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
 import { NewsDetailHeader } from 'components/NewsDetailHeader';
 import Spinner from 'components/Spinner';
+import { NewsHeadline } from 'components/NewsHeadline';
+
+import styles from 'pages/news/news.module.scss';
 
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 import { NEWS_API } from 'utils/config';
 import useAxios from 'hooks/useAxios';
 import { useState, useEffect } from 'react';
 
-interface NewsDataType {
+export interface NewsDataType {
   name: string;
   url: string;
   image: {
@@ -24,7 +24,7 @@ interface NewsDataType {
   datePublished: string;
 }
 
-type NewsType = NewsDataType[];
+export type NewsType = NewsDataType[];
 
 const NewsPage = (): JSX.Element => {
   const [category, setCategory] = useState('주식&비트코인&경제&정치');
@@ -34,8 +34,6 @@ const NewsPage = (): JSX.Element => {
   useEffect(() => {
     fetchData();
   }, [category]);
-
-  console.log(data);
 
   return (
     <>
@@ -51,64 +49,17 @@ const NewsPage = (): JSX.Element => {
       </Header>
       <main>
         <NewsDetailHeader setCategory={setCategory} />
-        {loading && <Spinner />}
-        {data &&
-          data.map(
-            (
-              { name, url, image, description, provider, datePublished },
-              idx
-            ) => {
+        <section className={styles.ly_news}>
+          {loading && <Spinner />}
+          {data &&
+            data.map((newsData, idx) => {
               if (idx === 0) {
-                return (
-                  <article className={classes.main__news__item} key={url}>
-                    <Image
-                      src={`/api/imagefetcher?url=${encodeURIComponent(
-                        image.contentURL
-                      )}`}
-                      alt="main__news__thumbnail"
-                      width={image.width}
-                      height={image.height}
-                      className={classes.main__news__thumbnail}
-                    />
-                    <section className={classes.main__news__headline}>
-                      <span className={classes.main__news__title}>{name}</span>
-                      <div className={classes.main__news__information}>
-                        <span className={classes.main__news__source}>
-                          {provider}
-                        </span>
-                        <span className={classes.main__news__writtenTime}>
-                          {datePublished}
-                        </span>
-                      </div>
-                    </section>
-                  </article>
-                );
+                return <NewsHeadline isMain={true} newsData={newsData} />;
+              } else {
+                return <NewsHeadline isMain={false} newsData={newsData} />;
               }
-              return (
-                <article className={classes.news__item} key={url}>
-                  <Image
-                    src={`/api/imagefetcher?url=${encodeURIComponent(
-                      image.contentURL
-                    )}`}
-                    alt="news__thumbnail"
-                    width={100}
-                    height={100}
-                    className={classes.news__thumbnail}
-                  />
-                  {console.log(name, image.width, image.height)}
-                  <section className={classes.news__headline}>
-                    <span className={classes.news__title}>{name}</span>
-                    <div className={classes.news__information}>
-                      <span className={classes.news__source}>{provider}</span>
-                      <span className={classes.news__writtenTime}>
-                        {datePublished}
-                      </span>
-                    </div>
-                  </section>
-                </article>
-              );
-            }
-          )}
+            })}
+        </section>
       </main>
     </>
   );
