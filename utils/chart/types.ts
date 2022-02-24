@@ -25,9 +25,4 @@ export interface ChartData {
   timeLineData: TimeLineData;
 }
 
-export interface CanvasProps {
-  data: {
-    candleData: CandleData;
-    timeLineData: TimeLineData;
-  };
-}
+export type ChartType = 'candle' | 'line';

@@ -12,13 +12,13 @@ export type ChartType = 'candle' | 'line';
 
 const ChartTypeToggleButton = ({
   type,
-  setChartType,
+  setType,
 }: {
   type: ChartType;
-  setChartType: Dispatch<SetStateAction<ChartType>>;
+  setType: Dispatch<SetStateAction<ChartType>>;
 }): JSX.Element => {
   const getType = () => (type === 'candle' ? 'line' : 'candle');
-  const handleClick = () => setChartType(getType());
+  const handleClick = () => setType(getType());
 
   return (
     <button onClick={handleClick} className={styles.el_ChartTypeToggleBtn}>
