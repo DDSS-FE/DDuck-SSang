@@ -35,7 +35,7 @@ const NavBar = (): JSX.Element => {
           </Link>
         </li>
         <li>
-          <Link href="/news">
+          <Link href="/news/new">
             <a
               className={clsx(
                 styles.bl_tabNav_link

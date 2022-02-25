@@ -1,7 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
-import { NewsDataType } from 'pages/news';
+import { NewsDataType } from 'pages/news/[category]';
 
 import styles from 'components/NewsHeadline/NewsHeadline.module.scss';
 
@@ -12,6 +13,7 @@ export const NewsHeadline = ({
   isMain: boolean;
   newsData: NewsDataType;
 }): JSX.Element => {
+  const router = useRouter();
   const { name, url, description, image, provider, datePublished } = newsData;
   return (
     <>
@@ -21,7 +23,7 @@ export const NewsHeadline = ({
       >
         <Link
           href={{
-            pathname: `/news/[id]`,
+            pathname: `/news/[category]/[id]`,
             query: {
               description: JSON.stringify(description),
               image: JSON.stringify(image),
@@ -31,7 +33,7 @@ export const NewsHeadline = ({
               name: JSON.stringify(name),
             },
           }}
-          as={`/news/1`}
+          as={`${router.asPath}/${name}`}
         >
           <a className={!isMain ? styles.ly_newsLink : ''}>
             <Image
