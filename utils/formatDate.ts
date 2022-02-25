@@ -11,4 +11,17 @@ export const formatDate = (
   return { year, month: `${month}-${day}` };
 };
 
-// export const formatDecimal = (value: number) => value.toFixed(2);
+export const formatTime = (unixTime: number) => {
+  const [hh, mm, ss] = formatUSDate(unixTime)
+    .slice(12)
+    .split(':')
+    .map((t) => +t);
+  return { hh, mm, ss };
+};
+
+const USTime = formatTime(new Date().getTime());
+export const KRTime = new Date().toTimeString().split(' ')[0];
+export const marketTime =
+  USTime.hh < 9 || USTime.hh >= 16 || (USTime.hh === 9 && USTime.mm < 30)
+    ? 'close'
+    : KRTime;
