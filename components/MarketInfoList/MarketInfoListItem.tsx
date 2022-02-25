@@ -1,57 +1,49 @@
 import Link from 'next/link';
 
-import clsx from 'clsx';
-
 import styles from 'components/MarketInfoList/MarketInfoList.module.scss';
 
+import { marketTime, KRTime } from 'utils/formatDate';
+import { formatChange } from 'utils/quote';
+
 interface Props {
-  id: number;
+  category: 'crypto' | 'stock';
+  symbol: string;
   name: string;
-  date: string;
   c: number;
   d: number;
   dp: number;
 }
 
 const MarketInfoListItem = ({
-  id,
+  category,
+  symbol,
   name,
-  date,
   c,
   d,
   dp,
 }: Props): JSX.Element => (
   <li className={styles.bl_vertMarketInfo_item}>
-    <Link href={`/market/${id}`}>
+    <Link href={`/market/${category}/${symbol}`}>
       <a className={styles.bl_vertMarketInfo_link}>
         <span className={styles.bl_vertMarketInfo_marketInfo}>
           <div className={styles.bl_vertMarketInfo_ttlWrapper}>
-            <p className={styles.bl_vertMarketInfo_ttl}>
-              {/* 코스피 지수 */}
-              {name}
-            </p>
+            <p className={styles.bl_vertMarketInfo_ttl}>{name}</p>
             <p className={styles.bl_vertMarketInfo_standard}>
-              {/* 28/01 */}
-              {date} | {/* 서울 */}
-              UC
+              {/* 시계를 넣을지 말지 */}
+              {category === 'crypto' ? KRTime : marketTime} | US
             </p>
           </div>
-          {/* /.bl_vertMarketInfo_ttlWrapper */}
         </span>
         <span className={styles.bl_vertMarketInfo_marketPrice}>
-          <p className={styles.bl_vertMarketInfo_price}>
-            {/* 2,663.34 */}
-            {c}
-          </p>
+          <p className={styles.bl_vertMarketInfo_price}>{c}</p>
           <p
-            className={clsx(
-              styles.bl_vertMarketInfo_fluctuation,
-              styles.bl_vertMarketInfo_fluctuation__red
-            )}
+            className={
+              dp > 0
+                ? styles.bl_vertMarketInfo_fluctuation__red
+                : styles.bl_vertMarketInfo_fluctuation__blue
+            }
           >
-            {/* +48.85  */}
-            {d}
-            {/* (+1.87%) */} ({dp}%)
+            {formatChange(d)}({formatChange(dp)}%)
           </p>
         </span>
       </a>

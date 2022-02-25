@@ -1,19 +1,42 @@
 import styles from 'components/MarketInfoList/MarketInfoList.module.scss';
 
 import MarketInfoListItem from 'components/MarketInfoList/MarketInfoListItem';
+import Spinner from 'components/Spinner';
 
-const data = [{ id: 1, name: '', date: '', c: 1, d: 1, dp: 1 }];
+import useAxios from 'hooks/useAxios';
+import { QUOTE_API } from 'utils/config';
 
-const MarketInfoList = (): JSX.Element => {
-  // TODO: market/stock/id, market/crypto/id, market/indices/id
-  // const { data, loading } = useAxios<DATA>(`${MARKET_API}`);
+interface Props {
+  category: 'stock' | 'crypto';
+}
+
+type MarketInfoData = MarketInfo[];
+
+interface MarketInfo {
+  id: number;
+  name: string;
+  symbol: string;
+  c: number; // current
+  d: number; // change
+  dp: number; // percent change
+}
+
+const MarketInfoList = ({ category }: Props): JSX.Element => {
+  const { data, loading } = useAxios<MarketInfoData>(
+    `${QUOTE_API}?category=${category}`
+  );
 
   return (
-    <ul className={styles.bl_vertMarketInfo}>
-      {data.map((d) => (
-        <MarketInfoListItem key={d.id} {...d} />
-      ))}
-    </ul>
+    <>
+      {loading && <Spinner />}
+      {data && (
+        <ul className={styles.bl_vertMarketInfo}>
+          {data.map((d) => (
+            <MarketInfoListItem key={d.id} category={category} {...d} />
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 
