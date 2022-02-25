@@ -1,6 +1,5 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
-import dynamic from 'next/dynamic';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -15,7 +14,7 @@ export const marketNavItems: NavItem[] = [
   { name: '지수', href: '/market/indices' },
 ];
 
-const Category: NextPage = () => {
+const MarketCategory: NextPage = () => {
   const router = useRouter();
   const { category } = router.query;
 
@@ -47,6 +46,4 @@ const Category: NextPage = () => {
   );
 };
 
-export default dynamic(() => Promise.resolve(Category), {
-  ssr: false,
-});
+export default MarketCategory;

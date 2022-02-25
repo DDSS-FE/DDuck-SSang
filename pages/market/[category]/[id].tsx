@@ -20,7 +20,6 @@ const MarketDetailPage: NextPage = () => {
           icon={faStar}
         />
       </Header>
-      asdfasdfasdfasdf
       <div className={styles.ly_market}>
         <MarketDetail symbol="AAPL" />
       </div>
