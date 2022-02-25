@@ -3,10 +3,7 @@ import Link from 'next/link';
 
 import styles from 'components/DetailNav/DetailNav.module.scss';
 
-export interface NavItem {
-  name: string;
-  href: string;
-}
+import { NavItem } from 'components/MarketDetail';
 
 interface DetailNavProps {
   items: NavItem[];

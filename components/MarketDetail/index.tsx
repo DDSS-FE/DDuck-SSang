@@ -2,9 +2,13 @@ import styles from 'components/MarketDetail/MarketDetail.module.scss';
 
 import KeyInfo from 'components/KeyInfo';
 import Chart from 'components/Chart';
-import DetailNav, { NavItem } from 'components/DetailNav';
+import DetailNav from 'components/DetailNav';
 import MarketDetailHeader from 'components/MarketDetailHeader';
 
+export interface NavItem {
+  name: string;
+  href: string;
+}
 // ! : TODO. next/router -> integration test로 진행
 export const marketDetailNavItems: NavItem[] = [
   { name: '개요', href: '/overview' },
