@@ -33,7 +33,7 @@ const NewsPage = (): JSX.Element => {
   );
   useEffect(() => {
     fetchData();
-  }, [category]);
+  }, [category, fetchData]);
 
   return (
     <>
