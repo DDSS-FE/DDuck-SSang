@@ -18,30 +18,30 @@ const MarketCategory: NextPage = () => {
   const router = useRouter();
   const { category } = router.query;
 
-  // TODO: FIX 404
   function notFound() {
     const isString = typeof category === 'string';
     if (isString && !['stock', 'indices', 'crypto'].includes(category)) {
       router.push('/404');
-      return <></>;
+      return true;
     }
     return false;
   }
 
   return (
     <>
-      {notFound() || (
-        <>
-          <Header>
-            <IconButton
-              onClick={() => console.log('검색 자동완성 드롭다운')}
-              icon={faSearch}
-            />
-          </Header>
-          <DetailNav items={marketNavItems} />
-          <MarketInfoList />
-        </>
-      )}
+      {router.isReady &&
+        (notFound() || (
+          <>
+            <Header>
+              <IconButton
+                onClick={() => console.log('검색 자동완성 드롭다운')}
+                icon={faSearch}
+              />
+            </Header>
+            <DetailNav items={marketNavItems} />
+            <MarketInfoList category={category as 'stock' | 'crypto'} />
+          </>
+        ))}
     </>
   );
 };
