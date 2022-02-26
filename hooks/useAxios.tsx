@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState, useEffect, useCallback } from 'react';
 
-const axiosConfig = {
+export const axiosConfig = {
   headers: {
     'Content-Type': 'application/json',
     accept: 'text/html; charset=utf-8',
