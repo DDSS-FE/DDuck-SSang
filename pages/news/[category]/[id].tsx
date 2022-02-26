@@ -1,13 +1,22 @@
-import { useRouter } from 'next/router';
+import { NextPageContext } from 'next';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
+
+import { NEWS_API } from 'utils/config';
+import { axiosConfig } from 'hooks/useAxios';
+
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
-import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
-
 import { NewsDetail } from 'components/NewsDetail';
+import { NewsDataType } from 'pages/news/[category]';
 
-const NewsDetailPage = (): JSX.Element => {
-  const router = useRouter();
-  const { query, isReady } = router;
+export default function NewsDetailPage({
+  data,
+}: {
+  data: NewsDataType;
+}): JSX.Element {
+  const { description, image, url, provider, datePublished, name } = data;
+  const { width, height, contentURL } = image;
 
   return (
     <>
@@ -16,26 +25,35 @@ const NewsDetailPage = (): JSX.Element => {
           onClick={() => console.log('검색 자동완성 드롭다운')}
           icon={faSearch}
         />
-        <IconButton
-          onClick={() => console.log('관심목록에 추가')}
-          icon={faStar}
-        />
       </Header>
 
-      {isReady && (
-        <NewsDetail
-          newsDesc={JSON.parse(query.description as string)}
-          contentURL={JSON.parse(query.image as string).contentURL}
-          width={JSON.parse(query.image as string).width}
-          height={JSON.parse(query.image as string).height}
-          newsUrl={JSON.parse(query.url as string)}
-          newsProvider={JSON.parse(query.provider as string)}
-          newsDatePublished={JSON.parse(query.datePublished as string)}
-          newsName={JSON.parse(query.name as string)}
-        />
-      )}
+      <NewsDetail
+        newsDesc={description}
+        contentURL={contentURL}
+        width={width}
+        height={height}
+        newsUrl={url}
+        newsProvider={provider}
+        newsDatePublished={datePublished}
+        newsName={name}
+      />
     </>
   );
-};
+}
 
-export default NewsDetailPage;
+export async function getServerSideProps(context: NextPageContext) {
+  const queryId = context.query.id as string;
+  const id = queryId?.replace(/[“”"]/g, '');
+
+  try {
+    const res = await axios.get(
+      `${NEWS_API}?queryString=${encodeURI(id)}`,
+      axiosConfig
+    );
+    if (res.status === 200) {
+      return { props: { data: res.data[0] as NewsDataType } };
+    } else throw new Error();
+  } catch (err) {
+    console.error(err);
+  }
+}
