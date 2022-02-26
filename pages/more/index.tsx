@@ -5,8 +5,9 @@ import Toggle from 'react-toggle';
 
 import styles from 'pages/more/more.module.scss';
 import 'react-toggle/style.css';
+import { NextPageContext } from 'next';
 
-export default function More() {
+export default function More({ category }: { category: string }) {
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 

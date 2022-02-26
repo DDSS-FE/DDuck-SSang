@@ -2,11 +2,13 @@ import Link from 'next/link';
 
 import styles from 'components/MarketInfoList/MarketInfoList.module.scss';
 
+import { MarketCategory } from 'pages/market/[category]';
+
 import { marketTime, KRTime } from 'utils/formatDate';
 import { formatChange } from 'utils/quote';
 
 interface Props {
-  category: 'crypto' | 'stock';
+  category: MarketCategory;
   symbol: string;
   name: string;
   c: number;

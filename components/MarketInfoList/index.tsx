@@ -1,14 +1,11 @@
 import styles from 'components/MarketInfoList/MarketInfoList.module.scss';
 
+import { MarketCategoryProps } from 'pages/market/[category]';
 import MarketInfoListItem from 'components/MarketInfoList/MarketInfoListItem';
 import Spinner from 'components/Spinner';
 
 import useAxios from 'hooks/useAxios';
 import { QUOTE_API } from 'utils/config';
-
-interface Props {
-  category: 'stock' | 'crypto';
-}
 
 type MarketInfoData = MarketInfo[];
 
@@ -21,7 +18,7 @@ interface MarketInfo {
   dp: number; // percent change
 }
 
-const MarketInfoList = ({ category }: Props): JSX.Element => {
+const MarketInfoList = ({ category }: MarketCategoryProps): JSX.Element => {
   const { data, loading } = useAxios<MarketInfoData>(
     `${QUOTE_API}?category=${category}`
   );
