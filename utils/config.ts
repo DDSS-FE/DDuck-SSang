@@ -6,3 +6,4 @@ export const STOCK_CANDLE_API = `${SERVER}/stock/candle`;
 export const MARKET_INFO_API = `${SERVER}/market/info`;
 export const QUOTE_API = `${SERVER}/quote`;
 export const NEWS_API = `${SERVER}/news`;
+export const SEARCH_MARKET_API = `${SERVER}/search`;
