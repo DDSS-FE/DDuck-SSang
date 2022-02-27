@@ -8,7 +8,13 @@ import 'react-toggle/style.css';
 import FormDialog from 'components/FormDialog';
 import useUser from 'store/modules/user/useUser';
 
-export default function More() {
+export default function More({
+  posts,
+}: //  loginResponseData
+{
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  posts: any;
+}) {
   const [isMounted, setIsMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
@@ -25,6 +31,9 @@ export default function More() {
   const [open, setOpen] = useState(false);
   const [login, setLogin] = useState(false);
   const { isLoggedIn, logout } = useUser();
+
+  console.log(posts);
+  // console.log(loginResponseData);
 
   return (
     <div className={styles.ly_more}>
@@ -83,6 +92,58 @@ export default function More() {
         )}
       </div>
       <FormDialog open={open} setOpen={setOpen} signIn={login} />
+
+      <div style={{ padding: '20px' }}></div>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  // param : ctx
+
+  // get posts from strapi REST API
+
+  // const res = await fetch('http://localhost:1337/api/posts');
+
+  // const posts = await res.json();
+
+  // return {
+  //   props: {
+  //     posts: posts,
+  //   },
+  // };
+
+  const loginData = {
+    identifier: 'tester2@crl.com',
+    password: 'asdfas',
+  };
+
+  const login = await fetch(`http://localhost:1337/api/auth/local`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(loginData),
+  });
+
+  const loginResponseData = await login.json();
+
+  // get posts from strapi REST API
+
+  const res = await fetch(`http://localhost:1337/api/posts`, {
+    headers: {
+      Authorization: `Bearer ${loginResponseData.jwt}`,
+    },
+  });
+  let posts = await res.json();
+  console.log(res, posts);
+  posts = posts.data;
+
+  return {
+    props: {
+      posts: posts,
+      loginResponseData: loginResponseData,
+    },
+  };
 }
