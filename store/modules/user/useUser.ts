@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { IUserData, loginAction, logoutAction } from 'store/modules/user/user';
+import { IUserData, loginAction, logoutAction } from 'store/modules/user';
 import { RootState } from 'store/modules';
 
 export default function useUser() {

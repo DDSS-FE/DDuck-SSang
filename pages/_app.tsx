@@ -4,10 +4,10 @@ import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
 
-import { ThemeProvider as ThemeProviderMui } from '@material-ui/core/styles';
-import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
-const theme = unstable_createMuiStrictModeTheme();
+import { wrapper, store } from 'store';
 
 import 'styles/globals.scss';
 import 'styles/theme.scss';
@@ -15,11 +15,11 @@ import 'styles/theme.scss';
 import Spinner from 'components/Spinner';
 import NavBar from 'components/NavBar';
 
-import { wrapper } from 'store';
-
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  // const store = createStore(persistedReducer);
+  const persistor = persistStore(store);
 
   function routeChangeStart() {
     Router.events.on('routeChangeStart', () => {
@@ -39,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <>
+    <PersistGate loading={null} persistor={persistor}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
@@ -55,7 +55,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} key={router.asPath} />
       </ThemeProvider>
       <NavBar />
-    </>
+    </PersistGate>
   );
 }
 // export default MyApp;

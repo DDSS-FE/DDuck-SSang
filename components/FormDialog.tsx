@@ -9,8 +9,6 @@ import DialogTitle from '@material-ui/core/DialogTitle';
 
 import useUser from 'store/modules/user/useUser';
 
-// import Router from 'next/router';
-
 export default function FormDialog({
   open,
   setOpen,
@@ -65,8 +63,6 @@ export default function FormDialog({
         })
         .finally(() => {
           setOpen(false);
-          // * : 임시 유저 활성화를 위한 forceUpdate -> rtk dispatch로 변경 필요
-          // Router.reload();
         });
   };
 

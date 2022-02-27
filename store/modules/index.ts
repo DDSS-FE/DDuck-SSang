@@ -1,7 +1,7 @@
 import { combineReducers, CombinedState, AnyAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
-import userReducer, { UserState } from 'store/modules/user/user';
+import userReducer, { UserState } from 'store/modules/user';
 
 interface IRootReducer {
   userReducer: UserState;
@@ -19,8 +19,11 @@ const rootReducer = (
   switch (action.type) {
     case HYDRATE:
       console.log('HYDRATE', action);
-
-      return action.payload;
+      const nextState = {
+        ...state, // use previous state
+        ...action.payload, // apply delta from hydration
+      };
+      return nextState;
 
     default: {
       return appReducer(state, action);

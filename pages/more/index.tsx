@@ -24,18 +24,7 @@ export default function More() {
 
   const [open, setOpen] = useState(false);
   const [login, setLogin] = useState(false);
-
-  // * : 로그인 상태 확인
-  // const [user, setUser] = useState('');
-  // useEffect(() => {
-  //   setUser(localStorage.getItem('token') || '');
-  // }, [setUser]);
-  // * : 로그아웃 기능
   const { isLoggedIn, logout } = useUser();
-  // const logout = () => {
-  //   setUser('');
-  //   localStorage.removeItem('token');
-  // };
 
   return (
     <div className={styles.ly_more}>
