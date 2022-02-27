@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
 import { NewsDetailHeader } from 'components/NewsDetailHeader';
@@ -27,6 +28,7 @@ export interface NewsDataType {
 export type NewsType = NewsDataType[];
 
 const NewsPage = (): JSX.Element => {
+  const router = useRouter();
   const [category, setCategory] = useState('주식&비트코인&경제&정치');
   const { data, loading, fetchData } = useAxios<NewsType>(
     `${NEWS_API}?queryString=${category}`
@@ -39,7 +41,9 @@ const NewsPage = (): JSX.Element => {
     <>
       <Header>
         <IconButton
-          onClick={() => console.log('검색 자동완성 드롭다운')}
+          onClick={() => {
+            router.push('/search/news');
+          }}
           icon={faSearch}
         />
         <IconButton
