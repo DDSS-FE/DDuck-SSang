@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 
-import { NewsDataType } from 'pages/news';
+import { NewsDataType } from 'pages/news/[category]';
 
 import styles from 'components/NewsHeadline/NewsHeadline.module.scss';
 

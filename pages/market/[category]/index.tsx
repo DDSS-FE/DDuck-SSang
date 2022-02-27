@@ -35,11 +35,13 @@ const Category: NextPage = () => {
         <>
           <Header>
             <IconButton
-              onClick={() => console.log('검색 자동완성 드롭다운')}
+              onClick={() => {
+                router.push('/search/market');
+              }}
               icon={faSearch}
             />
           </Header>
-          <DetailNav items={marketNavItems} />
+          <DetailNav navItems={marketNavItems} />
           <MarketInfoList />
         </>
       )}

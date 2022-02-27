@@ -4,8 +4,8 @@ import styles from 'components/NewsDetail/NewsDetail.module.scss';
 export interface NewsDetailProps {
   newsDesc: string;
   contentURL: string;
-  width: string;
-  height: string;
+  width: number;
+  height: number;
   newsUrl: string;
   newsProvider: string;
   newsDatePublished: string;
