@@ -1,0 +1,21 @@
+.ly_searchHeader {
+  border-bottom: 1px solid #ddd;
+
+  &_inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    padding: 8px 10px;
+    max-width: 1230px;
+    margin: 0 auto;
+    &_arrow {
+      margin-right: 15px;
+    }
+  }
+}
+
+.bl_searchInput {
+  width: 100%;
+  height: 30px;
+}
