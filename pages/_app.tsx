@@ -5,6 +5,10 @@ import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
 
+import { ThemeProvider as ThemeProviderMui } from '@material-ui/core/styles';
+import { unstable_createMuiStrictModeTheme } from '@material-ui/core/styles';
+const theme = unstable_createMuiStrictModeTheme();
+
 import 'styles/globals.scss';
 import 'styles/theme.scss';
 
