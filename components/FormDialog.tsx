@@ -46,14 +46,14 @@ export default function FormDialog({
         },
         body: JSON.stringify({
           password: pass,
-          identifier: user || email,
+          identifier: email, //user || email,
         }),
       })
         .then((res) => res.json())
         .then((res) => localStorage.setItem('token', res.jwt))
         .finally(() => {
           setOpen(false);
-          // 임시 유저 활성화를 위한 forceUpdate -> rtk dispatch로 변경 필요
+          // * : 임시 유저 활성화를 위한 forceUpdate -> rtk dispatch로 변경 필요
           Router.reload();
         });
   };
@@ -87,18 +87,20 @@ export default function FormDialog({
               setEmail(e.target.value);
             }}
           />
-          <TextField
-            autoFocus
-            margin="dense"
-            id="username"
-            label="Username"
-            type="email"
-            fullWidth
-            value={user}
-            onChange={(e) => {
-              setUser(e.target.value);
-            }}
-          />
+          {!login && (
+            <TextField
+              autoFocus
+              margin="dense"
+              id="username"
+              label="Username"
+              type="email"
+              fullWidth
+              value={user}
+              onChange={(e) => {
+                setUser(e.target.value);
+              }}
+            />
+          )}
           <TextField
             autoFocus
             margin="dense"
