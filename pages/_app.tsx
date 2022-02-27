@@ -15,6 +15,8 @@ import 'styles/theme.scss';
 import Spinner from 'components/Spinner';
 import NavBar from 'components/NavBar';
 
+import { wrapper } from 'store';
+
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -56,4 +58,5 @@ function MyApp({ Component, pageProps }: AppProps) {
     </>
   );
 }
-export default MyApp;
+// export default MyApp;
+export default wrapper.withRedux(MyApp);

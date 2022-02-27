@@ -7,23 +7,27 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import Router from 'next/router';
+import useUser from 'store/modules/user/useUser';
+
+// import Router from 'next/router';
 
 export default function FormDialog({
   open,
   setOpen,
-  login,
+  signIn,
 }: {
   open: boolean;
   setOpen: (open: boolean) => void;
-  login: boolean;
+  signIn: boolean;
 }) {
   const [pass, setPass] = useState('');
   const [email, setEmail] = useState('');
   const [user, setUser] = useState('');
 
+  const { login } = useUser();
+
   const handleSubmit = () => {
-    if (!login)
+    if (!signIn)
       fetch('http://localhost:1337/api/auth/local/register', {
         method: 'post',
         headers: {
@@ -36,7 +40,11 @@ export default function FormDialog({
         }),
       })
         .then((res) => res.json())
-        .then((res) => localStorage.setItem('token', res.jwt))
+        .then((res) => {
+          localStorage.setItem('token', res.jwt);
+          console.log('가입', res);
+          login(res.user);
+        })
         .finally(() => setOpen(false));
     else
       fetch('http://localhost:1337/api/auth/local', {
@@ -50,11 +58,15 @@ export default function FormDialog({
         }),
       })
         .then((res) => res.json())
-        .then((res) => localStorage.setItem('token', res.jwt))
+        .then((res) => {
+          localStorage.setItem('token', res.jwt);
+          console.log('로긘', res);
+          login(res.user);
+        })
         .finally(() => {
           setOpen(false);
           // * : 임시 유저 활성화를 위한 forceUpdate -> rtk dispatch로 변경 필요
-          Router.reload();
+          // Router.reload();
         });
   };
 
@@ -70,7 +82,7 @@ export default function FormDialog({
         aria-labelledby="form-dialog-title"
       >
         <DialogTitle id="form-dialog-title">
-          {login ? 'Login' : 'Register'}
+          {signIn ? 'Login' : 'Register'}
         </DialogTitle>
 
         <DialogContent>
@@ -87,7 +99,7 @@ export default function FormDialog({
               setEmail(e.target.value);
             }}
           />
-          {!login && (
+          {!signIn && (
             <TextField
               autoFocus
               margin="dense"

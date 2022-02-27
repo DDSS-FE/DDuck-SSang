@@ -6,6 +6,7 @@ import Toggle from 'react-toggle';
 import styles from 'pages/more/more.module.scss';
 import 'react-toggle/style.css';
 import FormDialog from 'components/FormDialog';
+import useUser from 'store/modules/user/useUser';
 
 export default function More() {
   const [isMounted, setIsMounted] = useState(false);
@@ -24,15 +25,17 @@ export default function More() {
   const [open, setOpen] = useState(false);
   const [login, setLogin] = useState(false);
 
-  const [user, setUser] = useState('');
-  useEffect(() => {
-    setUser(localStorage.getItem('token') || '');
-  }, [setUser]);
-
-  const logout = () => {
-    setUser('');
-    localStorage.removeItem('token');
-  };
+  // * : 로그인 상태 확인
+  // const [user, setUser] = useState('');
+  // useEffect(() => {
+  //   setUser(localStorage.getItem('token') || '');
+  // }, [setUser]);
+  // * : 로그아웃 기능
+  const { isLoggedIn, logout } = useUser();
+  // const logout = () => {
+  //   setUser('');
+  //   localStorage.removeItem('token');
+  // };
 
   return (
     <div className={styles.ly_more}>
@@ -50,11 +53,11 @@ export default function More() {
           aria-label="Dark mode"
         />
       </div>
-      * : authentication
+      {/* * : authentication */}
       <div style={{ padding: '40px', fontSize: '20px' }}>
-        {user ? '로그인 O' : '로그인 X'}
+        {isLoggedIn ? '로그인 O' : '로그인 X'}
       </div>
-      {!user && (
+      {!isLoggedIn && (
         <>
           <div style={{ padding: '20px' }}>
             <button
@@ -81,7 +84,7 @@ export default function More() {
         </>
       )}
       <div style={{ padding: '20px' }}>
-        {user && (
+        {isLoggedIn && (
           <button
             style={{ padding: '10px', margin: '10px', fontSize: '20px' }}
             onClick={logout}
@@ -90,7 +93,7 @@ export default function More() {
           </button>
         )}
       </div>
-      <FormDialog open={open} setOpen={setOpen} login={login} />
+      <FormDialog open={open} setOpen={setOpen} signIn={login} />
     </div>
   );
 }
