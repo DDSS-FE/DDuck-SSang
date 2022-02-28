@@ -1,4 +1,6 @@
 import { NextPage } from 'next';
+import { useRouter } from 'next/router';
+
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import styles from 'pages/market/Market.module.scss';
@@ -8,6 +10,9 @@ import Header from 'components/Header';
 import IconButton from 'components/IconButton';
 
 const MarketDetailPage: NextPage = () => {
+  const { query } = useRouter();
+  const { symbol } = query;
+
   return (
     <>
       <Header>
@@ -20,9 +25,8 @@ const MarketDetailPage: NextPage = () => {
           icon={faStar}
         />
       </Header>
-      asdfasdfasdfasdf
       <div className={styles.ly_market}>
-        <MarketDetail symbol="AAPL" />
+        <MarketDetail symbol={symbol as string} />
       </div>
     </>
   );
