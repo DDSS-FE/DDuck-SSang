@@ -10,8 +10,11 @@ import useUser from 'store/modules/user/useUser';
 
 export default function More({
   posts,
+  loginResponseData,
 }: //  loginResponseData
 {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  loginResponseData: any;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   posts: any;
 }) {
@@ -33,7 +36,7 @@ export default function More({
   const { isLoggedIn, logout } = useUser();
 
   console.log(posts);
-  // console.log(loginResponseData);
+  console.log(loginResponseData);
 
   return (
     <div className={styles.ly_more}>
@@ -101,21 +104,9 @@ export default function More({
 export async function getServerSideProps() {
   // param : ctx
 
-  // get posts from strapi REST API
-
-  // const res = await fetch('http://localhost:1337/api/posts');
-
-  // const posts = await res.json();
-
-  // return {
-  //   props: {
-  //     posts: posts,
-  //   },
-  // };
-
   const loginData = {
-    identifier: 'tester2@crl.com',
-    password: 'asdfas',
+    identifier: 'tester@crl.com',
+    password: '123123',
   };
 
   const login = await fetch(`http://localhost:1337/api/auth/local`, {
@@ -129,20 +120,21 @@ export async function getServerSideProps() {
 
   const loginResponseData = await login.json();
 
-  // get posts from strapi REST API
-
-  const res = await fetch(`http://localhost:1337/api/posts`, {
-    headers: {
-      Authorization: `Bearer ${loginResponseData.jwt}`,
-    },
-  });
-  let posts = await res.json();
-  console.log(res, posts);
-  posts = posts.data;
+  // // get posts from strapi REST API
+  console.log(loginResponseData.jwt);
+  const res2 = await fetch(
+    `http://localhost:1337/api/candle?symbol=AAPL&period=30`,
+    {
+      headers: {
+        Authorization: `Bearer ${loginResponseData.jwt}`,
+      },
+    }
+  );
+  const candles = await res2.json();
 
   return {
     props: {
-      posts: posts,
+      posts: candles, //res2, //posts,
       loginResponseData: loginResponseData,
     },
   };

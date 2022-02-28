@@ -18,7 +18,7 @@ const rootReducer = (
 ) => {
   switch (action.type) {
     case HYDRATE:
-      console.log('HYDRATE', action);
+      // console.log('HYDRATE', action);
       const nextState = {
         ...state, // use previous state
         ...action.payload, // apply delta from hydration
