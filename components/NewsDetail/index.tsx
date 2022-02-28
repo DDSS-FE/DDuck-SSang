@@ -26,7 +26,6 @@ export const NewsDetail = ({
     <>
       <article className={styles.ly_NewsDetail}>
         <section className={styles.bl_NewsDetail}>
-          {console.log(newsName)}
           <div className={styles.bl_NewsDetail_ttl}>
             <h1>{newsName}</h1>
           </div>

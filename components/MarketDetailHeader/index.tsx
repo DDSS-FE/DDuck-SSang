@@ -5,6 +5,8 @@ import useAxios from 'hooks/useAxios';
 import { QUOTE_API } from 'utils/config';
 
 interface Quote {
+  name: string;
+  symbol: string;
   c: number;
   d: number;
   dp: number;
@@ -25,6 +27,9 @@ const MarketDetailHeader = ({ symbol }: { symbol: string }): JSX.Element => {
         >
           <div className={styles.ly_header_inner}>
             <span className={styles.bl_marketPriceHeading}>
+              <h2>
+                {quote.name}({quote.symbol})
+              </h2>
               <div className={styles.bl_marketPriceHeading_price}>
                 <h2>{quote.c}</h2>
                 <p

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import Router from 'next/router';
+import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
@@ -12,6 +13,7 @@ import NavBar from 'components/NavBar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   function routeChangeStart() {
     Router.events.on('routeChangeStart', () => {
@@ -44,7 +46,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       </Head>
       {isLoading && <Spinner />}
       <ThemeProvider attribute="class">
-        <Component {...pageProps} />
+        <Component {...pageProps} key={router.asPath} />
       </ThemeProvider>
       <NavBar />
     </>

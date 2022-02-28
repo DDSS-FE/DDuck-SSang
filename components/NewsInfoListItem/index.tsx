@@ -1,47 +1,39 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+
+import styles from 'components/NewsInfoListItem/NewsInfoListItem.module.scss';
 
 import { NewsDataType } from 'pages/news/[category]';
+interface NewsCategoryDataType extends NewsDataType {
+  category: string;
+}
 
-import styles from 'components/NewsHeadline/NewsHeadline.module.scss';
-
-export const NewsHeadline = ({
+export const NewsInfoListItem = ({
   isMain,
-  newsData,
+  news,
 }: {
   isMain: boolean;
-  newsData: NewsDataType;
+  news: NewsCategoryDataType;
 }): JSX.Element => {
-  const { name, url, description, image, provider, datePublished } = newsData;
+  const { image, url, provider, datePublished, name, category } = news;
+  const { width, height, contentURL } = image;
+
+  const router = useRouter();
+
   return (
     <>
-      <article
-        className={isMain ? styles.ly_mainNews : styles.ly_news}
-        key={url}
-      >
+      <article key={url}>
         <Link
-          href={{
-            pathname: `/news/[id]`,
-            query: {
-              description: JSON.stringify(description),
-              image: JSON.stringify(image),
-              provider: JSON.stringify(provider),
-              datePublished: JSON.stringify(datePublished),
-              url: JSON.stringify(url),
-              name: JSON.stringify(name),
-            },
-          }}
-          as={`/news/1`}
+          href={`/news/${category}/${name}`}
+          as={`${router.asPath}/${name}`}
         >
           <a className={!isMain ? styles.ly_newsLink : ''}>
             <Image
-              src={`/api/imagefetcher?url=${encodeURIComponent(
-                image.contentURL
-              )}`}
+              src={`/api/imagefetcher?url=${encodeURIComponent(contentURL)}`}
               alt="main news thumbnail"
-              width={isMain ? image.width : 150}
-              height={isMain ? image.height : 150}
-              className={isMain ? styles.el_image__l : styles.el_image__s}
+              width={isMain ? width : 150}
+              height={isMain ? height : 150}
             />
 
             <section className={isMain ? styles.bl_mainNews : styles.bl_news}>
