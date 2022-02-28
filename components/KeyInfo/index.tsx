@@ -1,6 +1,6 @@
 import styles from 'components/KeyInfo/KeyInfo.module.scss';
 
-import { MARKET_INFO_API } from 'utils/config';
+import { INFO_API } from 'utils/config';
 import useAxios from 'hooks/useAxios';
 import Spinner from 'components/Spinner';
 import { MarketDetailProps } from 'pages/market/[category]/[symbol]';
@@ -21,7 +21,7 @@ export const KeyInfo = ({
   category,
 }: MarketDetailProps): JSX.Element => {
   const { data: summaryDetail, loading } = useAxios<MarketInfoSummary>(
-    `${MARKET_INFO_API}?symbol=${symbol}&category=${category}`
+    `${INFO_API}?symbol=${symbol}&category=${category}`
   );
 
   return (

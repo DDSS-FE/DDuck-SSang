@@ -1,8 +1,6 @@
 const SERVER = process.env.SERVER_API;
 
-// export const CRYPTO_LINE_API = `${SERVER}/crypto/line`;
-// export const CRYPTO_CANDLE_API = `${SERVER}/crypto/candle`;
-export const STOCK_CANDLE_API = `${SERVER}/stock/candle`;
-export const MARKET_INFO_API = `${SERVER}/market/info`;
-export const QUOTE_API = `${SERVER}/quote`;
-export const NEWS_API = `${SERVER}/news`;
+export const CANDLE_API = `${SERVER}/api/candle`;
+export const INFO_API = `${SERVER}/api/info`;
+export const QUOTE_API = `${SERVER}/api/quote`;
+export const NEWS_API = `${SERVER}/api/news`;

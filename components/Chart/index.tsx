@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 
 import useAxios from 'hooks/useAxios';
 
-import { STOCK_CANDLE_API } from 'utils/config';
+import { CANDLE_API } from 'utils/config';
 import { ChartData, ChartType } from 'utils/chart';
 
 import styles from 'components/Chart/Chart.module.scss';
@@ -24,7 +24,7 @@ export function Chart({ symbol }: { symbol: string }): JSX.Element {
   const [type, setType] = useState<ChartType>('candle');
 
   const { data, loading } = useAxios<ChartData>(
-    `${STOCK_CANDLE_API}?symbol=${symbol}&period=${period}`
+    `${CANDLE_API}?symbol=${symbol}&period=${period}`
   );
 
   useEffect(() => {

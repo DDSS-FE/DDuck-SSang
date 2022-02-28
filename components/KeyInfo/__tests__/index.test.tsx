@@ -4,7 +4,7 @@ import { setupServer } from 'msw/node';
 import { render, screen } from '@testing-library/react';
 
 import { KeyInfo } from 'components/KeyInfo';
-import { MARKET_INFO_API } from 'utils/config';
+import { INFO_API } from 'utils/config';
 
 const server = setupServer();
 
@@ -15,7 +15,7 @@ afterAll(() => server.close());
 describe('KeyInfo 컴포넌트는', () => {
   beforeEach(() => {
     server.use(
-      rest.get(MARKET_INFO_API, (req, res, ctx) => {
+      rest.get(INFO_API, (req, res, ctx) => {
         return res(
           ctx.json({
             dayLow: 150,
@@ -42,7 +42,7 @@ describe('KeyInfo 컴포넌트는', () => {
     ${'거래량'}
     ${'평균 거래량'}
   `('텍스트 "$textNames"를 가진다.', async ({ textNames }) => {
-    render(<KeyInfo symbol="" />);
+    render(<KeyInfo symbol="" category="" />);
 
     const keyInfoComponent = await screen.findByTestId('KeyInfo-component');
 
@@ -58,7 +58,7 @@ describe('KeyInfo 컴포넌트는', () => {
     ${'volume'}              | ${'1000'}
     ${'averageVolume'}       | ${'8000'}
   `('텍스트 "$name" 에 해당하는 값은 $value이다.', async ({ name, value }) => {
-    render(<KeyInfo symbol="" />);
+    render(<KeyInfo symbol="" category="" />);
 
     const keyInfoValues = await screen.findByTestId(name);
 
