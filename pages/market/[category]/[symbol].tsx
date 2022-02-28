@@ -4,6 +4,8 @@ import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 
 import styles from 'pages/market/Market.module.scss';
 
+import { useRouter } from 'next/router';
+
 import MarketDetail from 'components/MarketDetail';
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
@@ -17,11 +19,12 @@ export default function MarketDetailPage({
   symbol,
   category,
 }: MarketDetailProps): JSX.Element {
+  const router = useRouter();
   return (
     <>
       <Header>
         <IconButton
-          onClick={() => console.log('검색 자동완성 드롭다운')}
+          onClick={() => router.push('search/market')}
           icon={faSearch}
         />
         <IconButton

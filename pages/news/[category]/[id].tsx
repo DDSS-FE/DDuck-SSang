@@ -4,6 +4,7 @@ import axios from 'axios';
 
 import { NEWS_API } from 'utils/config';
 import { axiosConfig } from 'hooks/useAxios';
+import { useRouter } from 'next/router';
 
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
@@ -18,11 +19,13 @@ export default function NewsDetailPage({
   const { description, image, url, provider, datePublished, name } = data;
   const { width, height, contentURL } = image;
 
+  const router = useRouter();
+
   return (
     <>
       <Header>
         <IconButton
-          onClick={() => console.log('검색 자동완성 드롭다운')}
+          onClick={() => router.push('/search/news')}
           icon={faSearch}
         />
       </Header>
