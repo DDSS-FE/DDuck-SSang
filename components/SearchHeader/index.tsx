@@ -13,13 +13,21 @@ const SearchHeader = ({
   keywordHandler: (str: string) => void;
 }): JSX.Element => {
   const router = useRouter();
+  const { category } = router.query;
   const [input, setInput] = useState('');
   const inputRef = useRef<string>('');
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
     inputRef.current = e.target.value;
-    keywordHandler(e.target.value);
+
+    if (category === 'market') keywordHandler(e.target.value);
+  };
+
+  const inputKeyHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      keywordHandler(inputRef.current);
+    }
   };
 
   return (
@@ -29,13 +37,25 @@ const SearchHeader = ({
           <IconButton onClick={() => router.back()} icon={faLongArrowLeft} />
         </div>
 
-        <input
-          type="search"
-          value={input}
-          placeholder="상품 검색"
-          className={styles.bl_searchInput}
-          onChange={inputChangeHandler}
-        ></input>
+        {category === 'market' && (
+          <input
+            type="search"
+            value={input}
+            placeholder="상품 검색"
+            className={styles.bl_searchInput}
+            onChange={inputChangeHandler}
+          ></input>
+        )}
+        {category === 'news' && (
+          <input
+            type="search"
+            value={input}
+            placeholder="뉴스 검색"
+            className={styles.bl_searchInput}
+            onChange={inputChangeHandler}
+            onKeyPress={inputKeyHandler}
+          ></input>
+        )}
       </div>
     </header>
   );

@@ -4,9 +4,8 @@ import { useState } from 'react';
 
 import SearchHeader from 'components/SearchHeader';
 import SearchInfoList from 'components/SearchInfoList';
-import { SearchProps } from 'pages/search/[id]';
 
-const SearchDetail = ({ data }: { data: SearchProps[] }): JSX.Element => {
+const SearchDetail = ({ category }: { category: string }): JSX.Element => {
   const [keyword, setKeyword] = useState('');
 
   const keywordHandler = (str: string) => {
@@ -16,7 +15,7 @@ const SearchDetail = ({ data }: { data: SearchProps[] }): JSX.Element => {
   return (
     <div className={styles.ly_search} data-testid="SearchDetail-component">
       <SearchHeader keywordHandler={keywordHandler}></SearchHeader>
-      <SearchInfoList keyword={keyword} data={data}></SearchInfoList>
+      <SearchInfoList keyword={keyword} category={category}></SearchInfoList>
     </div>
   );
 };
