@@ -1,5 +1,4 @@
-import { NextPage } from 'next';
-import { useRouter } from 'next/router';
+import { NextPageContext } from 'next';
 
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,10 +8,15 @@ import MarketDetail from 'components/MarketDetail';
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
 
-const MarketDetailPage: NextPage = () => {
-  const { query } = useRouter();
-  const { symbol } = query;
+export interface MarketDetailProps {
+  symbol: string;
+  category: string;
+}
 
+export default function MarketDetailPage({
+  symbol,
+  category,
+}: MarketDetailProps): JSX.Element {
   return (
     <>
       <Header>
@@ -26,10 +30,27 @@ const MarketDetailPage: NextPage = () => {
         />
       </Header>
       <div className={styles.ly_market}>
-        <MarketDetail symbol={symbol as string} />
+        <MarketDetail symbol={symbol} category={category} />
       </div>
     </>
   );
-};
+}
 
-export default MarketDetailPage;
+export async function getServerSideProps(context: NextPageContext) {
+  const { query } = context;
+  if (!query || !query.symbol || !query.category) {
+    return {
+      props: {
+        symbol: '',
+        category: '',
+      },
+    };
+  }
+
+  return {
+    props: {
+      symbol: query.symbol,
+      category: query.category,
+    },
+  };
+}
