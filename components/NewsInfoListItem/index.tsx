@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 
 import styles from 'components/NewsInfoListItem/NewsInfoListItem.module.scss';
 
@@ -19,15 +18,10 @@ export const NewsInfoListItem = ({
   const { image, url, provider, datePublished, name, category } = news;
   const { width, height, contentURL } = image;
 
-  const router = useRouter();
-
   return (
     <>
       <article key={url}>
-        <Link
-          href={`/news/${category}/${name}`}
-          as={`${router.asPath}/${name}`}
-        >
+        <Link href={`/news/${category}/${name}`}>
           <a className={!isMain ? styles.ly_newsLink : ''}>
             <Image
               src={`/api/imagefetcher?url=${encodeURIComponent(contentURL)}`}
