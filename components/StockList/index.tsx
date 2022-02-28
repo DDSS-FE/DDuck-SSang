@@ -41,6 +41,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
   const [wData, setWData] = useState<WatchListData>([]);
   const [wLoading, setWLoading] = useState<boolean>(false);
   const [wError, setWError] = useState<unknown>(null);
+  // * : 관심 목록 조회
   const fetchWatchlist = useCallback(async () => {
     try {
       const res = await fetch(
@@ -59,14 +60,37 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
       setWError(e);
     }
   }, []);
+  // * : 관심 목록 항목 삭제
+  const deleteWatchlist = useCallback(async (id) => {
+    try {
+      const res = await fetch(
+        `http://localhost:1337/api/watchlists/${id}`, //?email=tester@crl.co`,
+        {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        }
+      );
+      const resData = await res.json();
+      console.log(resData);
+      // * : dispatch 대신 reload로 임시 처리
+      window.location.reload();
+      setWLoading(false);
+    } catch (e) {
+      setWLoading(false);
+      setWError(e);
+    }
+  }, []);
 
   useEffect(() => {
     fetchWatchlist();
     return () => setWLoading(false);
   }, [fetchWatchlist]);
 
-  const removeStock = (id: number): void => {
+  const removeStock = async (id: number) => {
     console.log(`id가 ${id}인 심볼 삭제`);
+    await deleteWatchlist(id);
   };
 
   console.log(wData, wLoading, wError);
