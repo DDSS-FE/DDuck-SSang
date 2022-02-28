@@ -4,6 +4,7 @@ import KeyInfo from 'components/KeyInfo';
 import Chart from 'components/Chart';
 import DetailNav, { NavItem } from 'components/DetailNav';
 import MarketDetailHeader from 'components/MarketDetailHeader';
+import { MarketDetailProps } from 'pages/market/[category]/[symbol]';
 
 // ! : TODO. next/router -> integration test로 진행
 export const marketDetailNavItems: NavItem[] = [
@@ -14,7 +15,7 @@ export const marketDetailNavItems: NavItem[] = [
   { name: '경제뉴스', href: '/' },
 ];
 
-const MarketDetail = ({ symbol }: { symbol: string }): JSX.Element => {
+const MarketDetail = ({ symbol, category }: MarketDetailProps): JSX.Element => {
   return (
     <>
       <section role="market-detail">
@@ -24,7 +25,9 @@ const MarketDetail = ({ symbol }: { symbol: string }): JSX.Element => {
           <article>
             <section className={styles.ly_cont}>
               <Chart symbol={symbol} />
-              <KeyInfo symbol={symbol} />
+              {category === 'stock' && (
+                <KeyInfo symbol={symbol} category={category} />
+              )}
             </section>
           </article>
         </main>
