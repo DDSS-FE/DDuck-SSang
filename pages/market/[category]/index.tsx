@@ -39,7 +39,7 @@ const Category: NextPage = () => {
               icon={faSearch}
             />
           </Header>
-          <DetailNav items={marketNavItems} />
+          <DetailNav navItems={marketNavItems} />
           <MarketInfoList />
         </>
       )}

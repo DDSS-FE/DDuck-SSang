@@ -19,7 +19,7 @@ const MarketDetail = ({ symbol }: { symbol: string }): JSX.Element => {
     <>
       <section role="market-detail">
         <MarketDetailHeader symbol={symbol} />
-        <DetailNav items={marketDetailNavItems} />
+        <DetailNav navItems={marketDetailNavItems} />
         <main>
           <article>
             <section className={styles.ly_cont}>
