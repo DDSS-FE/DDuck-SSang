@@ -10,11 +10,6 @@
     text-decoration: none;
     transition: 0.25s;
     color: currentColor;
-
-    &:focus,
-    &:hover {
-      color: coral;
-    }
   }
 
   &_inner {
@@ -25,33 +20,12 @@
     color: currentColor;
   }
 
-  &_marketInfo {
-    display: inline-flex;
-
-    &::before {
-      display: inline-block;
-      font-style: normal;
-      font-variant: normal;
-      text-rendering: auto;
-      -webkit-font-smoothing: antialiased;
-      font-family: 'Font Awesome 5 Free';
-      font-weight: 900;
-      margin: auto 10px;
-    }
-
-    &__sort::before {
-      content: '\f0dc';
-    }
-  }
-
-  &_ttlWrapper {
-  }
-
   &_ttl {
     font-weight: bold;
   }
 
   &_standard {
+    display: flex;
     color: #666;
   }
 
@@ -60,7 +34,8 @@
     font-weight: bold;
   }
 
-  &_price {
+  &_icon {
+    width: 1rem;
   }
 
   &_fluctuation {
@@ -77,4 +52,12 @@
   &_fluctuation {
     font-size: 0.875rem;
   }
+}
+
+.open {
+  color: green;
+}
+
+.closed {
+  color: red;
 }

@@ -1,10 +1,15 @@
 import Link from 'next/link';
 
+import clsx from 'clsx';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+
 import styles from 'components/MarketInfoList/MarketInfoList.module.scss';
 
 import { MarketCategory } from 'pages/market/[category]';
 
-import { marketTime, KRTime } from 'utils/formatDate';
+import { KRTime, USMarketClosed, marketTime } from 'utils/formatDate';
 import { formatChange } from 'utils/quote';
 
 interface Props {
@@ -31,8 +36,16 @@ const MarketInfoListItem = ({
           <div className={styles.bl_vertMarketInfo_ttlWrapper}>
             <p className={styles.bl_vertMarketInfo_ttl}>{name}</p>
             <p className={styles.bl_vertMarketInfo_standard}>
-              {/* 시계를 넣을지 말지 */}
-              {category === 'crypto' ? KRTime : marketTime} | US
+              <FontAwesomeIcon
+                className={clsx(
+                  styles.bl_vertMarketInfo_icon,
+                  category !== 'crypto'
+                    ? styles[`${USMarketClosed}`]
+                    : styles.open
+                )}
+                icon={faClock}
+              />
+              {category !== 'crypto' ? marketTime : KRTime} | US
             </p>
           </div>
         </span>
