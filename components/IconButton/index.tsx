@@ -8,13 +8,25 @@ export interface CustomIconConstruct extends IconDefinition, IconLookup {}
 const IconButton = ({
   icon,
   onClick,
+  color,
+  bgc,
 }: {
   icon: CustomIconConstruct;
   onClick: () => void;
+  color?: string;
+  bgc?: string;
 }): JSX.Element => {
   return (
-    <button className={styles.el_iconBtn} onClick={onClick}>
-      <FontAwesomeIcon className={styles.el_Icon} icon={icon} />
+    <button
+      className={styles.el_iconBtn}
+      onClick={onClick}
+      style={{ backgroundColor: bgc }}
+    >
+      <FontAwesomeIcon
+        className={styles.el_Icon}
+        icon={icon}
+        style={{ color: color }}
+      />
     </button>
   );
 };
