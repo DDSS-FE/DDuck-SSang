@@ -59,7 +59,11 @@ export default function FormDialog({
         .then((res) => {
           localStorage.setItem('token', res.jwt);
           console.log('로긘', res);
-          login(res.user);
+          if (res.error) {
+            alert(res.error.message);
+          } else {
+            login(res.user);
+          }
         })
         .finally(() => {
           setOpen(false);

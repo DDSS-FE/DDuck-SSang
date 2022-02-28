@@ -8,15 +8,40 @@ import MarketDetail from 'components/MarketDetail';
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
 
+import useUser from 'store/modules/user/useUser';
+
 export interface MarketDetailProps {
   symbol: string;
   category: string;
+}
+
+function addToWatchlistAPI(symbol: string) {
+  return fetch(`/api/watchlist/${symbol}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 }
 
 export default function MarketDetailPage({
   symbol,
   category,
 }: MarketDetailProps): JSX.Element {
+  const { isLoggedIn } = useUser();
+
+  function addToWatchlist(sym: string) {
+    if (isLoggedIn) {
+      try {
+        addToWatchlistAPI(sym);
+      } catch {
+        console.log('add to watchlist error');
+      }
+    } else {
+      alert('You need to login to add to watchlist');
+    }
+  }
+
   return (
     <>
       <Header>
@@ -24,10 +49,7 @@ export default function MarketDetailPage({
           onClick={() => console.log('검색 자동완성 드롭다운')}
           icon={faSearch}
         />
-        <IconButton
-          onClick={() => console.log('관심목록에 추가')}
-          icon={faStar}
-        />
+        <IconButton onClick={() => addToWatchlist(symbol)} icon={faStar} />
       </Header>
       <div className={styles.ly_market}>
         <MarketDetail symbol={symbol} category={category} />
