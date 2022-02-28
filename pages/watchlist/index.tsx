@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { NextPage } from 'next';
 import Link from 'next/link';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -11,8 +10,19 @@ import Header from 'components/Header';
 import IconButton from 'components/IconButton';
 import StockList from 'components/StockList';
 
-const Watchlist: NextPage = () => {
+// interface WatchlistItem {
+//   id: number;
+//   name: string;
+//   symbol: string;
+// }
+
+export default function Watchlist({}: // watchlist,
+{
+  // watchlist: WatchlistItem[];
+}) {
   const [editMode, setEditMode] = useState(false);
+
+  // console.log('data', watchlist);
 
   return (
     <div className={styles.ly_watchlist}>
@@ -28,6 +38,36 @@ const Watchlist: NextPage = () => {
       <StockList editMode={editMode} />
     </div>
   );
-};
+}
 
-export default Watchlist;
+// export async function getServerSideProps() {
+//   // if (typeof window === 'undefined') {
+//   //   return {
+//   //     props: {
+//   //       watchlist: [],
+//   //     },
+//   //   };
+//   // }
+
+//   if (typeof window !== 'undefined' && localStorage.getItem('token')) {
+//     const res2 = await fetch(`http://localhost:1337/api/watchlists`, {
+//       headers: {
+//         Authorization: `Bearer ${localStorage.getItem('token')}`,
+//       },
+//     });
+//     console.log(res2);
+//     const data = await res2.json();
+
+//     return {
+//       props: {
+//         watchlist: data,
+//       },
+//     };
+//   } else {
+//     return {
+//       props: {
+//         watchlist: [],
+//       },
+//     };
+//   }
+// }
