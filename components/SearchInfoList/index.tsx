@@ -29,7 +29,10 @@ const SearchInfoList = ({
 
   const { crypto, stock } = tickerMap;
 
-  const renderSearchMarketList = (data: MarketListProps[], ticker: string) =>
+  const renderSearchMarketList = (
+    data: ReadonlyArray<MarketListProps>,
+    ticker: string
+  ) =>
     data.map((d) => {
       if (d.symbol.match(regExp) || d.name.match(regExp)) {
         return <SearchMarketListItem key={d.id} {...{ ...d, ticker }} />;
