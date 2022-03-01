@@ -14,7 +14,10 @@ const SearchDetail = ({ category }: { category: string }): JSX.Element => {
 
   return (
     <div className={styles.ly_search} data-testid="SearchDetail-component">
-      <SearchHeader keywordHandler={keywordHandler}></SearchHeader>
+      <SearchHeader
+        keywordHandler={keywordHandler}
+        category={category}
+      ></SearchHeader>
       <SearchInfoList keyword={keyword} category={category}></SearchInfoList>
     </div>
   );
