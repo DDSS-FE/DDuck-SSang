@@ -4,6 +4,7 @@ import { setupServer } from 'msw/node';
 import { render, screen } from '@testing-library/react';
 
 import MarketDetailHeader from 'components/MarketDetailHeader';
+
 import { QUOTE_API } from 'utils/config';
 
 const server = setupServer();
@@ -13,30 +14,28 @@ afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
 describe('MarketDetailHeader 컴포넌트는', () => {
-  beforeEach(() => {
-    server.use(
-      rest.get(QUOTE_API, (req, res, ctx) => {
-        return res(
-          ctx.json({
-            c: 1200,
-            d: 100,
-            dp: -5.01,
-          }),
-          ctx.status(200)
-        );
-      })
-    );
-  });
+  server.use(
+    rest.get(QUOTE_API, (req, res, ctx) => {
+      return res(
+        ctx.json({
+          name: '애플',
+          symbol: 'AAPL',
+          c: 1200,
+          d: 100,
+          dp: -5.01,
+        }),
+        ctx.status(200)
+      );
+    })
+  );
 
-  it('텍스트 1200과 100 (-5.01%)를 가진다.', async () => {
+  it('텍스트 "애플(AAPL)"과 "1200100 (-5.01%)"를 가진다.', async () => {
     render(<MarketDetailHeader symbol="" />);
 
-    const currentPrice = await screen.findByRole('heading');
-    const changePrice = await screen.findByTestId(
-      'MarketDetailHeader-changePrice'
-    );
+    const nameWithSymbol = await screen.findByRole('heading');
+    const priceInfo = await screen.findByTestId('MarketDetailHeader-PriceInfo');
 
-    expect(currentPrice).toHaveTextContent(/^1200$/);
-    expect(changePrice).toHaveTextContent(/^100 \(-5.01%\)$/);
+    expect(nameWithSymbol).toHaveTextContent(/^애플\(AAPL\)$/);
+    expect(priceInfo).toHaveTextContent(/^1200100 \(-5.01%\)$/);
   });
 });

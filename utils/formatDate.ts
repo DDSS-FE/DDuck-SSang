@@ -20,8 +20,12 @@ export const formatTime = (unixTime: number) => {
 };
 
 const USTime = formatTime(new Date().getTime());
+
 export const KRTime = new Date().toTimeString().split(' ')[0];
-export const marketTime =
+
+export const USMarketClosed =
   USTime.hh < 9 || USTime.hh >= 16 || (USTime.hh === 9 && USTime.mm < 30)
-    ? 'close'
-    : KRTime;
+    ? 'closed'
+    : 'open';
+
+export const marketTime = USMarketClosed ? 'closed' : KRTime;

@@ -21,22 +21,21 @@ const MarketDetailHeader = ({ symbol }: { symbol: string }): JSX.Element => {
     <>
       {loading && <Spinner />}
       {quote && (
-        <header
-          data-testid="MarketDetailHeader-component"
-          className={styles.ly_header}
-        >
+        <header className={styles.ly_header}>
           <div className={styles.ly_header_inner}>
             <span className={styles.bl_marketPriceHeading}>
               <h2>
                 {quote.name}({quote.symbol})
               </h2>
-              <div className={styles.bl_marketPriceHeading_price}>
-                <h2>{quote.c}</h2>
+              <div
+                className={styles.bl_marketPriceHeading_price}
+                data-testid="MarketDetailHeader-PriceInfo"
+              >
+                <p>{quote.c}</p>
                 <p
                   className={
                     quote.dp > 0 ? styles.changePrice : styles.changePrice__neg
                   }
-                  data-testid="MarketDetailHeader-changePrice"
                 >
                   {quote.d} ({quote.dp}%)
                 </p>
