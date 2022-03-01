@@ -10,19 +10,8 @@ import Header from 'components/Header';
 import IconButton from 'components/IconButton';
 import StockList from 'components/StockList';
 
-// interface WatchlistItem {
-//   id: number;
-//   name: string;
-//   symbol: string;
-// }
-
-export default function Watchlist({}: // watchlist,
-{
-  // watchlist: WatchlistItem[];
-}) {
+export default function Watchlist() {
   const [editMode, setEditMode] = useState(false);
-
-  // console.log('data', watchlist);
 
   return (
     <div className={styles.ly_watchlist}>
@@ -39,35 +28,3 @@ export default function Watchlist({}: // watchlist,
     </div>
   );
 }
-
-// export async function getServerSideProps() {
-//   // if (typeof window === 'undefined') {
-//   //   return {
-//   //     props: {
-//   //       watchlist: [],
-//   //     },
-//   //   };
-//   // }
-
-//   if (typeof window !== 'undefined' && localStorage.getItem('token')) {
-//     const res2 = await fetch(`http://localhost:1337/api/watchlists`, {
-//       headers: {
-//         Authorization: `Bearer ${localStorage.getItem('token')}`,
-//       },
-//     });
-//     console.log(res2);
-//     const data = await res2.json();
-
-//     return {
-//       props: {
-//         watchlist: data,
-//       },
-//     };
-//   } else {
-//     return {
-//       props: {
-//         watchlist: [],
-//       },
-//     };
-//   }
-// }

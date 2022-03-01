@@ -1,12 +1,15 @@
+import { useCallback, useEffect, useState } from 'react';
 import { NextPageContext } from 'next';
 
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar as faRegStar } from '@fortawesome/free-regular-svg-icons';
 
 import styles from 'pages/market/Market.module.scss';
 
 import MarketDetail from 'components/MarketDetail';
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
+import { WatchlistItem } from 'components/StockList';
 
 import useUser from 'store/modules/user/useUser';
 
@@ -15,32 +18,71 @@ export interface MarketDetailProps {
   category: string;
 }
 
-function addToWatchlistAPI(symbol: string) {
-  return fetch(`/api/watchlist/${symbol}`, {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  });
-}
-
 export default function MarketDetailPage({
   symbol,
   category,
 }: MarketDetailProps): JSX.Element {
-  const { isLoggedIn } = useUser();
+  const { isLoggedIn, userData } = useUser();
+  const [isWatched, setIsWatched] = useState<number>(0);
 
-  function addToWatchlist(sym: string) {
-    if (isLoggedIn) {
-      try {
-        addToWatchlistAPI(sym);
-      } catch {
-        console.log('add to watchlist error');
+  const addToWatchlist = useCallback(
+    async (sym: string) => {
+      if (isLoggedIn && !isWatched) {
+        try {
+          const res = await fetch(`http://localhost:1337/api/watchlists`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${localStorage.getItem('token')}`,
+            },
+            body: JSON.stringify({
+              data: { symbol: sym, email: userData.email },
+            }),
+          });
+          const resData = await res.json();
+          setIsWatched(resData.data.id);
+        } catch (e) {
+          console.log('add to watchlist error');
+        }
+      } else {
+        alert('You need to login to add to watchlist');
       }
-    } else {
-      alert('You need to login to add to watchlist');
+    },
+    [isLoggedIn, isWatched, userData]
+  );
+
+  const deleteWatchlist = async (id: number) => {
+    try {
+      await fetch(`http://localhost:1337/api/watchlists/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      window.location.reload();
+    } catch (e) {
+      console.log('delete watchlist error');
     }
-  }
+  };
+
+  const checkExist = async (sym: string) => {
+    try {
+      const res = await fetch(`http://localhost:1337/api/watchlists`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      const resData = await res.json();
+      const item = resData.find((d: WatchlistItem) => d.symbol === sym);
+      setIsWatched(item?.id || 0);
+    } catch (e) {
+      console.log('check exist error');
+    }
+  };
+
+  useEffect(() => {
+    checkExist(symbol);
+  });
 
   return (
     <>
@@ -49,7 +91,14 @@ export default function MarketDetailPage({
           onClick={() => console.log('검색 자동완성 드롭다운')}
           icon={faSearch}
         />
-        <IconButton onClick={() => addToWatchlist(symbol)} icon={faStar} />
+        {isWatched ? (
+          <IconButton
+            onClick={() => deleteWatchlist(isWatched)}
+            icon={faStar}
+          />
+        ) : (
+          <IconButton onClick={() => addToWatchlist(symbol)} icon={faRegStar} />
+        )}
       </Header>
       <div className={styles.ly_market}>
         <MarketDetail symbol={symbol} category={category} />

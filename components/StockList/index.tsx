@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useState } from 'react';
+
 import clsx from 'clsx';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,25 +8,6 @@ import styles from 'components/StockList/StockList.module.scss';
 import IconButton from 'components/IconButton';
 import MarketInfoListItem from 'components/MarketInfoList/MarketInfoListItem';
 import Spinner from 'components/Spinner';
-
-// const data = [
-//   {
-//     id: 1,
-//     name: 'Apple Inc.',
-//     symbol: 'AAPL',
-//     c: 0.0,
-//     d: 0.0,
-//     dp: 0.0,
-//   },
-//   {
-//     id: 2,
-//     name: 'Microsoft Corporation',
-//     symbol: 'MSFT',
-//     c: 0.0,
-//     d: 0.0,
-//     dp: 0.0,
-//   },
-// ];
 
 type WatchListData = WatchlistItem[];
 
@@ -40,10 +22,10 @@ export interface WatchlistItem {
 const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
   const [wData, setWData] = useState<WatchListData>([]);
   const [wLoading, setWLoading] = useState<boolean>(false);
-  const [wError, setWError] = useState<unknown>(null);
-  // * : 관심 목록 조회
+
   const fetchWatchlist = useCallback(async () => {
     try {
+      setWLoading(true);
       const res = await fetch(
         `http://localhost:1337/api/watchlists`, //?email=tester@crl.co`,
         {
@@ -57,13 +39,13 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
       setWLoading(false);
     } catch (e) {
       setWLoading(false);
-      setWError(e);
+      console.log('fetch watchlist error');
     }
   }, []);
-  // * : 관심 목록 항목 삭제
+
   const deleteWatchlist = useCallback(async (id) => {
     try {
-      const res = await fetch(
+      await fetch(
         `http://localhost:1337/api/watchlists/${id}`, //?email=tester@crl.co`,
         {
           method: 'DELETE',
@@ -72,14 +54,9 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
           },
         }
       );
-      const resData = await res.json();
-      console.log(resData);
-      // * : dispatch 대신 reload로 임시 처리
       window.location.reload();
-      setWLoading(false);
     } catch (e) {
-      setWLoading(false);
-      setWError(e);
+      console.log('delete watchlist error');
     }
   }, []);
 
@@ -88,17 +65,10 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
     return () => setWLoading(false);
   }, [fetchWatchlist]);
 
-  const removeStock = async (id: number) => {
-    console.log(`id가 ${id}인 심볼 삭제`);
-    await deleteWatchlist(id);
-  };
-
-  console.log(wData, wLoading, wError);
-
   return (
     <>
       {wLoading && <Spinner />}
-      {wData && (
+      {wData.length ? (
         <ul className={styles.bl_vertStocks}>
           {wData.map((d) =>
             editMode ? (
@@ -117,7 +87,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
                   </span>
                   <span className={styles.bl_vertStocks_marketPrice}>
                     <IconButton
-                      onClick={() => removeStock(d.id)}
+                      onClick={() => deleteWatchlist(d.id)}
                       icon={faTimes}
                       color="red"
                       bgc="rgb(249,249,250)"
@@ -126,7 +96,6 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
                 </div>
               </li>
             ) : (
-              // * : data를 받아올 때 symbol을 가지고 있으면 링크 가능
               <MarketInfoListItem
                 key={d.id}
                 category="stock"
@@ -138,6 +107,8 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
             )
           )}
         </ul>
+      ) : (
+        <div className={styles.bl_emptyData}>관심 목록이 없습니다.</div>
       )}
     </>
   );
