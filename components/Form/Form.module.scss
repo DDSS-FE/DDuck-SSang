@@ -1,0 +1,165 @@
+.bl_signup_container {
+  background-color: rgba(0, 0, 0, 0.3);
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+.bl_signup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 30%;
+  height: 30%;
+  min-width: 300px;
+  min-height: 400px;
+  background: white;
+  z-index: 10;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+
+  &_heading {
+    font-size: 3rem;
+    padding-bottom: 10px;
+  }
+  &_form {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+  }
+  &_button_container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 40px;
+
+    & > .el_cancel_Btn {
+      font-weight: 500;
+      padding: 11px 28px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      border: none;
+      color: #fff;
+      background: #ff3e4e;
+      transition: all 0.25s ease;
+    }
+
+    & > .el_submit_Btn:enabled {
+      font-weight: 500;
+      padding: 11px 28px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      border: none;
+      background: #fcfcfc;
+      transition: all 0.25s ease;
+    }
+    & > .el_submit_Btn:disabled {
+      color: #ff3e4e;
+
+      font-weight: 500;
+      padding: 11px 28px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      border: none;
+      background: #fcfcfc;
+      transition: all 0.25s ease;
+    }
+
+    & > .el_cancel_Btn:hover {
+      box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+      transform: translateY(-5px);
+      background: #ff3e4e;
+    }
+
+    & > .el_submit_Btn:hover {
+      box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+      transform: translateY(-5px);
+      background: whitesmoke;
+    }
+  }
+}
+
+.bl_signup_input_container {
+  position: relative;
+  margin-top: 30px;
+}
+
+.bl_signup_input_container label {
+  font-size: 0.9rem;
+  color: #0000008a;
+}
+
+.bl_signup_input_container input {
+  color: #000000de;
+  width: 100%;
+  height: 50px;
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 0.4rem;
+}
+
+// .bl_signup_input_container input:focus + label,
+// .bl_signup_input_container input:valid + label {
+//   top: -65%;
+//   font-size: 0.8rem;
+//   background-color: burlywood;
+// }
+
+.bl_signup_input_container input + label {
+  position: absolute;
+  top: -65%;
+  left: 0.4rem;
+  line-height: 60px;
+  transition: 0.2s ease;
+}
+
+.bl_signup_input_container .bar {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 1px;
+  background: black;
+}
+
+.bl_signup_input_container .bar:before,
+.bl_signup_input_container .bar:after {
+  content: '';
+  position: absolute;
+  background: #6002ee;
+  width: 0;
+  height: 2px;
+  transition: 0.2s ease;
+}
+
+.bl_signup_input_container .bar:before {
+  left: 50%;
+}
+
+.bl_signup_input_container .bar:after {
+  right: 50%;
+}
+
+.bl_signup_input_container input:focus ~ .bar:before,
+.bl_signup_input_container input:focus ~ .bar:after {
+  width: 50%;
+}
+
+.bl_signup_input_container .error {
+  position: absolute;
+  left: 0.4rem;
+  font-size: 0.8rem;
+  color: red;
+}
