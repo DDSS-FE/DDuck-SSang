@@ -9,6 +9,8 @@ import IconButton from 'components/IconButton';
 import MarketInfoListItem from 'components/MarketInfoList/MarketInfoListItem';
 import Spinner from 'components/Spinner';
 
+import { WATCHLISTS_API } from 'utils/config';
+
 type WatchListData = WatchlistItem[];
 
 export interface WatchlistItem {
@@ -26,14 +28,11 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
   const fetchWatchlist = useCallback(async () => {
     try {
       setWLoading(true);
-      const res = await fetch(
-        `http://localhost:1337/api/watchlists`, //?email=tester@crl.co`,
-        {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      );
+      const res = await fetch(WATCHLISTS_API, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       const resData = await res.json();
       console.log(resData);
       setWData(resData);
@@ -46,7 +45,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
 
   const deleteWatchlist = useCallback(async (id) => {
     try {
-      await fetch(`http://localhost:1337/api/watchlists/${id}`, {
+      await fetch(`${WATCHLISTS_API}/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,

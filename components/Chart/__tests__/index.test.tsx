@@ -2,6 +2,7 @@ import { render, screen } from '@testing-library/react';
 import Chart from 'components/Chart/';
 import { setupServer } from 'msw/node';
 import { rest } from 'msw';
+import { CANDLE_API } from 'utils/config';
 
 const server = setupServer();
 
@@ -18,7 +19,7 @@ afterAll(() => {
 describe('Chart', () => {
   beforeEach(() => {
     server.use(
-      rest.get('/http://localhost:4000/stock/candle', (req, res, ctx) => {
+      rest.get(CANDLE_API, (req, res, ctx) => {
         return res(ctx.json({}));
       })
     );

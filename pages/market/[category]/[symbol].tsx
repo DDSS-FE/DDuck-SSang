@@ -12,6 +12,7 @@ import IconButton from 'components/IconButton';
 import { WatchlistItem } from 'components/StockList';
 
 import useUser from 'store/modules/user/useUser';
+import { WATCHLISTS_API } from 'utils/config';
 
 export interface MarketDetailProps {
   symbol: string;
@@ -29,7 +30,7 @@ export default function MarketDetailPage({
     async (sym: string) => {
       if (isLoggedIn && !isWatched) {
         try {
-          const res = await fetch(`http://localhost:1337/api/watchlists`, {
+          const res = await fetch(WATCHLISTS_API, {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
@@ -53,7 +54,7 @@ export default function MarketDetailPage({
 
   const deleteWatchlist = async (id: number) => {
     try {
-      await fetch(`http://localhost:1337/api/watchlists/${id}`, {
+      await fetch(`${WATCHLISTS_API}/${id}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -67,7 +68,7 @@ export default function MarketDetailPage({
 
   const checkExist = async (sym: string) => {
     try {
-      const res = await fetch(`http://localhost:1337/api/watchlists`, {
+      const res = await fetch(WATCHLISTS_API, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
