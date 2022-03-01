@@ -26,9 +26,7 @@ export default function More() {
         <title>Dark mode with SCSS and Next.js</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
       <h1>Dark mode with SCSS and Next- themes</h1>
-
       <div className={styles.ly_more_darkModeBtnWrapper}>
         <Toggle
           className={styles.el_darkModeToggle}

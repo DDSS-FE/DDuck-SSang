@@ -4,6 +4,10 @@ import { useRouter } from 'next/router';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
 import { ThemeProvider } from 'next-themes';
+import { PersistGate } from 'redux-persist/integration/react';
+import { persistStore } from 'redux-persist';
+
+import { wrapper, store } from 'store';
 
 import 'styles/globals.scss';
 import 'styles/theme.scss';
@@ -14,6 +18,8 @@ import NavBar from 'components/NavBar';
 function MyApp({ Component, pageProps }: AppProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
+  // const store = createStore(persistedReducer);
+  const persistor = persistStore(store);
 
   function routeChangeStart() {
     Router.events.on('routeChangeStart', () => {
@@ -33,7 +39,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <>
+    <PersistGate loading={null} persistor={persistor}>
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link
@@ -49,7 +55,8 @@ function MyApp({ Component, pageProps }: AppProps) {
         <Component {...pageProps} key={router.asPath} />
       </ThemeProvider>
       <NavBar />
-    </>
+    </PersistGate>
   );
 }
-export default MyApp;
+// export default MyApp;
+export default wrapper.withRedux(MyApp);
