@@ -7,5 +7,5 @@ export const QUOTE_API = `${SERVER}/api/quote`;
 export const NEWS_API = `${SERVER}/api/news`;
 
 export const REGISTER_API = `${SERVER}/api/auth/local/register`;
-export const AUTH_LOCAL_API = `${SERVER}/api/auth/local`;
+export const LOGIN_API = `${SERVER}/api/auth/local`;
 export const WATCHLISTS_API = `${SERVER}/api/watchlists`;

@@ -1,5 +1,3 @@
-import styles from 'components/SearchDetail/SearchDetail.module.scss';
-
 import { useState } from 'react';
 
 import SearchHeader from 'components/SearchHeader';
@@ -13,7 +11,7 @@ const SearchDetail = ({ category }: { category: string }): JSX.Element => {
   };
 
   return (
-    <div className={styles.ly_search} data-testid="SearchDetail-component">
+    <div data-testid="SearchDetail-component">
       <SearchHeader
         keywordHandler={keywordHandler}
         category={category}

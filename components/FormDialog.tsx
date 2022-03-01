@@ -8,7 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import useUser from 'store/modules/user/useUser';
-import { AUTH_LOCAL_API, REGISTER_API } from 'utils/config';
+import { LOGIN_API, REGISTER_API } from 'utils/config';
 
 export default function FormDialog({
   open,
@@ -49,7 +49,7 @@ export default function FormDialog({
         })
         .finally(() => setOpen(false));
     else
-      fetch(AUTH_LOCAL_API, {
+      fetch(LOGIN_API, {
         method: 'post',
         headers: {
           'content-type': 'application/json',

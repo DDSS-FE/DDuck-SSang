@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import Button from 'components/Button';
 import useUser from 'store/modules/user/useUser';
+import { LOGIN_API, REGISTER_API } from 'utils/config';
 
 export default function Form({ isSignIn }: { isSignIn: boolean }) {
   const [disabled, setDisabled] = useState(true);
@@ -18,7 +19,7 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
   const { login } = useUser();
 
   const signupSubmit = () => {
-    fetch('http://localhost:1337/api/auth/local/register', {
+    fetch(REGISTER_API, {
       method: 'post',
       headers: {
         'content-type': 'application/json',
@@ -32,25 +33,27 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
       .then((res) => res.json())
       .then((res) => {
         localStorage.setItem('token', res.jwt);
-        login(res.user);
+        if (res.user) login(res.user);
+        else alert(res.error.message);
       })
       .finally(() => setisOpen(!isOpen));
   };
   const signinSubmit = () => {
-    fetch('http://localhost:1337/api/auth/local', {
+    fetch(LOGIN_API, {
       method: 'post',
       headers: {
         'content-type': 'application/json',
       },
       body: JSON.stringify({
         password: password,
-        identifier: userEmail, //user || email,
+        identifier: userEmail,
       }),
     })
       .then((res) => res.json())
       .then((res) => {
         localStorage.setItem('token', res.jwt);
-        login(res.user);
+        if (res.user) login(res.user);
+        else alert(res.error.message);
       })
       .finally(() => {
         setisOpen(!isOpen);

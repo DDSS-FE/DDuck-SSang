@@ -7,6 +7,7 @@ import styles from 'pages/more/more.module.scss';
 import 'react-toggle/style.css';
 import FormDialog from 'components/FormDialog';
 import useUser from 'store/modules/user/useUser';
+import Form from 'components/Form';
 
 export default function More() {
   const [isMounted, setIsMounted] = useState(false);
@@ -46,6 +47,8 @@ export default function More() {
       <div style={{ padding: '40px', fontSize: '20px' }}>
         {isLoggedIn ? '로그인 O' : '로그인 X'}
       </div>
+      <Form isSignIn />
+      <Form isSignIn={false} />
       {!isLoggedIn && (
         <>
           <div style={{ padding: '20px' }}>
