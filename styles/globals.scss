@@ -9,7 +9,6 @@
   box-sizing: border-box;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-  font-size: 62.5%;
   text-decoration: none;
   outline: none;
   &::-webkit-scrollbar {
@@ -25,6 +24,10 @@
     border-radius: 6px;
     box-shadow: inset 0px 0px 5px white;
   }
+}
+
+html {
+  font-size: 62.5%;
 }
 
 button,
