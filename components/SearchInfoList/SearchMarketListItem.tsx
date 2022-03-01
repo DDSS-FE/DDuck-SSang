@@ -20,8 +20,13 @@ const SearchMarketListItem = ({
       <a className={styles.bl_vertSearchInfo_link}>
         <span className={styles.bl_vertSearchInfo_SearchInfo}>
           <div className={styles.bl_vertSearchInfo_ttlWrapper}>
-            <p className={styles.bl_vertSearchInfo_ttl}>{name}</p>
-            <p className={styles.bl_vertSearchInfo_standard}>
+            <p className={styles.bl_vertSearchInfo_ttl} data-testid="name">
+              {name}
+            </p>
+            <p
+              className={styles.bl_vertSearchInfo_standard}
+              data-testid="symbol&category"
+            >
               {ticker === 'crypto' ? symbol.slice(8) : symbol} | {category}
             </p>
           </div>
