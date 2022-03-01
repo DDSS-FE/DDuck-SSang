@@ -24,8 +24,6 @@ const MarketInfoListItem = ({
   d,
   dp,
 }: Props): JSX.Element => {
-  // console.log('MarketInfoListItem', category, symbol, name, c, d, dp);
-
   return (
     <li className={styles.bl_vertMarketInfo_item}>
       <Link href={`/market/${category}/${symbol}`}>

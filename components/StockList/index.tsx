@@ -35,6 +35,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
         }
       );
       const resData = await res.json();
+      console.log(resData);
       setWData(resData);
       setWLoading(false);
     } catch (e) {
@@ -45,15 +46,12 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
 
   const deleteWatchlist = useCallback(async (id) => {
     try {
-      await fetch(
-        `http://localhost:1337/api/watchlists/${id}`, //?email=tester@crl.co`,
-        {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        }
-      );
+      await fetch(`http://localhost:1337/api/watchlists/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       window.location.reload();
     } catch (e) {
       console.log('delete watchlist error');
@@ -81,7 +79,12 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
                     )}
                   >
                     <div className={styles.bl_vertStocks_ttlWrapper}>
-                      <p className={styles.bl_vertStocks_ttl}>{d.symbol}</p>
+                      <p
+                        className={styles.bl_vertStocks_ttl}
+                        data-testid="stock-list-item-symbol"
+                      >
+                        {d.symbol}
+                      </p>
                       <p className={styles.bl_vertStocks_standard}>UC</p>
                     </div>
                   </span>
@@ -108,7 +111,9 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
           )}
         </ul>
       ) : (
-        <div className={styles.bl_emptyData}>관심 목록이 없습니다.</div>
+        <div data-testid="no-watchlist-message" className={styles.bl_emptyData}>
+          관심 목록이 없습니다.
+        </div>
       )}
     </>
   );
