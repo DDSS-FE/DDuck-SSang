@@ -2,20 +2,21 @@ import { faLongArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import styles from 'components/SearchHeader/SearchHeader.module.scss';
 
-import React, { useRef, useState } from 'react';
 import { useRouter } from 'next/router';
+import React, { useRef, useState } from 'react';
 
 import IconButton from 'components/IconButton';
 
 const SearchHeader = ({
   keywordHandler,
+  category,
 }: {
   keywordHandler: (str: string) => void;
+  category: string;
 }): JSX.Element => {
-  const router = useRouter();
-  const { category } = router.query;
   const [input, setInput] = useState('');
   const inputRef = useRef<string>('');
+  const router = useRouter();
 
   const inputChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -39,7 +40,7 @@ const SearchHeader = ({
 
         {category === 'market' && (
           <input
-            type="search"
+            type="text"
             value={input}
             placeholder="상품 검색"
             className={styles.bl_searchInput}
@@ -48,7 +49,7 @@ const SearchHeader = ({
         )}
         {category === 'news' && (
           <input
-            type="search"
+            type="text"
             value={input}
             placeholder="뉴스 검색"
             className={styles.bl_searchInput}
