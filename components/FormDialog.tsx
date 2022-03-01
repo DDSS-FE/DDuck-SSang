@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import useUser from 'store/modules/user/useUser';
+import { AUTH_LOCAL_API, REGISTER_API } from 'utils/config';
 
 export default function FormDialog({
   open,
@@ -26,7 +27,7 @@ export default function FormDialog({
 
   const handleSubmit = () => {
     if (!signIn)
-      fetch('http://localhost:1337/api/auth/local/register', {
+      fetch(REGISTER_API, {
         method: 'post',
         headers: {
           'content-type': 'application/json',
@@ -40,12 +41,15 @@ export default function FormDialog({
         .then((res) => res.json())
         .then((res) => {
           localStorage.setItem('token', res.jwt);
-          console.log('가입', res);
-          login(res.user);
+          if (res.error) {
+            alert(res.error.message);
+          } else {
+            login(res.user);
+          }
         })
         .finally(() => setOpen(false));
     else
-      fetch('http://localhost:1337/api/auth/local', {
+      fetch(AUTH_LOCAL_API, {
         method: 'post',
         headers: {
           'content-type': 'application/json',
@@ -58,8 +62,11 @@ export default function FormDialog({
         .then((res) => res.json())
         .then((res) => {
           localStorage.setItem('token', res.jwt);
-          console.log('로긘', res);
-          login(res.user);
+          if (res.error) {
+            alert(res.error.message);
+          } else {
+            login(res.user);
+          }
         })
         .finally(() => {
           setOpen(false);

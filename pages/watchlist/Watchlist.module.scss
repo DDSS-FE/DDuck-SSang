@@ -1,0 +1,21 @@
+.ly_watchlist {
+  min-height: 100vh;
+
+  .el_iconBtn {
+    outline: 0;
+    border: none;
+    background: none;
+    line-height: 1;
+    margin-left: 10px;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .el_Icon {
+    width: 24px;
+    height: 24px;
+    color: #000;
+  }
+}

@@ -15,7 +15,7 @@ import { formatChange } from 'utils/quote';
 export interface Props {
   category: MarketCategory;
   symbol: string;
-  name: string;
+  // name: string;
   c: number;
   d: number;
   dp: number;
@@ -24,7 +24,7 @@ export interface Props {
 const MarketInfoListItem = ({
   category,
   symbol,
-  name,
+  // name,
   c,
   d,
   dp,
@@ -34,7 +34,7 @@ const MarketInfoListItem = ({
       <a className={styles.bl_vertMarketInfo_link}>
         <span className={styles.bl_vertMarketInfo_marketInfo}>
           <div className={styles.bl_vertMarketInfo_ttlWrapper}>
-            <p className={styles.bl_vertMarketInfo_ttl}>{name}</p>
+            <p className={styles.bl_vertMarketInfo_ttl}>{symbol}</p>
             <p className={styles.bl_vertMarketInfo_standard}>
               <FontAwesomeIcon
                 className={clsx(

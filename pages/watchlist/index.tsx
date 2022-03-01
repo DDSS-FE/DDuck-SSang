@@ -1,5 +1,30 @@
-const index = (): JSX.Element => {
-  return <>관심목록</>;
-};
+import { useState } from 'react';
+import Link from 'next/link';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faEdit } from '@fortawesome/free-regular-svg-icons';
 
-export default index;
+import styles from 'pages/watchlist/Watchlist.module.scss';
+
+import Header from 'components/Header';
+import IconButton from 'components/IconButton';
+import StockList from 'components/StockList';
+
+export default function Watchlist() {
+  const [editMode, setEditMode] = useState(false);
+
+  return (
+    <div className={styles.ly_watchlist}>
+      <Header>
+        <IconButton onClick={() => setEditMode(!editMode)} icon={faEdit} />
+        <Link href="/search">
+          <a className={styles.el_iconBtn}>
+            <FontAwesomeIcon className={styles.el_Icon} icon={faPlus} />
+          </a>
+        </Link>
+      </Header>
+
+      <StockList editMode={editMode} />
+    </div>
+  );
+}
