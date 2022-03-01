@@ -12,7 +12,7 @@ import { MarketCategory } from 'pages/market/[category]';
 import { KRTime, USMarketClosed, marketTime } from 'utils/formatDate';
 import { formatChange } from 'utils/quote';
 
-interface Props {
+export interface Props {
   category: MarketCategory;
   symbol: string;
   name: string;
