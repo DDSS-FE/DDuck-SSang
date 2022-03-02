@@ -27,36 +27,9 @@ export default function MarketDetailPage({
   category,
 }: MarketDetailProps): JSX.Element {
   const router = useRouter();
-  const { isLoggedIn, userData } = useUser();
+  const { isLoggedIn } = useUser();
   const [isWatched, setIsWatched] = useState<number>(0);
-  const { fetchWatchlist } = useWatchlist();
-
-  const addToWatchlist = useCallback(
-    async (sym: string) => {
-      if (isLoggedIn && !isWatched) {
-        try {
-          const res = await fetch(WATCHLISTS_API, {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              Authorization: `Bearer ${localStorage.getItem('token')}`,
-            },
-            body: JSON.stringify({
-              data: { symbol: sym, email: userData.email },
-            }),
-          });
-          const resData = await res.json();
-          setIsWatched(resData.data.id);
-          fetchWatchlist(); // watchlist 업데이트
-        } catch (e) {
-          console.log('add to watchlist error');
-        }
-      } else {
-        alert('You need to login to add to watchlist');
-      }
-    },
-    [isLoggedIn, isWatched, userData, fetchWatchlist]
-  );
+  const { addWatchlist, fetchWatchlist } = useWatchlist();
 
   const deleteWatchlist = async (id: number) => {
     try {
@@ -66,7 +39,7 @@ export default function MarketDetailPage({
           Authorization: `Bearer ${localStorage.getItem('token')}`,
         },
       });
-      window.location.reload();
+      fetchWatchlist();
     } catch (e) {
       console.log('delete watchlist error');
     }
@@ -87,6 +60,17 @@ export default function MarketDetailPage({
     }
   };
 
+  const handleAddToWatchlist = useCallback(
+    (sym: string) => {
+      if (isLoggedIn && !isWatched) {
+        addWatchlist(sym);
+      } else {
+        alert('You need to login to add to watchlist');
+      }
+    },
+    [isLoggedIn, isWatched, addWatchlist]
+  );
+
   useEffect(() => {
     checkExist(symbol);
   });
@@ -104,7 +88,10 @@ export default function MarketDetailPage({
             icon={faStar}
           />
         ) : (
-          <IconButton onClick={() => addToWatchlist(symbol)} icon={faRegStar} />
+          <IconButton
+            onClick={() => handleAddToWatchlist(symbol)}
+            icon={faRegStar}
+          />
         )}
       </Header>
       <div className={styles.ly_market}>

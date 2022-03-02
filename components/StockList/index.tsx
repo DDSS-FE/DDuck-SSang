@@ -32,7 +32,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
             Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         });
-        await fetchWatchlist();
+        fetchWatchlist();
       } catch (e) {
         console.log('delete watchlist error');
       }
@@ -45,8 +45,6 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
       fetchWatchlist();
     }
   }, [watchlistStatus, fetchWatchlist]);
-
-  console.log(watchlistData);
 
   return (
     <>

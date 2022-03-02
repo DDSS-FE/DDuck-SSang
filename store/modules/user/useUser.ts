@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { IUserData, loginAction, logoutAction } from 'store/modules/user';
 import { RootState } from 'store/modules';
+import { initWatchlistAction } from '../watchlist/watchlistSlice';
 
 export default function useUser() {
   const dispatch = useDispatch();
@@ -19,6 +20,7 @@ export default function useUser() {
     [dispatch]
   );
   const logout = useCallback(() => {
+    dispatch(initWatchlistAction());
     dispatch(logoutAction());
   }, [dispatch]);
 

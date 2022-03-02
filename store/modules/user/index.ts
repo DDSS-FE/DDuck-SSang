@@ -28,8 +28,6 @@ export const userSlice = createSlice({
     logoutAction(state: UserState) {
       state.isLoggedIn = false;
       state.userData = null;
-      localStorage.removeItem('token');
-      localStorage.removeItem('persist:root');
     },
   },
 });
