@@ -15,6 +15,7 @@ import { WatchlistItem } from 'components/StockList';
 
 import useUser from 'store/modules/user/useUser';
 import { WATCHLISTS_API } from 'utils/config';
+import useWatchlist from 'store/modules/watchlist/useWatchlist';
 
 export interface MarketDetailProps {
   symbol: string;
@@ -28,6 +29,7 @@ export default function MarketDetailPage({
   const router = useRouter();
   const { isLoggedIn, userData } = useUser();
   const [isWatched, setIsWatched] = useState<number>(0);
+  const { fetchWatchlist } = useWatchlist();
 
   const addToWatchlist = useCallback(
     async (sym: string) => {
@@ -45,6 +47,7 @@ export default function MarketDetailPage({
           });
           const resData = await res.json();
           setIsWatched(resData.data.id);
+          fetchWatchlist(); // watchlist 업데이트
         } catch (e) {
           console.log('add to watchlist error');
         }
@@ -52,7 +55,7 @@ export default function MarketDetailPage({
         alert('You need to login to add to watchlist');
       }
     },
-    [isLoggedIn, isWatched, userData]
+    [isLoggedIn, isWatched, userData, fetchWatchlist]
   );
 
   const deleteWatchlist = async (id: number) => {

@@ -11,25 +11,24 @@ import {
   REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-// import logger from 'redux-logger';
+import logger from 'redux-logger';
 
 const persistConfig = {
   key: 'root',
   storage,
-  timeout: 1000,
+  timeout: 100,
 };
 
 export const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
   reducer: persistedReducer,
-  // middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).concat(logger),
   devTools: process.env.NODE_ENV !== 'production',
 });
 const makeStore = () => store;

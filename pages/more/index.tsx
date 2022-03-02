@@ -43,6 +43,7 @@ export default function More() {
           aria-label="Dark mode"
         />
       </div>
+
       {/* * : authentication */}
       <div style={{ padding: '40px', fontSize: '20px' }}>
         {isLoggedIn ? '로그인 O' : '로그인 X'}

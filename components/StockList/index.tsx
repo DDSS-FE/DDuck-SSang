@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 
 import clsx from 'clsx';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -10,8 +10,7 @@ import MarketInfoListItem from 'components/MarketInfoList/MarketInfoListItem';
 import Spinner from 'components/Spinner';
 
 import { WATCHLISTS_API } from 'utils/config';
-
-type WatchListData = WatchlistItem[];
+import useWatchlist from 'store/modules/watchlist/useWatchlist';
 
 export interface WatchlistItem {
   c: number;
@@ -22,52 +21,39 @@ export interface WatchlistItem {
 }
 
 const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
-  const [wData, setWData] = useState<WatchListData>([]);
-  const [wLoading, setWLoading] = useState<boolean>(false);
+  const { watchlistData, watchlistStatus, fetchWatchlist } = useWatchlist();
 
-  const fetchWatchlist = useCallback(async () => {
-    try {
-      setWLoading(true);
-      const res = await fetch(WATCHLISTS_API, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      const resData = await res.json();
-      console.log(resData);
-      setWData(resData);
-      setWLoading(false);
-    } catch (e) {
-      setWLoading(false);
-      console.log('fetch watchlist error');
-    }
-  }, []);
-
-  const deleteWatchlist = useCallback(async (id) => {
-    try {
-      await fetch(`${WATCHLISTS_API}/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      window.location.reload();
-    } catch (e) {
-      console.log('delete watchlist error');
-    }
-  }, []);
+  const deleteWatchlist = useCallback(
+    async (id) => {
+      try {
+        await fetch(`${WATCHLISTS_API}/${id}`, {
+          method: 'DELETE',
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+        await fetchWatchlist();
+      } catch (e) {
+        console.log('delete watchlist error');
+      }
+    },
+    [fetchWatchlist]
+  );
 
   useEffect(() => {
-    fetchWatchlist();
-    return () => setWLoading(false);
-  }, [fetchWatchlist]);
+    if (watchlistStatus === 'idle') {
+      fetchWatchlist();
+    }
+  }, [watchlistStatus, fetchWatchlist]);
+
+  console.log(watchlistData);
 
   return (
     <>
-      {wLoading && <Spinner />}
-      {wData.length ? (
+      {watchlistStatus === 'loading' && <Spinner />}
+      {watchlistData.length ? (
         <ul className={styles.bl_vertStocks}>
-          {wData.map((d) =>
+          {watchlistData.map((d: WatchlistItem) =>
             editMode ? (
               <li key={d.id} className={styles.bl_vertStocks_item}>
                 <div className={styles.bl_vertStocks_inner}>
