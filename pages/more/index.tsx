@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { useTheme } from 'next-themes';
 import Toggle from 'react-toggle';
 
@@ -29,11 +28,6 @@ export default function More() {
 
   return (
     <div className={styles.ly_more}>
-      <Head>
-        <title>Dark mode with SCSS and Next.js</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <h1>Dark mode with SCSS and Next- themes</h1>
       <div className={styles.ly_more_darkModeBtnWrapper}>
         <Toggle
           className={styles.el_darkModeToggle}
