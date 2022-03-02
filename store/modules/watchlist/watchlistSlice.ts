@@ -48,16 +48,22 @@ export const addWatchlist = createAsyncThunk(
   }
 );
 
+export const deleteWatchlist = createAsyncThunk(
+  'watchlist/deleteWatchlist',
+  async (id: number) => {
+    await fetch(`${WATCHLISTS_API}/${id}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    });
+  }
+);
+
 export const watchlistSlice = createSlice({
   name: 'watchlist',
   initialState,
-  reducers: {
-    initWatchlistAction(state) {
-      state.watchlist = initialState.watchlist;
-      state.status = initialState.status;
-      state.error = initialState.error;
-    },
-  },
+  reducers: {},
   extraReducers: {
     [fetchWatchlist.pending.type]: (state) => {
       state.status = 'loading';
@@ -71,9 +77,9 @@ export const watchlistSlice = createSlice({
       state.error = action.error.message;
     },
     [addWatchlist.fulfilled.type]: () => {},
+    [deleteWatchlist.fulfilled.type]: () => {},
   },
 });
 
-const { actions, reducer } = watchlistSlice;
-export const { initWatchlistAction } = actions;
+const { reducer } = watchlistSlice;
 export default reducer;

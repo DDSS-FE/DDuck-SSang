@@ -29,21 +29,7 @@ export default function MarketDetailPage({
   const router = useRouter();
   const { isLoggedIn } = useUser();
   const [isWatched, setIsWatched] = useState<number>(0);
-  const { addWatchlist, fetchWatchlist } = useWatchlist();
-
-  const deleteWatchlist = async (id: number) => {
-    try {
-      await fetch(`${WATCHLISTS_API}/${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      fetchWatchlist();
-    } catch (e) {
-      console.log('delete watchlist error');
-    }
-  };
+  const { addWatchlist, deleteWatchlist } = useWatchlist();
 
   const checkExist = async (sym: string) => {
     try {

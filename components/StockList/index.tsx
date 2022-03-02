@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from 'react';
+import { useEffect } from 'react';
 
 import clsx from 'clsx';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +9,6 @@ import IconButton from 'components/IconButton';
 import MarketInfoListItem from 'components/MarketInfoList/MarketInfoListItem';
 import Spinner from 'components/Spinner';
 
-import { WATCHLISTS_API } from 'utils/config';
 import useWatchlist from 'store/modules/watchlist/useWatchlist';
 
 export interface WatchlistItem {
@@ -21,30 +20,12 @@ export interface WatchlistItem {
 }
 
 const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
-  const { watchlistData, watchlistStatus, fetchWatchlist } = useWatchlist();
-
-  const deleteWatchlist = useCallback(
-    async (id) => {
-      try {
-        await fetch(`${WATCHLISTS_API}/${id}`, {
-          method: 'DELETE',
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
-        fetchWatchlist();
-      } catch (e) {
-        console.log('delete watchlist error');
-      }
-    },
-    [fetchWatchlist]
-  );
+  const { watchlistData, watchlistStatus, fetchWatchlist, deleteWatchlist } =
+    useWatchlist();
 
   useEffect(() => {
-    if (watchlistStatus === 'idle') {
-      fetchWatchlist();
-    }
-  }, [watchlistStatus, fetchWatchlist]);
+    fetchWatchlist();
+  }, [fetchWatchlist]);
 
   return (
     <>

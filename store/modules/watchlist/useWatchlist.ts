@@ -5,6 +5,7 @@ import { RootState } from 'store/modules';
 import {
   fetchWatchlist as fetchData,
   addWatchlist as addData,
+  deleteWatchlist as deleteData,
 } from 'store/modules/watchlist/watchlistSlice';
 import useUser from '../user/useUser';
 
@@ -24,7 +25,7 @@ export default function useWatchlist() {
     try {
       dispatch(fetchData());
     } catch (e) {
-      console.log('fetch watchlist error');
+      console.error('fetch watchlist error');
     }
   }, [dispatch]);
   const addWatchlist = useCallback(
@@ -32,12 +33,23 @@ export default function useWatchlist() {
       try {
         const data = { symbol, email: userData?.email };
         dispatch(addData(data));
-        fetchWatchlist();
       } catch (e) {
-        console.log('add watchlist error');
+        console.error('add watchlist error');
       }
+      fetchWatchlist();
     },
     [dispatch, userData?.email, fetchWatchlist]
+  );
+  const deleteWatchlist = useCallback(
+    async (id: number) => {
+      try {
+        await dispatch(deleteData(id));
+      } catch (e) {
+        console.error('delete watchlist error');
+      }
+      fetchWatchlist();
+    },
+    [dispatch, fetchWatchlist]
   );
 
   return {
@@ -46,5 +58,6 @@ export default function useWatchlist() {
     watchlistError,
     fetchWatchlist,
     addWatchlist,
+    deleteWatchlist,
   };
 }
