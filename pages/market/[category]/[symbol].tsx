@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback } from 'react';
 import { NextPageContext } from 'next';
 
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -11,10 +11,8 @@ import { useRouter } from 'next/router';
 import MarketDetail from 'components/MarketDetail';
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
-import { WatchlistItem } from 'components/StockList';
 
 import useUser from 'store/modules/user/useUser';
-import { WATCHLISTS_API } from 'utils/config';
 import useWatchlist from 'store/modules/watchlist/useWatchlist';
 
 export interface MarketDetailProps {
@@ -28,38 +26,19 @@ export default function MarketDetailPage({
 }: MarketDetailProps): JSX.Element {
   const router = useRouter();
   const { isLoggedIn } = useUser();
-  const [isWatched, setIsWatched] = useState<number>(0);
-  const { addWatchlist, deleteWatchlist } = useWatchlist();
-
-  const checkExist = async (sym: string) => {
-    try {
-      const res = await fetch(WATCHLISTS_API, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem('token')}`,
-        },
-      });
-      const resData = await res.json();
-      const item = resData.find((d: WatchlistItem) => d.symbol === sym);
-      setIsWatched(item?.id || 0);
-    } catch (e) {
-      console.log('check exist error');
-    }
-  };
+  const { checkWatchlistBySymbol, addWatchlist, deleteWatchlist } =
+    useWatchlist();
 
   const handleAddToWatchlist = useCallback(
     (sym: string) => {
-      if (isLoggedIn && !isWatched) {
+      if (isLoggedIn && !checkWatchlistBySymbol(sym)) {
         addWatchlist(sym);
       } else {
         alert('You need to login to add to watchlist');
       }
     },
-    [isLoggedIn, isWatched, addWatchlist]
+    [isLoggedIn, checkWatchlistBySymbol, addWatchlist]
   );
-
-  useEffect(() => {
-    checkExist(symbol);
-  });
 
   return (
     <>
@@ -68,9 +47,9 @@ export default function MarketDetailPage({
           onClick={() => router.push('search/market')}
           icon={faSearch}
         />
-        {isWatched ? (
+        {checkWatchlistBySymbol(symbol) ? (
           <IconButton
-            onClick={() => deleteWatchlist(isWatched)}
+            onClick={() => deleteWatchlist(checkWatchlistBySymbol(symbol))}
             icon={faStar}
           />
         ) : (

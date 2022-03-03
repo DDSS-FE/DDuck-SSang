@@ -81,5 +81,10 @@ export const watchlistSlice = createSlice({
   },
 });
 
+export const selectWatchlistBySymbol = (
+  state: WatchlistState,
+  symbol: string
+) => state.watchlist.find((item) => item.symbol === symbol);
+
 const { reducer } = watchlistSlice;
 export default reducer;
