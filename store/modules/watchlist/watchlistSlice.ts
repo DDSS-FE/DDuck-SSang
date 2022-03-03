@@ -1,14 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { WatchlistItem } from 'components/StockList';
+
+import { IWatchlistItem } from 'components/StockList';
 import { WATCHLISTS_API } from 'utils/config';
 
 export interface WatchlistState {
-  watchlist: WatchlistItem[];
+  watchlist: IWatchlistItem[];
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
   error: string | '';
 }
 
-const wEnhancers: Array<WatchlistItem> = [];
+const wEnhancers: Array<IWatchlistItem> = [];
 const initialState = {
   watchlist: wEnhancers,
   status: 'idle',

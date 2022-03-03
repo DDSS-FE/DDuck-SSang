@@ -1,4 +1,4 @@
-import { WatchlistItem } from 'components/StockList';
+import { IWatchlistItem } from 'components/StockList';
 import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -8,7 +8,7 @@ import {
   addWatchlist as addData,
   deleteWatchlist as deleteData,
 } from 'store/modules/watchlist/watchlistSlice';
-import useUser from '../user/useUser';
+import useUser from 'store/modules/user/useUser';
 
 export default function useWatchlist() {
   const { userData } = useUser();
@@ -24,7 +24,7 @@ export default function useWatchlist() {
   );
   const checkWatchlistBySymbol = useCallback(
     (sym: string) => {
-      const item = watchlistData.find((d: WatchlistItem) => d.symbol === sym);
+      const item = watchlistData.find((d: IWatchlistItem) => d.symbol === sym);
       return item?.id || 0;
     },
     [watchlistData]
