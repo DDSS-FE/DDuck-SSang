@@ -10,7 +10,7 @@ export interface WatchlistState {
 }
 
 const wEnhancers: Array<IWatchlistItem> = [];
-const initialState = {
+export const initialState = {
   watchlist: wEnhancers,
   status: 'idle',
   error: '',
@@ -68,6 +68,7 @@ export const watchlistSlice = createSlice({
   extraReducers: {
     [fetchWatchlist.pending.type]: (state) => {
       state.status = 'loading';
+      state.error = '';
     },
     [fetchWatchlist.fulfilled.type]: (state, action) => {
       state.status = 'succeeded';

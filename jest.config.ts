@@ -17,6 +17,7 @@ const customJestConfig = {
     '\\.(css|less|scss|sass)$': 'identity-obj-proxy',
   },
   testEnvironment: 'jest-environment-jsdom',
+  modulePaths: ['<rootDir>'],
 };
 
 export default createJestConfig(customJestConfig);
