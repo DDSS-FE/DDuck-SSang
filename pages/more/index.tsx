@@ -52,14 +52,15 @@ export default function More() {
             </li>
           </>
         )}
-
-        <li className={styles.bl_list_item}>
-          <Form isSignIn={false} />
-        </li>
         {!isLoggedIn && (
-          <li className={styles.bl_list_item}>
-            <Form isSignIn={true} />
-          </li>
+          <>
+            <li className={styles.bl_list_item}>
+              <Form isSignIn={true} />
+            </li>
+            <li className={styles.bl_list_item}>
+              <Form isSignIn={false} />
+            </li>
+          </>
         )}
       </ul>
     </section>
