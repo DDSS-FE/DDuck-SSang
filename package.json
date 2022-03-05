@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watchAll",
-    "ptest": "playwright test --browser=chromium"
+    "ptest": "playwright test"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.3.0",
