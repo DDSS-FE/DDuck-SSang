@@ -33,7 +33,7 @@ interface NavItem {
   searchCategory: string;
 }
 
-const newsNavItems: NavItem[] = [
+export const newsNavItems: NavItem[] = [
   {
     name: '최신',
     href: '/news/new',
