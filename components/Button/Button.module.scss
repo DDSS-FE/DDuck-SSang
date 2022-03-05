@@ -3,8 +3,11 @@
   border: 0;
   outline: 0;
   font-size: 2rem;
-  border-radius: 1.5rem;
   padding: 1rem;
-  color: white;
-  background-color: #777;
+  color: var(--theme-page-text);
+  background-color: transparent;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

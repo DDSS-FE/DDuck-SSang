@@ -5,3 +5,19 @@
     width: 100%;
   }
 }
+
+.bl_list {
+  &_item {
+    padding: 6px 10px;
+    border-bottom: 1px solid #ddd;
+  }
+}
+.el_item {
+  font-size: 2rem;
+  padding: 1rem;
+  color: var(--theme-page-text);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

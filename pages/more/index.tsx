@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import Head from 'next/head';
 import { useTheme } from 'next-themes';
 import Toggle from 'react-toggle';
 
 import styles from 'pages/more/more.module.scss';
 import 'react-toggle/style.css';
-import FormDialog from 'components/FormDialog';
 import useUser from 'store/modules/user/useUser';
 import Form from 'components/Form';
+import Header from 'components/Header';
+import Button from 'components/Button';
 
 export default function More() {
   const [isMounted, setIsMounted] = useState(false);
@@ -22,73 +22,47 @@ export default function More() {
       setTheme(theme === 'light' ? 'dark' : 'light');
     }
   };
-
-  const [open, setOpen] = useState(false);
-  const [login, setLogin] = useState(false);
-  const { isLoggedIn, logout } = useUser();
+  const { isLoggedIn, logout, userData } = useUser();
 
   return (
-    <div className={styles.ly_more}>
-      <Head>
-        <title>Dark mode with SCSS and Next.js</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-      <h1>Dark mode with SCSS and Next- themes</h1>
-      <div className={styles.ly_more_darkModeBtnWrapper}>
-        <Toggle
-          className={styles.el_darkModeToggle}
-          checked={isMounted && theme === 'light'}
-          onChange={switchTheme}
-          icons={{ checked: '🌙', unchecked: '🔆' }}
-          aria-label="Dark mode"
-        />
-      </div>
-
-      {/* * : authentication */}
-      <div style={{ padding: '40px', fontSize: '20px' }}>
-        {isLoggedIn ? '로그인 O' : '로그인 X'}
-      </div>
-      <Form isSignIn />
-      <Form isSignIn={false} />
-      {!isLoggedIn && (
-        <>
-          <div style={{ padding: '20px' }}>
-            <button
-              style={{ padding: '10px', margin: '10px', fontSize: '20px' }}
-              onClick={() => {
-                setOpen(true);
-                setLogin(false);
-              }}
-            >
-              회원가입
-            </button>
+    <section className={styles.ly_more}>
+      <Header></Header>
+      <ul className={styles.bl_list}>
+        <li className={styles.bl_list_item}>
+          <div className={styles.el_item}>
+            <span>다크모드</span>
+            <Toggle
+              className={styles.el_darkModeToggle}
+              checked={isMounted && theme === 'light'}
+              onChange={switchTheme}
+              icons={{ checked: '🌙', unchecked: '🔆' }}
+              aria-label="Dark mode"
+            />
           </div>
-          <div style={{ padding: '20px' }}>
-            <button
-              style={{ padding: '10px', margin: '10px', fontSize: '20px' }}
-              onClick={() => {
-                setOpen(true);
-                setLogin(true);
-              }}
-            >
-              로그인
-            </button>
-          </div>
-        </>
-      )}
-      <div style={{ padding: '20px' }}>
+        </li>
         {isLoggedIn && (
-          <button
-            style={{ padding: '10px', margin: '10px', fontSize: '20px' }}
-            onClick={logout}
-          >
-            로그아웃
-          </button>
+          <>
+            <li className={styles.bl_list_item}>
+              <span
+                className={styles.el_item}
+              >{`${userData.username}님 반갑습니다`}</span>
+            </li>
+            <li className={styles.bl_list_item}>
+              <Button eventHandler={logout}>로그아웃</Button>
+            </li>
+          </>
         )}
-      </div>
-      <FormDialog open={open} setOpen={setOpen} signIn={login} />
-
-      <div style={{ padding: '20px' }}></div>
-    </div>
+        {!isLoggedIn && (
+          <>
+            <li className={styles.bl_list_item}>
+              <Form isSignIn={true} />
+            </li>
+            <li className={styles.bl_list_item}>
+              <Form isSignIn={false} />
+            </li>
+          </>
+        )}
+      </ul>
+    </section>
   );
 }
