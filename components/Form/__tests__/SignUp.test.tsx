@@ -1,9 +1,23 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
 import Form from 'components/Form';
+import useUser from 'store/modules/user/useUser';
+
+jest.mock('store/modules/user/useUser');
+const mockUseUser = useUser as jest.Mock;
+
+const useUserReturn = {
+  isLoggedIn: false,
+  userData: null,
+  login: 1,
+  logout: 2,
+};
 
 describe('SignUp', () => {
+  beforeEach(() => {
+    mockUseUser.mockImplementation(() => useUserReturn);
+  });
+
   describe('Layout', () => {
     it('has SignUp headding', () => {
       render(<Form isSignIn={false} />);
