@@ -16,7 +16,6 @@ const initialState: UserState = {
   userData: null,
 };
 
-// reducer 객체를 가지고 있는데 이 객체의 key/ value쌍을 slice 라고 한다
 export const userSlice = createSlice({
   name: 'user',
   initialState,

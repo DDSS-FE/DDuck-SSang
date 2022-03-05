@@ -2,14 +2,17 @@ import { combineReducers, CombinedState, AnyAction } from '@reduxjs/toolkit';
 import { HYDRATE } from 'next-redux-wrapper';
 
 import userReducer, { UserState } from 'store/modules/user';
+import watchlistReducer, { WatchlistState } from './watchlist/watchlistSlice';
 
 interface IRootReducer {
   userReducer: UserState;
+  watchlistReducer: WatchlistState;
   // add more
 }
 
 const appReducer = combineReducers({
   userReducer,
+  watchlistReducer,
 });
 
 const rootReducer = (

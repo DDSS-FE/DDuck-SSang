@@ -8,6 +8,7 @@ import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import useUser from 'store/modules/user/useUser';
+import useWatchlist from 'store/modules/watchlist/useWatchlist';
 import { LOGIN_API, REGISTER_API } from 'utils/config';
 
 export default function FormDialog({
@@ -24,6 +25,7 @@ export default function FormDialog({
   const [user, setUser] = useState('');
 
   const { login } = useUser();
+  const { fetchWatchlist } = useWatchlist();
 
   const handleSubmit = () => {
     if (!signIn)
@@ -45,6 +47,7 @@ export default function FormDialog({
             alert(res.error.message);
           } else {
             login(res.user);
+            fetchWatchlist();
           }
         })
         .finally(() => setOpen(false));
@@ -66,6 +69,7 @@ export default function FormDialog({
             alert(res.error.message);
           } else {
             login(res.user);
+            fetchWatchlist();
           }
         })
         .finally(() => {

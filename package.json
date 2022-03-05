@@ -36,6 +36,7 @@
     "react-google-login": "^5.2.2",
     "react-redux": "^7.2.6",
     "react-toggle": "^4.1.2",
+    "redux-logger": "^3.0.6",
     "redux-persist": "^6.0.0",
     "sass": "^1.49.0"
   },
@@ -50,6 +51,7 @@
     "@types/react": "17.0.38",
     "@types/react-redux": "^7.1.22",
     "@types/react-toggle": "^4.0.3",
+    "@types/redux-logger": "^3.0.9",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
     "babel-jest": "27.4.5",
