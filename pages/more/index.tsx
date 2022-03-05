@@ -52,7 +52,6 @@ export default function More() {
             </li>
           </>
         )}
-
         {!isLoggedIn && (
           <>
             <li className={styles.bl_list_item}>
