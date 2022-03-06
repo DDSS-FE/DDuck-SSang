@@ -23,6 +23,7 @@ export default function MarketCategoryPage({
   category,
 }: MarketCategoryProps): JSX.Element {
   const router = useRouter();
+
   return (
     <>
       <Header>
