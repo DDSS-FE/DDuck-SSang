@@ -7,7 +7,7 @@ import MarketInfoListItem, {
 const props: Props = {
   category: 'stock',
   symbol: 'AAPL',
-  // name: '애플',
+  name: '애플',
   c: 161,
   d: 3.4,
   dp: 0.2,
