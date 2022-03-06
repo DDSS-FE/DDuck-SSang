@@ -1,12 +1,11 @@
-import { useCallback } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { NextPageContext } from 'next';
-
+import { useRouter } from 'next/router';
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
 import { faStar as faRegStar } from '@fortawesome/free-regular-svg-icons';
+import debounce from 'debounce';
 
 import styles from 'pages/market/Market.module.scss';
-
-import { useRouter } from 'next/router';
 
 import MarketDetail from 'components/MarketDetail';
 import Header from 'components/Header';
@@ -26,19 +25,27 @@ export default function MarketDetailPage({
 }: MarketDetailProps): JSX.Element {
   const router = useRouter();
   const { isLoggedIn } = useUser();
-  const { checkWatchlistBySymbol, addWatchlist, deleteWatchlist } =
-    useWatchlist();
+  const {
+    fetchWatchlist,
+    checkWatchlistBySymbol,
+    addWatchlist,
+    deleteWatchlist,
+  } = useWatchlist();
+  const debouncedAddWatchlist = debounce(addWatchlist, 800);
+  const [addStatus, setAddStatus] = useState<boolean>(false);
 
   const handleAddToWatchlist = useCallback(
     (sym: string) => {
-      if (isLoggedIn && !checkWatchlistBySymbol(sym)) {
-        addWatchlist(sym);
-      } else {
-        alert('You need to login to add to watchlist');
-      }
+      if (!isLoggedIn) alert('You need to login to add to watchlist');
+      if (!checkWatchlistBySymbol(sym) && !addStatus)
+        debouncedAddWatchlist(sym, setAddStatus);
     },
-    [isLoggedIn, checkWatchlistBySymbol, addWatchlist]
+    [isLoggedIn, checkWatchlistBySymbol, debouncedAddWatchlist, addStatus]
   );
+
+  useEffect(() => {
+    if (isLoggedIn) fetchWatchlist();
+  }, [isLoggedIn, fetchWatchlist]);
 
   return (
     <>
