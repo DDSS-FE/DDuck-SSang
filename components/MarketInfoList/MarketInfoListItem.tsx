@@ -11,6 +11,7 @@ import { MarketCategory } from 'pages/market/[category]';
 
 import { KRTime, USMarketClosed, marketTime } from 'utils/formatDate';
 import { IParsedResponseInput } from 'utils/stockFetcher';
+import { symbolToName } from 'utils/quote';
 
 export interface Props {
   category: MarketCategory;
@@ -25,7 +26,6 @@ export interface Props {
 const MarketInfoListItem = ({
   category,
   symbol,
-  name,
   c,
   d,
   dp,
@@ -54,21 +54,22 @@ const MarketInfoListItem = ({
         <a className={styles.bl_vertMarketInfo_link}>
           <span className={styles.bl_vertMarketInfo_marketInfo}>
             <div className={styles.bl_vertMarketInfo_ttlWrapper}>
-              <p className={styles.bl_vertMarketInfo_ttl}>{name}</p>
+              <p className={styles.bl_vertMarketInfo_ttl}>
+                {symbolToName[symbol]}
+              </p>
               <p className={styles.bl_vertMarketInfo_standard}>
                 <FontAwesomeIcon
                   className={clsx(
                     styles.bl_vertMarketInfo_icon,
-                    category !== 'crypto'
+                    category === 'stock'
                       ? styles[`${USMarketClosed}`]
                       : styles.open
                   )}
                   icon={faClock}
                 />
-                {category !== 'crypto'
-                  ? marketTime
-                  : realtimeData?.timeFrame || KRTime}{' '}
-                | US
+                {category === 'stock'
+                  ? `${marketTime} | US`
+                  : `${realtimeData?.timeFrame || KRTime} | KR`}
               </p>
             </div>
           </span>

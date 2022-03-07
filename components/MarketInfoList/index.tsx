@@ -8,17 +8,7 @@ import Spinner from 'components/Spinner';
 import useAxios from 'hooks/useAxios';
 import { QUOTE_API } from 'utils/config';
 import { getStocks, IParsedResponseInput } from 'utils/stockFetcher';
-
-type MarketInfoData = MarketInfo[];
-
-interface MarketInfo {
-  id: number;
-  name: string;
-  symbol: string;
-  c: number; // current
-  d: number; // change
-  dp: number; // percent change
-}
+import { symbolList } from 'utils/quote';
 
 export interface IRealtimeDataItem {
   c: number | null;
@@ -34,38 +24,40 @@ export interface IRealtimeData {
   timeFrame: number[] | string;
 }
 
+interface OpenPriceData {
+  data: OpenPriceDataItem[];
+}
+
+interface OpenPriceDataItem {
+  d: number;
+  dp: number;
+  c: number;
+  id: number;
+  symbol: string;
+}
+
 const MarketInfoList = ({ category }: MarketCategoryProps): JSX.Element => {
-  const { data, loading } = useAxios<MarketInfoData>(
+  const { data: MarketInfoData, loading } = useAxios<OpenPriceData>(
     `${QUOTE_API}?category=${category}`
   );
-
   const [timeFrame] = useState([new Date(), Infinity]);
   const [period] = useState(1500);
   const [realtimeData, setRealtimeData] = useState<IParsedResponseInput>();
 
   useEffect(() => {
     getStocks(setRealtimeData, {
-      indicesToFetch: [
-        'BINANCE:BTCUSDT',
-        'BINANCE:ETHUSDT',
-        'BINANCE:BNBUSDT',
-        'BINANCE:XRPUSDT',
-        'BINANCE:ADAUSDT',
-        'BINANCE:LUNAUSDT',
-        'BINANCE:AVAXUSDT',
-        'BINANCE:DOGEUSDT',
-      ],
+      indicesToFetch: symbolList[category],
       timeFrame,
       period,
     });
-  }, [timeFrame, period]);
+  }, [timeFrame, period, category]);
 
   return (
     <>
       {loading && <Spinner />}
-      {data && (
+      {MarketInfoData && (
         <ul className={styles.bl_vertMarketInfo}>
-          {data.map((d) => (
+          {MarketInfoData.data.map((d) => (
             <MarketInfoListItem
               key={d.id}
               category={category}

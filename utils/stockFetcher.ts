@@ -8,7 +8,7 @@ export interface IParsedResponseInput {
   data: IRealtimeDataItem[];
   timeFrame: Date[];
 }
-// dispatch,
+
 export const getStocks = async (
   setData: Dispatch<SetStateAction<IParsedResponseInput | undefined>>,
   {
@@ -20,14 +20,13 @@ export const getStocks = async (
   const socket = new WebSocket(
     `wss://ws.finnhub.io?token=${process.env.NEXT_PUBLIC_FINNHUB_KEY}`
   );
-  // Connection opened -> Subscribe
+
   socket.addEventListener('open', function () {
     for (const key of indicesToFetch) {
       socket.send(JSON.stringify({ type: 'subscribe', symbol: key }));
     }
   });
 
-  // Listen for messages
   socket.addEventListener('message', function (event) {
     // console.log('Message from server ', event.data);
     const parsedResponse = {
@@ -42,7 +41,6 @@ export const getStocks = async (
       console.error('Could not parse data');
     }
     if (resp.type !== 'ping') {
-      console.log(resp.data);
       setData({
         data: resp.data?.filter(
           (v: IRealtimeDataItem, i: number, a: IRealtimeDataItem[]) =>
