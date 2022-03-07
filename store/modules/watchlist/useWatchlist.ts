@@ -1,5 +1,5 @@
 import { IWatchlistItem } from 'components/StockList';
-import { useCallback } from 'react';
+import { Dispatch, SetStateAction, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { RootState } from 'store/modules';
@@ -37,14 +37,16 @@ export default function useWatchlist() {
     }
   }, [dispatch]);
   const addWatchlist = useCallback(
-    (symbol: string) => {
+    (symbol: string, setStatus: Dispatch<SetStateAction<boolean>>) => {
       try {
+        setStatus(true);
         const data = { symbol, email: userData?.email };
         dispatch(addData(data));
       } catch (e) {
         console.error('add watchlist error');
       }
       fetchWatchlist();
+      setStatus(false);
     },
     [dispatch, userData?.email, fetchWatchlist]
   );
