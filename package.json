@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watchAll"
+    "test": "jest --watchAll",
+    "coverage": "jest  --coverage"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.3.0",
