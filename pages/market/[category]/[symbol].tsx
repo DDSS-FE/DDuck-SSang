@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
 import { NextPageContext } from 'next';
 import { useRouter } from 'next/router';
 import { faSearch, faStar } from '@fortawesome/free-solid-svg-icons';
@@ -32,15 +32,13 @@ export default function MarketDetailPage({
     deleteWatchlist,
   } = useWatchlist();
   const debouncedAddWatchlist = debounce(addWatchlist, 800);
-  const [addStatus, setAddStatus] = useState<boolean>(false);
 
   const handleAddToWatchlist = useCallback(
     (sym: string) => {
       if (!isLoggedIn) alert('You need to login to add to watchlist');
-      if (!checkWatchlistBySymbol(sym) && !addStatus)
-        debouncedAddWatchlist(sym, setAddStatus);
+      if (!checkWatchlistBySymbol(sym)) debouncedAddWatchlist(sym);
     },
-    [isLoggedIn, checkWatchlistBySymbol, debouncedAddWatchlist, addStatus]
+    [isLoggedIn, checkWatchlistBySymbol, debouncedAddWatchlist]
   );
 
   useEffect(() => {
@@ -52,15 +50,18 @@ export default function MarketDetailPage({
       <Header>
         <IconButton
           onClick={() => router.push('search/market')}
+          data-testid="market-search-button"
           icon={faSearch}
         />
         {checkWatchlistBySymbol(symbol) ? (
           <IconButton
+            data-testid="market-watchlist-button"
             onClick={() => deleteWatchlist(checkWatchlistBySymbol(symbol))}
             icon={faStar}
           />
         ) : (
           <IconButton
+            data-testid="market-watchlist-button"
             onClick={() => handleAddToWatchlist(symbol)}
             icon={faRegStar}
           />
