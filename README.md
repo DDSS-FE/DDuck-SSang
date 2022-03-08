@@ -31,6 +31,7 @@
 <div align="center">
   <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat-square&logo=typescript&logoColor=white"/>
   <img src="https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=React&logoColor=white"/>
+  <img  src="https://img.shields.io/badge/Next-000000?style=flat-square&logo=Next.js&logoColor=white"/>
   <img src="https://img.shields.io/badge/redux-764ABC?style=flat-square&logo=Redux&logoColor=white"/>
   <img src="https://img.shields.io/badge/scss-DB7093?style=flat-square&logo=SASS&logoColor=white"/><br>
   
@@ -47,17 +48,9 @@
 
 ## 외부 api 목록
 
-- 주식, 암호화폐 가격: finnhub
-- 주식 시세: yahoo-finance
-- 뉴스목록: bing-news-search
-
-## 상태관리
-
-관리해야하는 데이터는 관심목록, 뉴스목록, 주가 데이터가 있으며 이들은 데이터 변경이 잦으므로 Context API를 채택하기에는 성능개선에 한계가 있다고 판단했습니다.
-
-props를 사용하지 않고 하위 컴포넌트로 전달만하는 컴포넌트, props를 전달하기 위해서 작성하는 반복되는 코드문제를 해결하기 위해 redux를 도입했습니다.
-
-action, reducer, selector, store 를 세팅하는 보일러플레이트 코드를 피하기 위해 redux toolkit을 사용했습니다.
+- 주식, 암호화폐 가격: <a href="https://finnhub.io/docs/api">`finnhub`</a>
+- 주식 시세: <a href="https://www.npmjs.com/package/yahoo-finance">`node-yahoo-finance`</a>
+- 뉴스목록: <a href="https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/">`bing-news-search`</a>
 
 ## \***\*기술적 도전\*\***
 
