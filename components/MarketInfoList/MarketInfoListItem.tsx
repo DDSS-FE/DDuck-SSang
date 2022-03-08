@@ -49,7 +49,10 @@ const MarketInfoListItem = ({
   }, [realtimeData, c, symbol]);
 
   return (
-    <li className={styles.bl_vertMarketInfo_item}>
+    <li
+      className={styles.bl_vertMarketInfo_item}
+      data-testid={`${symbol}-market-info-list-item`}
+    >
       <Link href={`/market/${category}/${symbol}`}>
         <a className={styles.bl_vertMarketInfo_link}>
           <span className={styles.bl_vertMarketInfo_marketInfo}>

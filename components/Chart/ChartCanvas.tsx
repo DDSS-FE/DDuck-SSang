@@ -21,12 +21,12 @@ function ChartCanvas({ type, data }: CanvasProps): JSX.Element {
     if (!!ctx && canvasRef.current) {
       ctx.clearRect(0, 0, canvasRef.current.width, canvasRef.current.height);
       new Chart(ctx, {
-        type, //'candle',
+        type,
         data,
-        // option: {
-        //   candleColorB: 'rgb(93,200,135)',
-        //   candleColorS: 'rgb(225,84,96)',
-        // },
+        option: {
+          candleColorB: 'rgb(93,200,135)',
+          candleColorS: 'rgb(225,84,96)',
+        },
       });
     }
   }, [type, data]);

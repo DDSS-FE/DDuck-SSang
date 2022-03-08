@@ -1,13 +1,14 @@
 .ly_chart {
-  border: 1px solid #adb5bd;
   padding-left: 0;
   padding-right: 0;
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 1.5rem;
   width: 100%;
+  overflow: hidden;
 
   &_btnWrapper {
+    overflow: hidden;
     width: 100%;
     display: flex;
     justify-content: space-evenly;

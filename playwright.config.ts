@@ -6,7 +6,7 @@ const config: PlaywrightTestConfig = {
     headless: false,
     viewport: { width: 1280, height: 720 },
     launchOptions: {
-      slowMo: 1000,
+      slowMo: 800,
     },
     video: 'on',
   },
@@ -22,6 +22,11 @@ const config: PlaywrightTestConfig = {
       name: 'Mobile Safari',
       use: devices['iPhone 12'],
     },
+    // Test against mobile viewports.
+    // {
+    //   name: 'Mobile Chrome',
+    //   use: devices['iPhone SE'],
+    // },
   ],
 };
 

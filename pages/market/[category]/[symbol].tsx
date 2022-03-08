@@ -55,13 +55,11 @@ export default function MarketDetailPage({
         />
         {checkWatchlistBySymbol(symbol) ? (
           <IconButton
-            data-testid="market-watchlist-button"
             onClick={() => deleteWatchlist(checkWatchlistBySymbol(symbol))}
             icon={faStar}
           />
         ) : (
           <IconButton
-            data-testid="market-watchlist-button"
             onClick={() => handleAddToWatchlist(symbol)}
             icon={faRegStar}
           />
