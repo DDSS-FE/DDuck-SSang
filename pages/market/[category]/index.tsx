@@ -13,7 +13,7 @@ export const marketNavItems: NavItem[] = [
   { name: '지수', href: '/market/indices' }, // 지수는 데이터 찾을 시 구현 예정
 ];
 
-export type MarketCategory = 'stock' | 'crypto' | 'indices';
+export type MarketCategory = 'stock' | 'crypto'; //| 'indices';
 
 export interface MarketCategoryProps {
   category: MarketCategory;
@@ -23,6 +23,7 @@ export default function MarketCategoryPage({
   category,
 }: MarketCategoryProps): JSX.Element {
   const router = useRouter();
+
   return (
     <>
       <Header>

@@ -21,31 +21,84 @@
   }
 
   &_ttl {
-    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--theme-btn-text);
+    margin-bottom: 3px;
   }
 
   &_standard {
     display: flex;
     color: #666;
+    vertical-align: middle;
   }
 
   &_marketPrice {
-    text-align: right;
-    font-weight: bold;
+    &__red {
+      text-align: right;
+      font-weight: bold;
+      padding: 0px 5px 0px 10px;
+      color: red;
+      border: 1px solid transparent;
+
+      animation: alertR 2s linear none;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &__blue {
+      text-align: right;
+      font-weight: bold;
+      padding: 0px 5px 0px 10px;
+      color: blue;
+      border: 1px solid transparent;
+
+      animation: alertB 2s linear none;
+      transition: all 0.3s ease-in-out;
+    }
+    @keyframes alertR {
+      0%,
+      100% {
+        border: 1px solid transparent;
+      }
+      10% {
+        border: 1px solid #ec4f01a9;
+      }
+      90% {
+        border: 1px solid #ec4f01a9;
+      }
+    }
+    @keyframes alertB {
+      0%,
+      100% {
+        border: 1px solid transparent;
+      }
+      10% {
+        border: 1px solid #009fe9b1;
+      }
+      90% {
+        border: 1px solid #009fe9b1;
+      }
+    }
+
+    &_fluctuation {
+      &__red {
+        color: red;
+      }
+
+      &__blue {
+        color: blue;
+      }
+    }
+  }
+
+  &_price {
+    font-size: 1.2rem;
+    color: var(--theme-btn-text);
   }
 
   &_icon {
     width: 1rem;
-  }
-
-  &_fluctuation {
-    &__red {
-      color: red;
-    }
-
-    &__blue {
-      color: blue;
-    }
+    margin-top: 0.2rem;
+    margin-right: 0.1rem;
   }
 
   &_standard,
