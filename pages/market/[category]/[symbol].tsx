@@ -57,6 +57,7 @@ export default function MarketDetailPage({
         {checkWatchlistBySymbol(symbol) ? (
           <IconButton
             onClick={() => deleteWatchlist(checkWatchlistBySymbol(symbol))}
+            color="#f4e545"
             icon={faStar}
           />
         ) : (

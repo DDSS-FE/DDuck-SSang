@@ -6,6 +6,7 @@ export interface ChartOption {
   candleColorS: string;
   axisColor: string;
   font: string;
+  fontColor: string;
   spacing: number;
 }
 

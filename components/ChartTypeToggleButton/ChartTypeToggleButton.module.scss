@@ -1,6 +1,9 @@
 .el_ChartTypeToggleBtn {
   width: 10%;
-  background-color: #fff;
   outline: none;
   border: none;
+  background-color: transparent;
+  img {
+    background-color: var(--theme-btn-toggle-background);
+  }
 }

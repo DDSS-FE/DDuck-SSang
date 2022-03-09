@@ -31,8 +31,8 @@ export default class Chart {
     }: { type: string; data: ChartData; option?: Partial<ChartOption> }
   ) {
     this.ctx = ctx;
-    this.width = ctx.canvas.width - 100; //50;
-    this.height = ctx.canvas.height - 100; //50;
+    this.width = ctx.canvas.width - 100;
+    this.height = ctx.canvas.height - 100;
     this.type = type;
     this.option = {
       margin: 30,
@@ -42,6 +42,7 @@ export default class Chart {
       candleColorS: 'blue',
       axisColor: '#bbb',
       font: '1.8rem Sans-serif',
+      fontColor: '#bbb',
       spacing: 25,
       ...option,
     };
@@ -195,6 +196,7 @@ export default class Chart {
   draw() {
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.ctx.font = this.option.font;
+    this.ctx.fillStyle = this.option.fontColor;
 
     this.drawGrid(6);
     this.drawXAxisText(6);

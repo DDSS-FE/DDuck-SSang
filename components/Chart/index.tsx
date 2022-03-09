@@ -40,7 +40,7 @@ export function Chart({ symbol }: { symbol: string }): JSX.Element {
           {data && !loading ? (
             <DynamicCanvas type={type} data={data} />
           ) : (
-            <canvas height={height} width={width}></canvas>
+            <canvas height={height} width={width} />
           )}
         </div>
 
