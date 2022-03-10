@@ -97,6 +97,7 @@
 
 .bl_signup_input_container label {
   font-size: 0.9rem;
+  height: 0;
   color: #0000008a;
 }
 
@@ -109,13 +110,6 @@
   outline: none;
   padding: 0.4rem;
 }
-
-// .bl_signup_input_container input:focus + label,
-// .bl_signup_input_container input:valid + label {
-//   top: -65%;
-//   font-size: 0.8rem;
-//   background-color: burlywood;
-// }
 
 .bl_signup_input_container input + label {
   position: absolute;
