@@ -20,15 +20,25 @@ export const NewsInfoListItem = ({
 
   return (
     <>
-      <article key={url}>
+      <article key={url} className={styles.ly}>
         <Link href={`/news/${category}/${name}`}>
           <a className={!isMain ? styles.ly_newsLink : ''}>
-            <Image
-              src={`/api/imagefetcher?url=${encodeURIComponent(contentURL)}`}
-              alt="main news thumbnail"
-              width={isMain ? width : 150}
-              height={isMain ? height : 150}
-            />
+            <div
+              className={
+                isMain
+                  ? styles.bl_main_imgContainer
+                  : styles.bl_news_imgContainer
+              }
+            >
+              <Image
+                src={`/api/imagefetcher?url=${encodeURIComponent(contentURL)}`}
+                alt="news thumbnail"
+                width={isMain ? width : 1}
+                height={isMain ? height : 1}
+                layout="responsive"
+                className={styles.img}
+              />
+            </div>
 
             <section className={isMain ? styles.bl_mainNews : styles.bl_news}>
               <span
@@ -48,13 +58,7 @@ export const NewsInfoListItem = ({
                 >
                   {provider}
                 </span>
-                <span
-                  className={
-                    isMain ? styles.bl_mainNews_time : styles.bl_news_time
-                  }
-                >
-                  {datePublished}
-                </span>
+                <span>{datePublished}</span>
               </div>
             </section>
           </a>

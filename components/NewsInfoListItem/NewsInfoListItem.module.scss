@@ -1,42 +1,3 @@
-.ly_mainNews {
-  margin-top: 40px;
-  padding-left: 5px;
-  padding-right: 5px;
-  & > a {
-    color: black;
-  }
-  & > a:hover {
-    color: red;
-  }
-  .el_image__l {
-    width: 100%;
-    height: 300px;
-    margin-bottom: 5px;
-  }
-
-  .bl_mainNews {
-    display: flex;
-    align-items: center;
-    font-size: 3rem;
-    text-overflow: ellipsis;
-  }
-
-  .bl_mainNews_info {
-    align-items: center;
-    margin-top: 5px;
-    padding-left: 10px;
-  }
-
-  .bl_mainNews_prov {
-    margin-right: 5px;
-    padding-right: 10px;
-  }
-
-  .bl_mainNews_time {
-    font-size: 8px;
-  }
-}
-
 .ly_newsLink {
   display: flex;
   align-items: center;
@@ -44,9 +5,10 @@
   margin-top: 5px;
 }
 
-.ly_news {
-  padding-left: 5px;
-  padding-right: 5px;
+.bl_mainNews {
+  margin-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
 
   & > a {
     color: black;
@@ -55,31 +17,63 @@
     color: red;
   }
 
-  .el_image__s {
-    // width: 33%;
-    margin-right: 10px;
+  &_ttl {
+    display: flex;
+    align-items: center;
+    font-size: 3rem;
+    text-overflow: ellipsis;
   }
 
-  .bl_news {
-    margin-top: 10px;
-    padding-left: 15px;
+  &_info {
+    align-items: center;
+    margin-top: 5px;
+    font-size: 1rem;
   }
 
-  .bl_news_ttl {
+  &_prov {
+    margin-right: 5px;
+    padding-right: 10px;
+  }
+}
+
+.bl_news {
+  padding-left: 15px;
+  padding-right: 15px;
+
+  & > a {
+    color: black;
+  }
+  & > a:hover {
+    color: red;
+  }
+
+  &_ttl {
     font-size: 1.3rem;
     text-overflow: ellipsis;
   }
 
-  .bl_news_info {
-    margin-right: 5px;
+  &_info {
+    align-items: center;
+    margin-top: 5px;
+    font-size: 1rem;
   }
 
-  .bl_news_prov {
+  &_prov {
     margin-top: 10px;
     padding-right: 10px;
   }
+}
 
-  .bl_news_time {
-    font-size: 8px;
-  }
+.bl_main_imgContainer {
+  position: relative !important;
+  width: 100%;
+  height: 100%;
+}
+
+.bl_news_imgContainer {
+  position: relative !important;
+  width: 30%;
+  min-width: 30%;
+  height: 30%;
+  min-height: 30%;
 }
