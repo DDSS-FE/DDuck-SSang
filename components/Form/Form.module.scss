@@ -74,6 +74,11 @@
       border: none;
       background: #fcfcfc;
       transition: all 0.25s ease;
+      &:hover {
+        box-shadow: none;
+        transform: none;
+        cursor: not-allowed;
+      }
     }
 
     & > .el_cancel_Btn:hover {
