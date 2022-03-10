@@ -62,9 +62,21 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
   };
 
   useEffect(() => {
-    setEmailError(userEmail.length < 6 ? '6글자 이상 입력해주세요' : '');
-    setNameError(username.length < 3 ? '3글자 이상 입력해주세요' : '');
-    setPasswordError(password.length < 6 ? '6글자 이상 입력해주세요' : '');
+    setEmailError(
+      userEmail.length > 0 && userEmail.length < 6
+        ? '6글자 이상 입력해주세요'
+        : ''
+    );
+    setNameError(
+      username.length > 0 && username.length < 3
+        ? '3글자 이상 입력해주세요'
+        : ''
+    );
+    setPasswordError(
+      password.length > 0 && password.length < 6
+        ? '6글자 이상 입력해주세요'
+        : ''
+    );
 
     const submitValidation = isSignIn
       ? userEmail.length < 6 || password.length < 6
@@ -145,14 +157,14 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
               onClick={handleClose}
             >
               <button className={styles.el_cancel_Btn} onClick={handleClose}>
-                Cancle
+                취소
               </button>
               <button
                 className={styles.el_submit_Btn}
                 disabled={disabled}
                 onClick={isSignIn ? signinSubmit : signupSubmit}
               >
-                {disabled ? <>Enter a valid value</> : <>Submit</>}
+                {isSignIn ? <>로그인</> : <>회원가입</>}
               </button>
             </div>
           </div>
