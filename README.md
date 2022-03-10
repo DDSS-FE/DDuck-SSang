@@ -57,6 +57,33 @@
 `추가/삭제` | `토글` |
 
 </details>
+<details>
+<summary>검색</summary>
+
+ ![검색_종목_fin](https://user-images.githubusercontent.com/65802921/157692958-0876430a-1d13-40bf-adfc-88e9f65a7ff8.gif) | ![검색_뉴스_fin](https://user-images.githubusercontent.com/65802921/157693145-c27a7c09-99ee-4088-a285-db7155163124.gif) |
+  :-: | :-: |
+`종목` | `뉴스` |
+
+</details>
+
+<details>
+<summary>회원가입/로그인</summary>
+  
+![Hnet-image (2)](https://user-images.githubusercontent.com/65802921/157696644-25896690-2d80-457d-9351-642c07261029.gif) |![Hnet-image (3)](https://user-images.githubusercontent.com/65802921/157698084-14ae6582-c3c7-49f6-9f0f-b0f64ba3a742.gif) |
+  :-: | :-: |
+`회원가입` | `로그인` |
+
+</details>
+
+<details>
+<summary>뉴스</summary>
+
+ ![뉴스_바](https://user-images.githubusercontent.com/65802921/157693792-a1e4c00f-024a-427b-8d41-ef259240594d.gif) | ![뉴스_인피니티](https://user-images.githubusercontent.com/65802921/157693853-87f76077-42fb-4f49-bf51-f5c868cc63b2.gif) |
+  :-: | :-: |
+`탭` | `인피니티 스크롤` |
+
+</details>
+
 
 
 ## 외부 api 목록
