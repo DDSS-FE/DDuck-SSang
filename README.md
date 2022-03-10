@@ -52,9 +52,11 @@
 <details>
 <summary>관심 목록</summary>
     
-  ![WatchlistAddRemove](https://user-images.githubusercontent.com/59217352/157321192-43126cc5-35dc-402d-be45-7897264d096d.gif) | ![WatchlistToggle](https://user-images.githubusercontent.com/59217352/157321347-457b271a-e68e-4766-b049-a8c1dec00471.gif) |
-  :-: | :-: |
-`추가/삭제` | `토글` |
+  ![WatchlistAddRemove](https://user-images.githubusercontent.com/59217352/157321192-43126cc5-35dc-402d-be45-7897264d096d.gif) | ![WatchlistToggle](https://user-images.githubusercontent.com/59217352/157321347-457b271a-e68e-4766-b049-a8c1dec00471.gif) | ![관심목록실시간](https://user-images.githubusercontent.com/59217352/157771153-84602727-22c0-418c-889d-09b509cf902a.gif) |
+  :-: | :-: | :-: |
+`추가/삭제` | `토글` | `실시간 시세 정보` |
+
+
 
 </details>
 <details>
@@ -92,11 +94,11 @@
 - 주식 시세: <a href="https://www.npmjs.com/package/yahoo-finance">`node-yahoo-finance`</a>
 - 뉴스목록: <a href="https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/">`bing-news-search`</a>
 
-## \***\*기술적 도전\*\***
-
+## 기술적 도전
 - React.js, Next.js를 통한 SSG, SSR, SPA 사용
 - Redux와 thunk를 통한 상태 관리 로직 구현
 - Canvas API를 사용한 차트 구현
+- WebSockets API를 사용해 실시간 시세 정보 렌더링
 - TypeScript, SCSS 사용, 비동기 로직 최적화
 - jest, react-testing-library를 사용한 TDD(Test Driven Development)
 - playwright를 사용한 E2E testing
