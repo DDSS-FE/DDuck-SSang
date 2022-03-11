@@ -31,18 +31,16 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
     fetchWatchlist();
   }, [fetchWatchlist]);
 
-  const [timeFrame] = useState([new Date(), Infinity]);
-  const [period] = useState(1500);
   const [realtimeData, setRealtimeData] = useState<IParsedResponseInput>();
   const [priceList, getPriceList] = useState(watchlistData);
 
   useEffect(() => {
     getStocks(setRealtimeData, {
       indicesToFetch: [...symbolList.stock, ...symbolList.crypto],
-      timeFrame,
-      period,
+      timeFrame: [new Date(), Infinity],
+      period: 1500,
     });
-  }, [timeFrame, period]);
+  }, [setRealtimeData]);
 
   const { data: marketStockData } = useAxios<OpenPriceData>(
     `${QUOTE_API}?category=stock`
@@ -74,6 +72,8 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
       ]);
     }
   }, [watchlistData, marketStockData, marketCryptoData]);
+
+  console.log(watchlistData, priceList);
 
   return (
     <>

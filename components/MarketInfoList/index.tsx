@@ -40,17 +40,15 @@ const MarketInfoList = ({ category }: MarketCategoryProps): JSX.Element => {
   const { data: marketInfoData, loading } = useAxios<OpenPriceData>(
     `${QUOTE_API}?category=${category}`
   );
-  const [timeFrame] = useState([new Date(), Infinity]);
-  const [period] = useState(1500);
   const [realtimeData, setRealtimeData] = useState<IParsedResponseInput>();
 
   useEffect(() => {
     getStocks(setRealtimeData, {
       indicesToFetch: symbolList[category],
-      timeFrame,
-      period,
+      timeFrame: [new Date(), Infinity],
+      period: 1500,
     });
-  }, [timeFrame, period, category]);
+  }, [category]);
 
   return (
     <>
