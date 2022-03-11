@@ -49,7 +49,7 @@
 
 ## 데모
 <div align="center">
-  <img src="https://user-images.githubusercontent.com/59217352/157839488-b3df0875-3164-4fcb-b13e-d4c0f5adadc9.gif" />
+  <img src="https://user-images.githubusercontent.com/59217352/157857278-d2b2de0e-799c-4856-aa99-77e72ff639c9.gif" />
 </div>
 <details>
 <summary>관심 목록</summary>
