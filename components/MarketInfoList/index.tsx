@@ -24,11 +24,11 @@ export interface IRealtimeData {
   timeFrame: number[] | string;
 }
 
-interface OpenPriceData {
+export interface OpenPriceData {
   data: OpenPriceDataItem[];
 }
 
-interface OpenPriceDataItem {
+export interface OpenPriceDataItem {
   d: number;
   dp: number;
   c: number;
@@ -37,27 +37,25 @@ interface OpenPriceDataItem {
 }
 
 const MarketInfoList = ({ category }: MarketCategoryProps): JSX.Element => {
-  const { data: MarketInfoData, loading } = useAxios<OpenPriceData>(
+  const { data: marketInfoData, loading } = useAxios<OpenPriceData>(
     `${QUOTE_API}?category=${category}`
   );
-  const [timeFrame] = useState([new Date(), Infinity]);
-  const [period] = useState(1500);
   const [realtimeData, setRealtimeData] = useState<IParsedResponseInput>();
 
   useEffect(() => {
     getStocks(setRealtimeData, {
       indicesToFetch: symbolList[category],
-      timeFrame,
-      period,
+      timeFrame: [new Date(), Infinity],
+      period: 1500,
     });
-  }, [timeFrame, period, category]);
+  }, [category]);
 
   return (
     <>
       {loading && <Spinner />}
-      {MarketInfoData && (
+      {marketInfoData && (
         <ul className={styles.bl_vertMarketInfo}>
-          {MarketInfoData.data.map((d) => (
+          {marketInfoData.data.map((d) => (
             <MarketInfoListItem
               key={d.id}
               category={category}

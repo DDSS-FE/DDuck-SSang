@@ -28,7 +28,9 @@ const StockListItem = ({ item, deleteItem }: Props): JSX.Element => {
             >
               {item.symbol}
             </p>
-            <p className={styles.bl_vertStocks_standard}>UC</p>
+            <p className={styles.bl_vertStocks_standard}>
+              {item.category === 'stock' ? 'UC' : 'KR'}
+            </p>
           </div>
         </span>
         <span className={styles.bl_vertStocks_marketPrice}>
