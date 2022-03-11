@@ -39,7 +39,7 @@ export const NewsInfoList = ({
               <NewsInfoListItem
                 key={news.name}
                 isMain={idx === 0}
-                news={{ ...news, category: navCategory }} // 타입 어떻게 해야할지 모르겠습니다.
+                news={{ ...news, category: navCategory }}
               />
             );
           })}

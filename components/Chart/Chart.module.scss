@@ -5,8 +5,10 @@
   margin-right: auto;
   margin-bottom: 1.5rem;
   width: 100%;
+  overflow: hidden;
 
   &_btnWrapper {
+    overflow: hidden;
     width: 100%;
     display: flex;
     justify-content: space-evenly;

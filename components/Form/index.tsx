@@ -3,6 +3,7 @@ import styles from 'components/Form/Form.module.scss';
 import React, { useEffect, useState } from 'react';
 
 import Button from 'components/Button';
+import Logo from 'components/Logo';
 import useUser from 'store/modules/user/useUser';
 import { LOGIN_API, REGISTER_API } from 'utils/config';
 
@@ -61,9 +62,21 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
   };
 
   useEffect(() => {
-    setEmailError(userEmail.length < 6 ? '6글자 이상 입력해주세요' : '');
-    setNameError(username.length < 3 ? '3글자 이상 입력해주세요' : '');
-    setPasswordError(password.length < 6 ? '6글자 이상 입력해주세요' : '');
+    setEmailError(
+      userEmail.length > 0 && userEmail.length < 6
+        ? '6글자 이상 입력해주세요'
+        : ''
+    );
+    setNameError(
+      username.length > 0 && username.length < 3
+        ? '3글자 이상 입력해주세요'
+        : ''
+    );
+    setPasswordError(
+      password.length > 0 && password.length < 6
+        ? '6글자 이상 입력해주세요'
+        : ''
+    );
 
     const submitValidation = isSignIn
       ? userEmail.length < 6 || password.length < 6
@@ -103,13 +116,12 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
       {isOpen && (
         <div className={styles.bl_signup_container}>
           <div className={styles.bl_signup}>
-            <h1 className={styles.bl_signup_heading}>
-              {isSignIn ? 'SignIn' : 'SignUp'}
-            </h1>
+            <h1 className={styles.bl_signup_heading}></h1>
+            <Logo />
             <form className={styles.bl_signup_form}>
               <div className={styles.bl_signup_input_container}>
                 <input type={'email'} id="email" onChange={handleOnChage} />
-                <label htmlFor="email">Email Address</label>
+                <label htmlFor="email">이메일</label>
                 <span className={styles.bar}></span>
                 <div className={styles.error}>{emailError}</div>
               </div>
@@ -122,7 +134,7 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
                       id="username"
                       onChange={handleOnChage}
                     />
-                    <label htmlFor="username">Username</label>
+                    <label htmlFor="username">이름</label>
                     <span className={styles.bar}></span>
                     <div className={styles.error}>{nameError}</div>
                   </>
@@ -135,7 +147,7 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
                   type={'password'}
                   onChange={handleOnChage}
                 />
-                <label htmlFor="password">Password</label>
+                <label htmlFor="password">비밀번호</label>
                 <span className={styles.bar}></span>
                 <div className={styles.error}>{passwordError}</div>
               </div>
@@ -145,14 +157,14 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
               onClick={handleClose}
             >
               <button className={styles.el_cancel_Btn} onClick={handleClose}>
-                Cancle
+                취소
               </button>
               <button
                 className={styles.el_submit_Btn}
                 disabled={disabled}
                 onClick={isSignIn ? signinSubmit : signupSubmit}
               >
-                {disabled ? <>Enter a valid value</> : <>Submit</>}
+                {isSignIn ? <>로그인</> : <>회원가입</>}
               </button>
             </div>
           </div>

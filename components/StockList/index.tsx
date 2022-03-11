@@ -72,9 +72,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
       ]);
     }
   }, [watchlistData, marketStockData, marketCryptoData]);
-
-  console.log(watchlistData, priceList);
-
+  
   return (
     <>
       {watchlistStatus === 'loading' && <Spinner />}

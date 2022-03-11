@@ -1,6 +1,7 @@
-import { IWatchlistItem } from 'components/StockList';
-import { Dispatch, SetStateAction, useCallback } from 'react';
+import { useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+
+import { IWatchlistItem } from 'components/StockList';
 
 import { RootState } from 'store/modules';
 import {
@@ -24,7 +25,8 @@ export default function useWatchlist() {
   );
   const checkWatchlistBySymbol = useCallback(
     (sym: string) => {
-      const item = watchlistData.find((d: IWatchlistItem) => d.symbol === sym);
+      if (watchlistData.error) return 0;
+      const item = watchlistData?.find((d: IWatchlistItem) => d.symbol === sym);
       return item?.id || 0;
     },
     [watchlistData]
@@ -37,16 +39,14 @@ export default function useWatchlist() {
     }
   }, [dispatch]);
   const addWatchlist = useCallback(
-    (symbol: string, setStatus: Dispatch<SetStateAction<boolean>>) => {
+    (symbol: string) => {
       try {
-        setStatus(true);
         const data = { symbol, email: userData?.email };
         dispatch(addData(data));
       } catch (e) {
         console.error('add watchlist error');
       }
       fetchWatchlist();
-      setStatus(false);
     },
     [dispatch, userData?.email, fetchWatchlist]
   );
