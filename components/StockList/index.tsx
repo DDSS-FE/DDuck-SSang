@@ -2,11 +2,13 @@ import { useEffect } from 'react';
 
 import styles from 'components/StockList/StockList.module.scss';
 
+import { MarketCategory } from 'pages/market/[category]';
 import StockListItem from 'components/StockList/StockListItem';
 import MarketInfoListItem from 'components/MarketInfoList/MarketInfoListItem';
 import Spinner from 'components/Spinner';
 
 import useWatchlist from 'store/modules/watchlist/useWatchlist';
+import { symbolList } from 'utils/quote';
 
 export interface IWatchlistItem {
   c: number;
@@ -24,6 +26,9 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
     fetchWatchlist();
   }, [fetchWatchlist]);
 
+  const checkCategory = (symbol: string): MarketCategory =>
+    symbolList.crypto.includes(symbol) ? 'crypto' : 'stock';
+
   return (
     <>
       {watchlistStatus === 'loading' && <Spinner />}
@@ -35,7 +40,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
             ) : (
               <MarketInfoListItem
                 key={d.id}
-                category="stock"
+                category={checkCategory(d.symbol)}
                 c={d.c}
                 d={d.d}
                 dp={d.dp}

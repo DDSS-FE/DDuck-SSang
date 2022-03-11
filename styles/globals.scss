@@ -29,6 +29,13 @@
 html {
   font-size: 62.5%;
 }
+// safari horizontal scrollbar fix
+html {
+  overflow-x: hidden;
+}
+body {
+  overflow-x: hidden;
+}
 
 button,
 input[type='button'] {
