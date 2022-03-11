@@ -16,7 +16,7 @@
 <pre> DDuck-SSang(떡상)은 미국 주식, 가상화폐 등의 금융 자산의 실시간 시세 데이터, 경제 뉴스 등을 제공합니다.
 </pre>
 <div align="center">
-<img width="190" alt="image" src="https://user-images.githubusercontent.com/59217352/157323671-fa1ca027-ffba-46c9-bcf8-90596c9eb83d.png">&ensp;<img width="190" alt="image" src="https://user-images.githubusercontent.com/59217352/157323859-66b95ec5-b9a2-4ba3-8c9a-feb90121e97f.png">&ensp;<img width="190" alt="image" src="https://user-images.githubusercontent.com/59217352/157838573-6446b426-e91c-45af-8129-163de9de7370.png">&ensp;<img width="190" alt="image" src="https://user-images.githubusercontent.com/59217352/157838580-8ff4e899-85e2-45f5-ad3d-7df59ff9dbc2.png">&ensp;<img width="210" height="390" alt="image" src="https://user-images.githubusercontent.com/59217352/157325774-3f9a64ff-9374-4765-8ea2-04de56e93d7f.png">
+<img width="160" alt="image" src="https://user-images.githubusercontent.com/59217352/157323671-fa1ca027-ffba-46c9-bcf8-90596c9eb83d.png">&ensp;<img width="160" alt="image" src="https://user-images.githubusercontent.com/59217352/157323859-66b95ec5-b9a2-4ba3-8c9a-feb90121e97f.png">&ensp;<img width="160" alt="image" src="https://user-images.githubusercontent.com/59217352/157838573-6446b426-e91c-45af-8129-163de9de7370.png">&ensp;<img width="160" alt="image" src="https://user-images.githubusercontent.com/59217352/157838580-8ff4e899-85e2-45f5-ad3d-7df59ff9dbc2.png">&ensp;<img width="160" height="329" alt="image" src="https://user-images.githubusercontent.com/59217352/157325774-3f9a64ff-9374-4765-8ea2-04de56e93d7f.png">&ensp;<img width="160" height="329" alt="image" src="https://user-images.githubusercontent.com/59217352/157858357-e02cc71c-610f-4d12-b47d-90ccfd864aae.png">
 </div>
 
 ## 멤버
