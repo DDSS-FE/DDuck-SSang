@@ -52,11 +52,40 @@
 <details>
 <summary>관심 목록</summary>
     
-  ![WatchlistAddRemove](https://user-images.githubusercontent.com/59217352/157321192-43126cc5-35dc-402d-be45-7897264d096d.gif) | ![WatchlistToggle](https://user-images.githubusercontent.com/59217352/157321347-457b271a-e68e-4766-b049-a8c1dec00471.gif) |
-  :-: | :-: |
-`추가/삭제` | `토글` |
+  ![WatchlistAddRemove](https://user-images.githubusercontent.com/59217352/157321192-43126cc5-35dc-402d-be45-7897264d096d.gif) | ![WatchlistToggle](https://user-images.githubusercontent.com/59217352/157321347-457b271a-e68e-4766-b049-a8c1dec00471.gif) | ![관심목록실시간](https://user-images.githubusercontent.com/59217352/157771153-84602727-22c0-418c-889d-09b509cf902a.gif) |
+  :-: | :-: | :-: |
+`추가/삭제` | `토글` | `실시간 시세 정보` |
+
+
 
 </details>
+<details>
+<summary>검색</summary>
+
+ ![검색_종목_fin](https://user-images.githubusercontent.com/65802921/157692958-0876430a-1d13-40bf-adfc-88e9f65a7ff8.gif) | ![검색_뉴스_fin](https://user-images.githubusercontent.com/65802921/157693145-c27a7c09-99ee-4088-a285-db7155163124.gif) |
+  :-: | :-: |
+`종목` | `뉴스` |
+
+</details>
+
+<details>
+<summary>회원가입/로그인</summary>
+  
+![Hnet-image (2)](https://user-images.githubusercontent.com/65802921/157696644-25896690-2d80-457d-9351-642c07261029.gif) |![Hnet-image (3)](https://user-images.githubusercontent.com/65802921/157698084-14ae6582-c3c7-49f6-9f0f-b0f64ba3a742.gif) |
+  :-: | :-: |
+`회원가입` | `로그인` |
+
+</details>
+
+<details>
+<summary>뉴스</summary>
+
+ ![뉴스_바](https://user-images.githubusercontent.com/65802921/157693792-a1e4c00f-024a-427b-8d41-ef259240594d.gif) | ![뉴스_인피니티](https://user-images.githubusercontent.com/65802921/157693853-87f76077-42fb-4f49-bf51-f5c868cc63b2.gif) |
+  :-: | :-: |
+`탭` | `인피니티 스크롤` |
+
+</details>
+
 
 
 ## 외부 api 목록
@@ -65,11 +94,11 @@
 - 주식 시세: <a href="https://www.npmjs.com/package/yahoo-finance">`node-yahoo-finance`</a>
 - 뉴스목록: <a href="https://rapidapi.com/microsoft-azure-org-microsoft-cognitive-services/api/bing-news-search1/">`bing-news-search`</a>
 
-## \***\*기술적 도전\*\***
-
+## 기술적 도전
 - React.js, Next.js를 통한 SSG, SSR, SPA 사용
 - Redux와 thunk를 통한 상태 관리 로직 구현
 - Canvas API를 사용한 차트 구현
+- WebSockets API를 사용해 실시간 시세 정보 렌더링
 - TypeScript, SCSS 사용, 비동기 로직 최적화
 - jest, react-testing-library를 사용한 TDD(Test Driven Development)
 - playwright를 사용한 E2E testing

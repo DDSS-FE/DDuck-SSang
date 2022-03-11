@@ -1,6 +1,5 @@
 import { useState } from 'react';
-import Link from 'next/link';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useRouter } from 'next/router';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
 import { faEdit } from '@fortawesome/free-regular-svg-icons';
 
@@ -12,16 +11,16 @@ import StockList from 'components/StockList';
 
 export default function Watchlist() {
   const [editMode, setEditMode] = useState(false);
+  const router = useRouter();
 
   return (
     <div className={styles.ly_watchlist}>
       <Header>
         <IconButton onClick={() => setEditMode(!editMode)} icon={faEdit} />
-        <Link href="/search">
-          <a className={styles.el_iconBtn}>
-            <FontAwesomeIcon className={styles.el_Icon} icon={faPlus} />
-          </a>
-        </Link>
+        <IconButton
+          onClick={() => router.push('/search/market')}
+          icon={faPlus}
+        />
       </Header>
 
       <StockList editMode={editMode} />
