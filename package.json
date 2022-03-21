@@ -8,7 +8,10 @@
     "start": "next start",
     "lint": "next lint",
     "test": "jest --watchAll",
-    "ptest": "playwright test"
+    "format:check": "prettier --check \"**/*.{jsx,yml,yaml,scss,md}\"",
+    "format": "prettier --write \"**/*.{jsx,yml,yaml,scss,md}\"",
+    "ptest": "playwright test",
+    "eslint": "./node_modules/eslint/bin/eslint.js ."
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.3.0",
