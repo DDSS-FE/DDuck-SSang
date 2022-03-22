@@ -51,7 +51,7 @@ const MarketInfoListItem = ({
   return (
     <li
       className={styles.bl_vertMarketInfo_item}
-      data-testid={`${symbol}-market-info-list-item`}
+      data-testid={`market-info-list-item`}
     >
       <Link href={`/market/${category}/${symbol}`}>
         <a className={styles.bl_vertMarketInfo_link}>

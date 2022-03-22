@@ -53,7 +53,7 @@ describe('StockList', () => {
     it('편집 모드가 아닐 때 symbol, 시간, 지역, 현재가, 퍼센트변화율을 포함하는 MarketInfoListItem 컴포넌트를 보여준다.', () => {
       render(<StockList editMode={false} />);
       expect(
-        screen.getAllByTestId('MarketInfoListItem-component')[0]
+        screen.getAllByTestId(`market-info-list-item`)[0]
       ).toBeInTheDocument();
     });
     it('편집 모드일 때 symbol, 지역, 삭제 아이콘을 보여준다.', () => {
