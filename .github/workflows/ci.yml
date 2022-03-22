@@ -16,5 +16,3 @@ jobs:
       - run: npm run format:check
       - run: npm run eslint
       - run: npm run test components -- --coverage
-        env:
-          CI: true
