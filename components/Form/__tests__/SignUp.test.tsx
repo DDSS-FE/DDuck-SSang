@@ -19,55 +19,46 @@ describe('SignUp', () => {
   });
 
   describe('Layout', () => {
-    it('has SignUp headding', () => {
-      render(<Form isSignIn={false} />);
-      const button = screen.getByRole('button', { name: '회원가입' });
-      userEvent.click(button);
-      const heading = screen.getByRole('heading', { name: 'SignUp' });
-      expect(heading).toBeInTheDocument();
-    });
     it('has Email input', () => {
       render(<Form isSignIn={false} />);
       const button = screen.getByRole('button', { name: '회원가입' });
       userEvent.click(button);
-      const input = screen.getByLabelText('Email Address');
+      const input = screen.getByLabelText('이메일');
       expect(input).toBeInTheDocument();
     });
     it('has Username input', () => {
       render(<Form isSignIn={false} />);
       const button = screen.getByRole('button', { name: '회원가입' });
       userEvent.click(button);
-      const input = screen.getByLabelText('Username');
+      const input = screen.getByLabelText('이름');
       expect(input).toBeInTheDocument();
     });
     it('has Password input', () => {
       render(<Form isSignIn={false} />);
       const button = screen.getByRole('button', { name: '회원가입' });
       userEvent.click(button);
-      const input = screen.getByLabelText('Password');
+      const input = screen.getByLabelText('비밀번호');
       expect(input).toBeInTheDocument();
     });
     it('has Submit button', () => {
       render(<Form isSignIn={false} />);
       const button = screen.getByRole('button', { name: '회원가입' });
       userEvent.click(button);
-      const submit = screen.getByRole('button', {
-        name: 'Enter a valid value',
-      });
+      const submit = screen.getByTestId('submit');
       expect(submit).toBeInTheDocument();
     });
     it('has Cancel button', () => {
       render(<Form isSignIn={false} />);
       const button = screen.getByRole('button', { name: '회원가입' });
       userEvent.click(button);
-      const cancle = screen.getByRole('button', { name: 'Cancle' });
+      const cancle = screen.getByRole('button', { name: '취소' });
       expect(cancle).toBeInTheDocument();
     });
     it('disabled when the Submit button initialized', () => {
       render(<Form isSignIn={false} />);
       const button = screen.getByRole('button', { name: '회원가입' });
       userEvent.click(button);
-      const input = screen.getByRole('button', { name: 'Enter a valid value' });
+      const input = screen.getByTestId('submit');
       expect(input).toBeDisabled();
     });
   });
@@ -82,12 +73,10 @@ describe('SignUp', () => {
         render(<Form isSignIn={false} />);
         const button = screen.getByRole('button', { name: '회원가입' });
         userEvent.click(button);
-        const email = screen.getByLabelText('Email Address');
-        const username = screen.getByLabelText('Username');
-        const password = screen.getByLabelText('Password');
-        const submit = screen.getByRole('button', {
-          name: 'Enter a valid value',
-        });
+        const email = screen.getByLabelText('이메일');
+        const username = screen.getByLabelText('이름');
+        const password = screen.getByLabelText('비밀번호');
+        const submit = screen.getByTestId('submit');
 
         userEvent.type(email, $email);
         expect(submit).toBeDisabled();
@@ -112,12 +101,10 @@ describe('SignUp', () => {
         render(<Form isSignIn={false} />);
         const button = screen.getByRole('button', { name: '회원가입' });
         userEvent.click(button);
-        const email = screen.getByLabelText('Email Address');
-        const username = screen.getByLabelText('Username');
-        const password = screen.getByLabelText('Password');
-        const submit = screen.getByRole('button', {
-          name: 'Enter a valid value',
-        });
+        const email = screen.getByLabelText('이메일');
+        const username = screen.getByLabelText('이름');
+        const password = screen.getByLabelText('비밀번호');
+        const submit = screen.getByTestId('submit');
 
         userEvent.type(email, $email);
         userEvent.type(username, $username);

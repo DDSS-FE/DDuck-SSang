@@ -21,50 +21,39 @@ describe('SignIn', () => {
   });
 
   describe('Layout', () => {
-    it('has SignIn heading', () => {
-      render(<Form isSignIn={true} />);
-      const button = screen.getByRole('button', { name: '로그인' });
-      userEvent.click(button);
-      const heading = screen.getByRole('heading', { name: 'SignIn' });
-      expect(heading).toBeInTheDocument();
-    });
     it('has Email input', () => {
       render(<Form isSignIn={true} />);
       const button = screen.getByRole('button', { name: '로그인' });
       userEvent.click(button);
-      const input = screen.getByLabelText('Email Address');
+      const input = screen.getByLabelText('이메일');
       expect(input).toBeInTheDocument();
     });
     it('has Password input', () => {
       render(<Form isSignIn={true} />);
       const button = screen.getByRole('button', { name: '로그인' });
       userEvent.click(button);
-      const input = screen.getByLabelText('Password');
+      const input = screen.getByLabelText('비밀번호');
       expect(input).toBeInTheDocument();
     });
     it('has Submit button', () => {
       render(<Form isSignIn={true} />);
       const button = screen.getByRole('button', { name: '로그인' });
       userEvent.click(button);
-      const submit = screen.getByRole('button', {
-        name: 'Enter a valid value',
-      });
+      const submit = screen.getByTestId('submit');
       expect(submit).toBeInTheDocument();
     });
     it('has Cancel button', () => {
       render(<Form isSignIn={true} />);
       const button = screen.getByRole('button', { name: '로그인' });
       userEvent.click(button);
-      const cancle = screen.getByRole('button', { name: 'Cancle' });
+      const cancle = screen.getByRole('button', { name: '취소' });
       expect(cancle).toBeInTheDocument();
     });
     it('disabled when the Submit button initialized', () => {
       render(<Form isSignIn={true} />);
       const button = screen.getByRole('button', { name: '로그인' });
       userEvent.click(button);
-      const submit = screen.getByRole('button', {
-        name: 'Enter a valid value',
-      });
+      const submit = screen.getByTestId('submit');
       expect(submit).toBeDisabled();
     });
   });
@@ -77,11 +66,9 @@ describe('SignIn', () => {
       render(<Form isSignIn={true} />);
       const button = screen.getByRole('button', { name: '로그인' });
       userEvent.click(button);
-      const email = screen.getByLabelText('Email Address');
-      const password = screen.getByLabelText('Password');
-      const submit = screen.getByRole('button', {
-        name: 'Enter a valid value',
-      });
+      const email = screen.getByLabelText('이메일');
+      const password = screen.getByLabelText('비밀번호');
+      const submit = screen.getByTestId('submit');
       userEvent.type(email, $email);
       expect(submit).toBeDisabled();
       userEvent.type(password, $password);
@@ -98,11 +85,9 @@ describe('SignIn', () => {
         render(<Form isSignIn={true} />);
         const button = screen.getByRole('button', { name: '로그인' });
         userEvent.click(button);
-        const email = screen.getByLabelText('Email Address');
-        const password = screen.getByLabelText('Password');
-        const submit = screen.getByRole('button', {
-          name: 'Enter a valid value',
-        });
+        const email = screen.getByLabelText('이메일');
+        const password = screen.getByLabelText('비밀번호');
+        const submit = screen.getByTestId('submit');
 
         userEvent.type(email, $email);
         userEvent.type(password, $password);
