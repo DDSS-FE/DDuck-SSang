@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest --watchAll",
+    "test": "jest",
     "format:check": "prettier --check \"**/*.{jsx,yml,yaml,scss,md}\"",
     "format": "prettier --write \"**/*.{jsx,yml,yaml,scss,md}\"",
     "ptest": "playwright test",
