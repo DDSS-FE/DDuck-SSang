@@ -1,0 +1,17 @@
+@import 'styles/_variables.scss';
+@import 'styles/_mixins.scss';
+
+.ly_comments {
+  width: 750px;
+  min-height: 100vh;
+  padding-bottom: 60px;
+  margin: 0 auto;
+  border-right: 1px solid rgba(194, 194, 194, 0.432);
+  border-left: 1px solid rgba(194, 194, 194, 0.432);
+  background: var(--theme-page-background);
+  color: var(--theme-page-text);
+
+  @media #{$Small-Tablet} {
+    width: 100%;
+  }
+}
