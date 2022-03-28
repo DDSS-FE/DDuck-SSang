@@ -17,9 +17,14 @@ export default function CommentList() {
     isError,
     isLoading,
   } = useQuery('comments', fetchComments);
-  // 관심목록 에러 메시지 관련 pull request 머지 후에 변경
+
   if (isError) {
-    return <p>Failed to load comments.</p>;
+    return (
+      <div className="errorMsg">
+        <p>댓글 데이터를 가져오는 데 실패했습니다.</p>
+        <p> 잠시 후에 다시 시도해주세요.</p>
+      </div>
+    );
   }
 
   if (isLoading) {

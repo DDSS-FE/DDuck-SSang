@@ -31,3 +31,14 @@ export interface ICommentAttributes {
     };
   };
 }
+
+export interface IArticleSummary {
+  articleName: string;
+  articleUrl: string;
+  articleImage: {
+    width: number;
+    height: number;
+    contentURL: string;
+  };
+  articleProvider: string;
+}

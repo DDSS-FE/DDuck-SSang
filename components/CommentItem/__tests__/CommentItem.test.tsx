@@ -1,8 +1,6 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import CommentItem, { ArticleItem } from 'components/CommentItem/CommentItem';
-import Image from 'next/image';
+import CommentItem from 'components/CommentItem/CommentItem';
 
 const articleImage = {
   contentURL:
@@ -26,7 +24,7 @@ const user = {
   },
 };
 
-const commentAttributes = {
+export const commentAttributes = {
   articleImage,
   articleName: "윌라, '주식농부' 박영옥 '주식투자 절대 원칙' 오디오북 공개",
   articleProvider: 'insight.co.kr',
@@ -57,35 +55,6 @@ describe('CommentItem 컴포넌트', () => {
     expect(screen.getByRole('link')).toHaveAttribute(
       'href',
       commentAttributes.articleUrl
-    );
-  });
-});
-
-describe('ArticleItem 컴포넌트', () => {
-  it('작성자와 글 제목을 가진다.', () => {
-    render(
-      <ArticleItem
-        image={
-          <Image
-            src={`/api/imagefetcher?url=${encodeURIComponent(
-              commentAttributes.articleImage.contentURL
-            )}`}
-            alt="news thumbnail"
-            width={commentAttributes.articleImage.width}
-            height={commentAttributes.articleImage.height}
-            layout="responsive"
-          />
-        }
-        author={commentAttributes.articleProvider}
-        title={commentAttributes.articleName}
-      />
-    );
-
-    expect(screen.getByTestId('author')).toHaveTextContent(
-      commentAttributes.articleProvider
-    );
-    expect(screen.getByTestId('title')).toHaveTextContent(
-      commentAttributes.articleName
     );
   });
 });
