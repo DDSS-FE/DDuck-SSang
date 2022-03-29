@@ -21,6 +21,6 @@ describe('MarketInfoListItem 컴포넌트는', () => {
 
     expect(Component).toHaveTextContent('161');
     expect(Component).toHaveTextContent('3.4');
-    expect(Component).toHaveTextContent('0.2%');
+    expect(Component).toHaveTextContent('0.2');
   });
 });
