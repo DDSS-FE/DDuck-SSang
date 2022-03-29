@@ -37,9 +37,11 @@ export interface OpenPriceDataItem {
 }
 
 const MarketInfoList = ({ category }: MarketCategoryProps): JSX.Element => {
-  const { data: marketInfoData, loading } = useAxios<OpenPriceData>(
-    `${QUOTE_API}?category=${category}`
-  );
+  const {
+    data: marketInfoData,
+    loading,
+    error,
+  } = useAxios<OpenPriceData>(`${QUOTE_API}?category=${category}`);
   const [realtimeData, setRealtimeData] = useState<IParsedResponseInput>();
 
   useEffect(() => {
@@ -53,6 +55,12 @@ const MarketInfoList = ({ category }: MarketCategoryProps): JSX.Element => {
   return (
     <>
       {loading && <Spinner />}
+      {error && (
+        <div className="errorMsg">
+          <p>마켓 데이터를 가져오는 데 실패했습니다.</p>
+          <p> 잠시 후에 다시 시도해주세요.</p>
+        </div>
+      )}
       {marketInfoData && (
         <ul className={styles.bl_vertMarketInfo}>
           {marketInfoData.data.map((d) => (

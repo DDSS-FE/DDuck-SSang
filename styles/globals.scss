@@ -82,3 +82,14 @@ table {
 .react-toggle--checked:hover:not(.react-toggle--disabled) .react-toggle-track {
   background-color: black !important;
 }
+
+.errorMsg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 75vh;
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+}
