@@ -1,6 +1,9 @@
 const getUSDate = () => {
   const d = new Date();
-  return d.toLocaleString('en-US', { timeZone: 'America/New_York' });
+  return d.toLocaleString('en-US', {
+    timeZone: 'America/New_York',
+    hour12: false,
+  });
 };
 // * : for Chart
 const formatUSDate = (unixTime: number) =>
