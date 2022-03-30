@@ -1,6 +1,13 @@
 import { render, screen } from '@testing-library/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import CommentItem from 'components/CommentItem/CommentItem';
+import {
+  mockUseUser,
+  useUserReturn,
+} from 'components/Form/__tests__/SignIn.test';
+
+jest.mock('store/modules/user/useUser');
 
 const articleImage = {
   contentURL:
@@ -34,11 +41,40 @@ export const commentAttributes = {
   publishedAt: '2022-03-26T20:50:57.603Z',
   updatedAt: '2022-03-27T00:00:45.331Z',
   user,
+  likes: {
+    data: [
+      {
+        id: 1,
+        attributes: {
+          createdAt: '2022-03-26T20:38:38.797Z',
+          updatedAt: '2022-03-26T20:38:38.797Z',
+        },
+      },
+      {
+        id: 2,
+        attributes: {
+          createdAt: '2022-03-26T20:38:38.797Z',
+          updatedAt: '2022-03-26T20:38:38.797Z',
+        },
+      },
+    ],
+  },
+};
+
+const createWrapper = (children: React.ReactNode) => {
+  const queryClient = new QueryClient();
+  return (
+    <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+  );
 };
 
 describe('CommentItem 컴포넌트', () => {
+  beforeEach(() => {
+    mockUseUser.mockImplementation(() => useUserReturn);
+  });
+
   it('유저이름, 이메일, 작성일, 작성내용, 기사 링크를 가진다.', () => {
-    render(<CommentItem {...commentAttributes} />);
+    render(createWrapper(<CommentItem {...commentAttributes} id={1} />));
 
     expect(screen.getByTestId('username')).toHaveTextContent(
       user.data.attributes.username

@@ -1,13 +1,19 @@
 import { useQuery } from 'react-query';
+import axios from 'axios';
 
 import { CommentItem } from 'components/CommentItem';
 import SkeletonCommentList from 'pages/comments/SkeletonCommentList';
 
-import { ICommentData } from 'utils/types';
+import { IAllLike, ICommentData, IComments } from 'utils/types';
+import { COMMENTS_API, LIKES_API } from 'utils/config';
 
-const fetchComments = async () => {
-  const res = await fetch('http://localhost:1337/api/comments?populate=*');
-  const data = await res.json();
+const fetchComments = async (): Promise<IComments> => {
+  const { data } = await axios.get(`${COMMENTS_API}?populate=*`);
+  return data;
+};
+
+const fetchLikes = async (): Promise<IAllLike> => {
+  const { data } = await axios.get(`${LIKES_API}?populate=*`);
   return data;
 };
 
@@ -18,7 +24,13 @@ export default function CommentList() {
     isLoading,
   } = useQuery('comments', fetchComments);
 
-  if (isError) {
+  const {
+    data: likes,
+    isLoading: likesIsLoading,
+    isError: likesIsError,
+  } = useQuery('likes', fetchLikes);
+
+  if (isError || likesIsError) {
     return (
       <div className="errorMsg">
         <p>댓글 데이터를 가져오는 데 실패했습니다.</p>
@@ -27,14 +39,23 @@ export default function CommentList() {
     );
   }
 
-  if (isLoading) {
+  if (isLoading || likesIsLoading) {
     return <SkeletonCommentList />;
   }
 
   return (
     <ul>
       {comments?.data.map((comment: ICommentData) => {
-        return <CommentItem key={comment.id} {...comment.attributes} />;
+        return (
+          likes && (
+            <CommentItem
+              key={comment.id}
+              {...comment.attributes}
+              id={comment.id}
+              allLikes={likes}
+            />
+          )
+        );
       })}
     </ul>
   );

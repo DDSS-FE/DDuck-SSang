@@ -1,14 +1,13 @@
 .bl_commentItem {
   display: flex;
   flex-direction: column;
-  padding: 1.8rem 1.5rem;
+  padding: 1.8rem 1.5rem 0.6rem 1.5rem;
   border-radius: 0.5rem;
   border-bottom: 1px solid rgba(194, 194, 194, 0.432);
 
   &_heading {
     display: flex;
     align-items: baseline;
-
     padding: 0.5rem;
     width: 100%;
   }
@@ -31,5 +30,33 @@
   &_content {
     font-size: 1.6rem;
     padding: 0.5rem;
+  }
+
+  &_btnWrapper {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 0.5rem;
+  }
+}
+
+.el_uiButton {
+  background-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 8px 10px 8px 10px;
+  border: none;
+  border-radius: 2px;
+  font-size: 14px;
+  color: #999;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.clicked {
+  &.likes {
+    color: #e57373;
   }
 }

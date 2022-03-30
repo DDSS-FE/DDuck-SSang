@@ -1,15 +1,16 @@
 import React, { Dispatch, SetStateAction, useState } from 'react';
+import Image from 'next/image';
 
 import { ArticleItem } from 'components/ArticleItem';
 
 import { IArticleSummary } from 'utils/types';
+import { COMMENTS_API } from 'utils/config';
 
 import styles from 'components/CommentForm/CommentForm.module.scss';
-import Image from 'next/image';
 
 async function createComment(content: string, article: IArticleSummary) {
   try {
-    const response = await fetch('http://localhost:1337/api/comments', {
+    const response = await fetch(COMMENTS_API, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

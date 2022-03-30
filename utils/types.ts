@@ -1,3 +1,5 @@
+import { IUserData } from 'store/modules/user';
+
 export interface ICommentData {
   id: number;
   attributes: ICommentAttributes;
@@ -16,6 +18,9 @@ export interface ICommentAttributes {
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
+  likes: {
+    data: ILike[];
+  };
   user: {
     data: {
       id: number;
@@ -30,6 +35,38 @@ export interface ICommentAttributes {
       };
     };
   };
+}
+
+interface ILike {
+  id: number;
+  attributes: {
+    createdAt: string;
+    updatedAt: string;
+  };
+}
+
+export interface IAllLikeData {
+  id: number;
+  attributes: IAllLikeAttributes;
+}
+
+interface IAllLikeAttributes {
+  comments: IComments;
+  createdAt: string;
+  updatedAt: string;
+  users: IUsers;
+}
+
+export interface IComments {
+  data: ICommentData[];
+}
+
+interface IUsers {
+  data: IUserData[];
+}
+
+export interface IAllLike {
+  data: IAllLikeData[];
 }
 
 export interface IArticleSummary {
