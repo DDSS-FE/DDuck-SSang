@@ -38,7 +38,6 @@ const MarketStock = ({
       timeFrame: [new Date(), Infinity],
       period: 1500,
     });
-    console.log(realtimeData);
   }, [category, setRealtimeData]);
 
   return (

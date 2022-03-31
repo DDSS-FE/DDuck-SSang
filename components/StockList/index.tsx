@@ -68,7 +68,6 @@ const StockList = ({
         ...filterSymbolList('stock'),
         ...filterSymbolList('crypto'),
       ]);
-      console.log('프라이스', priceList);
     }
   }, [watchlistData, marketStockData, marketCryptoData]);
 
