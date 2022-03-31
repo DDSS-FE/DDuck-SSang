@@ -14,7 +14,7 @@ import { IParsedResponseInput } from 'utils/stockFetcher';
 import { symbolToName } from 'utils/quote';
 
 export interface Props {
-  category: MarketCategory;
+  category?: MarketCategory;
   symbol: string;
   name?: string;
   c: number;

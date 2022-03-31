@@ -7,9 +7,9 @@ import styles from 'pages/watchlist/Watchlist.module.scss';
 
 import Header from 'components/Header';
 import IconButton from 'components/IconButton';
-import StockList from 'components/StockList';
+import MarketStock from 'components/MarketStock';
 
-export default function Watchlist() {
+export default function WatchlistPage() {
   const [editMode, setEditMode] = useState(false);
   const router = useRouter();
 
@@ -23,7 +23,7 @@ export default function Watchlist() {
         />
       </Header>
 
-      <StockList editMode={editMode} />
+      <MarketStock category={undefined} editMode={editMode} />
     </div>
   );
 }

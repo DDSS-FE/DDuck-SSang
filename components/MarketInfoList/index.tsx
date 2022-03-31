@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
 import styles from 'components/MarketInfoList/MarketInfoList.module.scss';
 
-import { MarketCategoryProps } from 'pages/market/[category]';
+import { MarketCategory } from 'pages/market/[category]';
 import MarketInfoListItem from 'components/MarketInfoList/MarketInfoListItem';
 import Spinner from 'components/Spinner';
 
 import useAxios from 'hooks/useAxios';
 import { QUOTE_API } from 'utils/config';
-import { getStocks, IParsedResponseInput } from 'utils/stockFetcher';
-import { symbolList } from 'utils/quote';
+import { IParsedResponseInput } from 'utils/stockFetcher';
 
 export interface IRealtimeDataItem {
   c: number | null;
@@ -36,21 +34,18 @@ export interface OpenPriceDataItem {
   symbol: string;
 }
 
-const MarketInfoList = ({ category }: MarketCategoryProps): JSX.Element => {
+const MarketInfoList = ({
+  category,
+  realtimeData,
+}: {
+  category?: MarketCategory;
+  realtimeData?: IParsedResponseInput;
+}): JSX.Element => {
   const {
     data: marketInfoData,
     loading,
     error,
   } = useAxios<OpenPriceData>(`${QUOTE_API}?category=${category}`);
-  const [realtimeData, setRealtimeData] = useState<IParsedResponseInput>();
-
-  useEffect(() => {
-    getStocks(setRealtimeData, {
-      indicesToFetch: symbolList[category],
-      timeFrame: [new Date(), Infinity],
-      period: 1500,
-    });
-  }, [category]);
 
   return (
     <>

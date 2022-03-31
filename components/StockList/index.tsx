@@ -11,7 +11,7 @@ import { OpenPriceData, OpenPriceDataItem } from 'components/MarketInfoList';
 import useWatchlist from 'store/modules/watchlist/useWatchlist';
 import useAxios from 'hooks/useAxios';
 import { QUOTE_API } from 'utils/config';
-import { getStocks, IParsedResponseInput } from 'utils/stockFetcher';
+import { IParsedResponseInput } from 'utils/stockFetcher';
 import { symbolList } from 'utils/quote';
 
 export interface IWatchlistItem {
@@ -23,7 +23,13 @@ export interface IWatchlistItem {
   category?: MarketCategory;
 }
 
-const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
+const StockList = ({
+  editMode,
+  realtimeData,
+}: {
+  editMode?: boolean;
+  realtimeData?: IParsedResponseInput;
+}): JSX.Element => {
   const { watchlistData, watchlistStatus, fetchWatchlist, deleteWatchlist } =
     useWatchlist();
 
@@ -31,16 +37,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
     fetchWatchlist();
   }, [fetchWatchlist]);
 
-  const [realtimeData, setRealtimeData] = useState<IParsedResponseInput>();
   const [priceList, getPriceList] = useState(watchlistData);
-
-  useEffect(() => {
-    getStocks(setRealtimeData, {
-      indicesToFetch: [...symbolList.stock, ...symbolList.crypto],
-      timeFrame: [new Date(), Infinity],
-      period: 1500,
-    });
-  }, [setRealtimeData]);
 
   const { data: marketStockData } = useAxios<OpenPriceData>(
     `${QUOTE_API}?category=stock`
@@ -65,11 +62,13 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
           id: item.id,
           category,
         }));
+
     if (marketStockData && marketCryptoData) {
       getPriceList([
         ...filterSymbolList('stock'),
         ...filterSymbolList('crypto'),
       ]);
+      console.log('프라이스', priceList);
     }
   }, [watchlistData, marketStockData, marketCryptoData]);
 
