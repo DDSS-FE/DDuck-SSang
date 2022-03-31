@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import Form from 'components/Form';
+
+import { Form } from 'components/Form';
+
 import useUser from 'store/modules/user/useUser';
 
 jest.mock('store/modules/user/useUser');

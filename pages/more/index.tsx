@@ -2,12 +2,14 @@ import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import Toggle from 'react-toggle';
 
+import { Form } from 'components/Form';
+import { Header } from 'components/Header';
+import { Button } from 'components/Button';
+
+import useUser from 'store/modules/user/useUser';
+
 import styles from 'pages/more/more.module.scss';
 import 'react-toggle/style.css';
-import useUser from 'store/modules/user/useUser';
-import Form from 'components/Form';
-import Header from 'components/Header';
-import Button from 'components/Button';
 
 export default function More() {
   const [isMounted, setIsMounted] = useState(false);

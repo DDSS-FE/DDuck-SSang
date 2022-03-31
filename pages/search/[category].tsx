@@ -2,7 +2,7 @@ import { GetStaticPropsContext } from 'next';
 
 import dynamic from 'next/dynamic';
 
-import SearchDetail from 'components/SearchDetail';
+import { SearchDetail } from 'components/SearchDetail';
 
 const SearchPage = ({ category }: { category: string }): JSX.Element => {
   return (

@@ -1,4 +1,4 @@
-import NavBar from 'components/NavBar';
+import { NavBar } from 'components/NavBar';
 import { render, screen } from '@testing-library/react';
 
 describe('NavBar', () => {
@@ -16,6 +16,4 @@ describe('NavBar', () => {
       expect(linkComponent).toBeInTheDocument();
     });
   });
-
-  describe('Interaction', () => {});
 });

@@ -1,7 +1,8 @@
 import { Dispatch, SetStateAction } from 'react';
 import { render, screen } from '@testing-library/react';
 
-import ChartTypeToggleButton, {
+import {
+  ChartTypeToggleButton,
   ChartType,
 } from 'components/ChartTypeToggleButton';
 

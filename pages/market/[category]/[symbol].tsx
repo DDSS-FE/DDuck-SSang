@@ -7,9 +7,9 @@ import debounce from 'debounce';
 
 import styles from 'pages/market/Market.module.scss';
 
-import MarketDetail from 'components/MarketDetail';
-import Header from 'components/Header';
-import IconButton from 'components/IconButton';
+import MarketDetail from 'components/MarketDetail/MarketDetail';
+import { Header } from 'components/Header';
+import { IconButton } from 'components/IconButton';
 
 import useUser from 'store/modules/user/useUser';
 import useWatchlist from 'store/modules/watchlist/useWatchlist';

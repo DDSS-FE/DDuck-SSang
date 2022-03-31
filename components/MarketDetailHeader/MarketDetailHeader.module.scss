@@ -7,12 +7,6 @@
     display: flex;
     justify-content: space-between;
 
-    // .bl_btnWrapper {
-    //   display: flex;
-    //   align-items: center;
-    //   text-align: right;
-    // }
-
     .bl_marketPriceHeading {
       &_price {
         display: flex;
@@ -21,6 +15,10 @@
 
         h2 {
           margin-right: 10px;
+        }
+
+        p {
+          margin-right: 5px;
         }
 
         .changePrice {

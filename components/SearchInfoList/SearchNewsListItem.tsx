@@ -6,8 +6,8 @@ import { useState, useEffect } from 'react';
 import useAxios from 'hooks/useAxios';
 
 import { NewsDataType } from 'pages/news/[category]';
-import { NewsInfoListItem } from 'components/NewsInfoListItem/';
-import Spinner from 'components/Spinner';
+import { NewsInfoListItem } from 'components/NewsInfoListItem';
+import { Spinner } from 'components/Spinner';
 
 interface Props {
   keyword: string;

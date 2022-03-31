@@ -10,7 +10,7 @@ import styles from 'components/MarketInfoList/MarketInfoList.module.scss';
 import { MarketCategory } from 'pages/market/[category]';
 
 import { KRTime, USMarketClosed, marketTime } from 'utils/formatDate';
-import { IParsedResponseInput } from 'utils/stockFetcher';
+import { IParsedResponseInput } from 'utils/getStocks';
 import { symbolToName } from 'utils/quote';
 
 export interface Props {

@@ -1,13 +1,8 @@
 import { render, screen } from '@testing-library/react';
 
-// import { useRouter } from 'next/router';
-// import { renderHook } from '@testing-library/react-hooks';
-
-import SearchDetail from 'components/SearchDetail';
+import { SearchDetail } from 'components/SearchDetail';
 
 jest.mock('next/router', () => require('next-router-mock'));
-
-// const { result } = renderHook(() => useRouter());
 
 describe('SearchDetail 컴포넌트', () => {
   it('의 category가 market이면 router가 제대로 동작한다', async () => {

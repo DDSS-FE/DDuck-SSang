@@ -1,9 +1,9 @@
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import Header from 'components/Header';
-import IconButton from 'components/IconButton';
-import DetailNav, { NavItem } from 'components/DetailNav';
-import MarketInfoList from 'components/MarketInfoList';
+import { Header } from 'components/Header';
+import { IconButton } from 'components/IconButton';
+import { DetailNav, NavItem } from 'components/DetailNav';
+import { MarketInfoList } from 'components/MarketInfoList';
 
 import { useRouter } from 'next/router';
 

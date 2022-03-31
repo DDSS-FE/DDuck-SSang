@@ -3,7 +3,7 @@ import { setupServer } from 'msw/node';
 
 import { render, screen } from '@testing-library/react';
 
-import MarketDetailHeader from 'components/MarketDetailHeader';
+import { MarketDetailHeader } from 'components/MarketDetailHeader';
 
 import { QUOTE_API } from 'utils/config';
 

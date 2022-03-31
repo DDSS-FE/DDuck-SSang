@@ -1,6 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import IconButton from 'components/IconButton';
+import { IconButton } from 'components/IconButton';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
