@@ -8,7 +8,9 @@ import { IAllLike, ICommentData, IComments } from 'utils/types';
 import { COMMENTS_API, LIKES_API } from 'utils/config';
 
 const fetchComments = async (): Promise<IComments> => {
-  const { data } = await axios.get(`${COMMENTS_API}?populate=*`);
+  const { data } = await axios.get(
+    `${COMMENTS_API}?populate=*&sort=createdAt:DESC`
+  );
   return data;
 };
 
