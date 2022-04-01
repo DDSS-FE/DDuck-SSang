@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
-import SearchHeader from 'components/SearchHeader';
+import { SearchHeader } from 'components/SearchHeader';
 
 describe('SearchHeader 컴포넌트', () => {
   it('의 category가 market이면 router가 제대로 동작한다', async () => {

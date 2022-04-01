@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 
-import SearchMarketListItem from 'components/SearchInfoList/SearchMarketListItem';
+import { SearchMarketListItem } from 'components/SearchInfoList';
 
 describe('SearchInfoList 컴포넌트', () => {
   it.each`

@@ -1,8 +1,6 @@
 import { render, screen } from '@testing-library/react';
 
-import MarketInfoListItem, {
-  Props,
-} from 'components/MarketInfoList/MarketInfoListItem';
+import { MarketInfoListItem, Props } from 'components/MarketInfoList';
 
 const props: Props = {
   category: 'stock',
@@ -14,13 +12,11 @@ const props: Props = {
 };
 
 describe('MarketInfoListItem 컴포넌트는', () => {
-  it('텍스트(애플, 161, 3.4, 0.2)를 가진다.', () => {
+  it('텍스트 애플closed | US1610.200(3.400%)를 가진다.', () => {
     render(<MarketInfoListItem {...props} />);
 
     const Component = screen.getByRole('listitem');
 
-    expect(Component).toHaveTextContent('161');
-    expect(Component).toHaveTextContent('3.4');
-    expect(Component).toHaveTextContent('0.2');
+    expect(Component).toHaveTextContent('애플closed | US1610.200(3.400%)');
   });
 });

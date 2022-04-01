@@ -6,8 +6,8 @@ import { NEWS_API } from 'utils/config';
 import { axiosConfig } from 'hooks/useAxios';
 import { useRouter } from 'next/router';
 
-import Header from 'components/Header';
-import IconButton from 'components/IconButton';
+import { Header } from 'components/Header';
+import { IconButton } from 'components/IconButton';
 import { NewsDetail } from 'components/NewsDetail';
 import { NewsDataType } from 'pages/news/[category]';
 

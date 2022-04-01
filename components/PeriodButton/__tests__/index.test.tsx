@@ -1,6 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import { PeriodButton } from 'components/PeriodButton/index';
 import userEvent from '@testing-library/user-event';
+
+import { PeriodButton } from 'components/PeriodButton';
 
 describe('Chart Period Button', () => {
   const props = {

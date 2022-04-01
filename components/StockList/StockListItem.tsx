@@ -3,7 +3,7 @@ import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 import styles from 'components/StockList/StockList.module.scss';
 
-import IconButton from 'components/IconButton';
+import { IconButton } from 'components/IconButton';
 import { IWatchlistItem } from 'components/StockList';
 
 interface Props {

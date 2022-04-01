@@ -10,6 +10,7 @@ export interface IParsedResponseInput {
 }
 
 export const getStocks = async (
+  socket: WebSocket,
   setData: Dispatch<SetStateAction<IParsedResponseInput | undefined>>,
   {
     indicesToFetch,
@@ -17,10 +18,6 @@ export const getStocks = async (
     period,
   }: { indicesToFetch: string[]; timeFrame: (number | Date)[]; period: number }
 ) => {
-  const socket = new WebSocket(
-    `wss://ws.finnhub.io?token=${process.env.NEXT_PUBLIC_FINNHUB_KEY}`
-  );
-
   socket.addEventListener('open', function () {
     for (const key of indicesToFetch) {
       socket.send(JSON.stringify({ type: 'subscribe', symbol: key }));
@@ -28,13 +25,12 @@ export const getStocks = async (
   });
 
   socket.addEventListener('message', function (event) {
-    // console.log('Message from server ', event.data);
     const parsedResponse = {
       indicesToFetch,
       timeFrame,
       period,
     };
-    let resp;
+    let resp = null;
     try {
       resp = { ...JSON.parse(event.data), ...parsedResponse };
     } catch (e) {
@@ -51,7 +47,5 @@ export const getStocks = async (
     }
   });
 
-  // const unsubscribe = (symbol: string) => {
-  //   socket.send(JSON.stringify({ type: 'unsubscribe', symbol: symbol }));
-  // };
+  return socket;
 };

@@ -15,8 +15,8 @@ import 'styles/globals.scss';
 import 'styles/theme.scss';
 import 'react-loading-skeleton/dist/skeleton.css';
 
-import Spinner from 'components/Spinner';
-import NavBar from 'components/NavBar';
+import { Spinner } from 'components/Spinner';
+import { NavBar } from 'components/NavBar';
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [queryClient] = useState(() => new QueryClient());

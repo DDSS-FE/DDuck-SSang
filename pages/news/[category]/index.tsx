@@ -1,14 +1,13 @@
+import { useRouter } from 'next/router';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
 
 import { axiosConfig } from 'hooks/useAxios';
 import { NEWS_API } from 'utils/config';
 
-import { useRouter } from 'next/router';
-
-import Header from 'components/Header';
-import IconButton from 'components/IconButton';
-import DetailNav from 'components/DetailNav';
+import { Header } from 'components/Header';
+import { IconButton } from 'components/IconButton';
+import { DetailNav } from 'components/DetailNav';
 import { NewsInfoList } from 'components/NewsInfoList';
 
 export interface NewsDataType {

@@ -5,9 +5,9 @@ import { faEdit } from '@fortawesome/free-regular-svg-icons';
 
 import styles from 'pages/watchlist/Watchlist.module.scss';
 
-import Header from 'components/Header';
-import IconButton from 'components/IconButton';
-import StockList from 'components/StockList';
+import { Header } from 'components/Header';
+import { IconButton } from 'components/IconButton';
+import { StockList } from 'components/StockList';
 
 export default function Watchlist() {
   const [editMode, setEditMode] = useState(false);
