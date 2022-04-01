@@ -6,6 +6,7 @@
   position: fixed;
   bottom: 0;
   width: 100%;
+  z-index: 1;
 
   &_inner {
     display: flex;
@@ -14,7 +15,7 @@
     justify-content: center;
 
     & > li {
-      width: 25%;
+      width: 20%;
     }
   }
 

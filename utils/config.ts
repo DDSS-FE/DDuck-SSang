@@ -9,3 +9,5 @@ export const NEWS_API = `${SERVER}/api/news`;
 export const REGISTER_API = `${SERVER}/api/auth/local/register`;
 export const LOGIN_API = `${SERVER}/api/auth/local`;
 export const WATCHLISTS_API = `${SERVER}/api/watchlists`;
+export const LIKES_API = `${SERVER}/api/likes`;
+export const COMMENTS_API = `${SERVER}/api/comments`;

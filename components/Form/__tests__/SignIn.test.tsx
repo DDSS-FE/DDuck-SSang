@@ -6,9 +6,9 @@ import Form from 'components/Form';
 import useUser from 'store/modules/user/useUser';
 
 jest.mock('store/modules/user/useUser');
-const mockUseUser = useUser as jest.Mock;
+export const mockUseUser = useUser as jest.Mock;
 
-const useUserReturn = {
+export const useUserReturn = {
   isLoggedIn: false,
   userData: null,
   login: 1,

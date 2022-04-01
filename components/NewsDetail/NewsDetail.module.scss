@@ -1,3 +1,6 @@
+@import 'styles/_variables.scss';
+@import 'styles/_mixins.scss';
+
 .ly_NewsDetail {
   max-width: 1230px;
   min-width: 375px;
@@ -38,5 +41,70 @@
   .bl_NewsDetail_desc {
     font-size: 1.25rem;
     text-align: left;
+  }
+
+  &_btnWrapper {
+    margin: 0 auto;
+  }
+
+  &_commentBtn {
+    min-width: 134px;
+    height: 40px;
+    padding: 0 1rem;
+    margin-right: 5px;
+    margin-top: 40px;
+    font-size: 1.25rem;
+    @include btnNone();
+    text-decoration: none;
+    outline: 0;
+    font-size: 1.6rem;
+    color: rgb(11, 27, 23);
+    background-color: rgb(94, 243, 213);
+    border: 1px solid rgb(94, 243, 213);
+    border-radius: 5px;
+
+    svg {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
+  }
+
+  @media #{$Small-Tablet} {
+    &_commentBtn {
+      margin: 20px 5px 0 0;
+      width: calc((100% - 20px) / 4);
+    }
+    &_commentBtn:nth-child(n + 5) {
+      margin-top: 5px;
+    }
+  }
+  @media #{$Small-Mobile} {
+    &_commentBtn {
+      margin: 20px 5px 0 0;
+      width: calc((100% - 15px) / 3);
+    }
+    &_commentBtn:nth-child(n + 4) {
+      margin-top: 5px;
+    }
+  }
+  @media #{$XSmall-Mobile} {
+    &_commentBtn {
+      margin: 20px 5px 0 0;
+      width: calc((100% - 10px) / 2);
+    }
+    &_commentBtn:nth-child(n + 3) {
+      margin-top: 5px;
+    }
+  }
+
+  @media screen and (max-width: 385px) {
+    &_commentBtn {
+      width: 100%;
+    }
+    &_commentBtn:nth-child(n + 2) {
+      margin-top: 5px;
+    }
   }
 }
