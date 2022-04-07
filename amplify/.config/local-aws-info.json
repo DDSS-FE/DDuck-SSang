@@ -1,0 +1,12 @@
+{
+  "dev": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/uncertainty/.amplify/awscloudformation/lLjFbncXPj"
+  },
+  "mynextapp": {
+    "configLevel": "project",
+    "useProfile": false,
+    "awsConfigFilePath": "/Users/uncertainty/.amplify/awscloudformation/8L3CabBtMl"
+  }
+}

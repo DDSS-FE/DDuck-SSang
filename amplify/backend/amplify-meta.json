@@ -1,0 +1,15 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-dduckssang-mynextapp-22912-authRole",
+      "UnauthRoleArn": "arn:aws:iam::527446833257:role/amplify-dduckssang-mynextapp-22912-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::527446833257:role/amplify-dduckssang-mynextapp-22912-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-dduckssang-mynextapp-22912-deployment",
+      "UnauthRoleName": "amplify-dduckssang-mynextapp-22912-unauthRole",
+      "StackName": "amplify-dduckssang-mynextapp-22912",
+      "StackId": "arn:aws:cloudformation:us-east-1:527446833257:stack/amplify-dduckssang-mynextapp-22912/3fac6670-b698-11ec-992f-126f4f90fa41",
+      "AmplifyAppId": "d2ksugab71pjlr"
+    }
+  }
+}
