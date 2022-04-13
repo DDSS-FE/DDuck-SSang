@@ -1,4 +1,4 @@
-const SERVER = process.env.SERVER_API;
+const SERVER = process.env.NEXT_PUBLIC_SERVER_API;
 
 export const SEARCH_MARKET_API = `${SERVER}/search`;
 export const CANDLE_API = `${SERVER}/api/candle`;

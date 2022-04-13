@@ -1,10 +1,11 @@
 import Link from 'next/link';
-// import { useRouter } from 'next/router';
+import { useRouter } from 'next/router';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChartColumn,
   faNewspaper,
+  faComments,
   faStar,
   faBars,
 } from '@fortawesome/free-solid-svg-icons';
@@ -12,7 +13,7 @@ import {
 import styles from 'components/NavBar/NavBar.module.scss';
 
 const NavBar = (): JSX.Element => {
-  // const router = useRouter();
+  const router = useRouter();
 
   return (
     <nav className={styles.bl_tabNav}>
@@ -21,8 +22,8 @@ const NavBar = (): JSX.Element => {
           <Link href="/market/stock">
             <a
               className={clsx(
-                styles.bl_tabNav_link
-                // router.pathname === '/market' && styles.is_active
+                styles.bl_tabNav_link,
+                router.pathname === '/market/stock' && styles.is_active
               )}
             >
               <FontAwesomeIcon
@@ -37,8 +38,8 @@ const NavBar = (): JSX.Element => {
           <Link href="/news/new">
             <a
               className={clsx(
-                styles.bl_tabNav_link
-                // router.pathname === '/news' && styles.is_active
+                styles.bl_tabNav_link,
+                router.pathname === '/news/new' && styles.is_active
               )}
             >
               <FontAwesomeIcon
@@ -50,11 +51,27 @@ const NavBar = (): JSX.Element => {
           </Link>
         </li>
         <li>
+          <Link href="/comments">
+            <a
+              className={clsx(
+                styles.bl_tabNav_link,
+                router.pathname === '/comments' && styles.is_active
+              )}
+            >
+              <FontAwesomeIcon
+                className={styles.bl_tabNav_icon}
+                icon={faComments}
+              />
+              <p>댓글</p>
+            </a>
+          </Link>
+        </li>
+        <li>
           <Link href="/watchlist">
             <a
               className={clsx(
-                styles.bl_tabNav_link
-                // router.pathname === '/watchlist' && styles.is_active
+                styles.bl_tabNav_link,
+                router.pathname === '/watchlist' && styles.is_active
               )}
             >
               <FontAwesomeIcon
@@ -69,8 +86,8 @@ const NavBar = (): JSX.Element => {
           <Link href="/more">
             <a
               className={clsx(
-                styles.bl_tabNav_link
-                // router.pathname === '/more' && styles.is_active
+                styles.bl_tabNav_link,
+                router.pathname === '/more' && styles.is_active
               )}
             >
               <FontAwesomeIcon
