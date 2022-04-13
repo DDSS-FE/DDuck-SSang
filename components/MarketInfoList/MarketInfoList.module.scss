@@ -1,4 +1,12 @@
 .bl_vertMarketInfo {
+  max-width: 1230px;
+  height: 100vh;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-top: none;
+  border-bottom: none;
+  margin-top: -10px;
+
   &_item {
     padding: 6px 10px;
     border-bottom: 1px solid #ddd;

@@ -2,10 +2,11 @@
   border-bottom: 1px solid #ddd;
 
   &_inner {
-    max-width: 1230px;
-    padding: 4px 15px;
     display: flex;
     justify-content: space-between;
+    padding: 6px 15px;
+    max-width: 1230px;
+    margin: 0 auto;
 
     .bl_marketPriceHeading {
       &_price {

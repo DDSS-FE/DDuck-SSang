@@ -24,4 +24,13 @@ module.exports = {
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
     NEXT_PUBLIC_SERVER_API: process.env.NEXT_PUBLIC_SERVER_API,
   },
+  async redirects() {
+    return [
+      {
+        source: '/',
+        destination: '/market/stock',
+        permanent: true,
+      },
+    ];
+  },
 };

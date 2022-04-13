@@ -6,6 +6,7 @@
 [![GitHub Closed Issues](https://img.shields.io/github/issues-closed-raw/DDSS-FE/DDuck-SSang?color=red)](https://github.com/DDSS-FE/DDuck-SSang/issues?q=is%3Aissue+is%3Aclosed)
 [![GitHub Open PR](https://img.shields.io/github/issues-pr-raw/DDSS-FE/DDuck-SSang?color=green)](https://github.com/DDSS-FE/DDuck-SSang/pulls)
 [![GitHub Closed PR](https://img.shields.io/github/issues-pr-closed-raw/DDSS-FE/DDuck-SSang?color=red)](https://github.com/DDSS-FE/DDuck-SSang/pulls?q=is%3Apr+is%3Aclosed)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5f9a9d51-3527-48ee-95aa-6589f5056070/deploy-status)](https://app.netlify.com/sites/dd-ss/deploys)
 
 <img src="https://user-images.githubusercontent.com/59217352/156923585-2088d9d6-e498-4528-8795-e8441021ef4a.png" alt="icon" width="250"/>
   
@@ -40,7 +41,7 @@
   
   <img src="https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white"/>
   <img src="https://img.shields.io/badge/Strapi-000000?style=flat-square&logo=strapi&logoColor=white"/>
-  <img src="https://img.shields.io/badge/SQLite-4479A1?style=flat-square&logo=SQLite&logoColor=white"/><br>
+  <img src="https://img.shields.io/badge/postgreSQL-4479A1?style=flat-square&logo=postgreSQL&logoColor=white"/><br>
   
   <img src="https://img.shields.io/badge/Jest-C21325?style=flat-square&logo=Jest&logoColor=white"/>
   <img src="https://img.shields.io/badge/React%20Testing%20Library-121212?style=flat-square&logo=Testing Library&logoColor=E33332"/>
@@ -49,9 +50,12 @@
 
 ## 데모
 
+- [Default demo](https://dd-ss.netlify.app) - Deployed from the `v001` branch
+
 <div align="center">
   <img src="https://user-images.githubusercontent.com/59217352/157857278-d2b2de0e-799c-4856-aa99-77e72ff639c9.gif" />
 </div>
+
 <details>
 <summary>관심 목록</summary>
     
@@ -87,6 +91,15 @@
 
 </details>
 
+<details>
+<summary>댓글</summary>
+
+| ![add_comment](https://user-images.githubusercontent.com/59217352/163270126-42764d47-b757-4b05-a1b9-4c8cd456484a.gif) | ![likes_feature](https://user-images.githubusercontent.com/59217352/163268593-15a9c28c-dd46-4a75-9afb-6e13ae8e2e4b.png) |
+| :-------------------------------------------------------------------------------------------------------------------: | :---------------------------------------------------------------------------------------------------------------------: |
+|                                                        `작성`                                                         |                                                        `좋아요`                                                         |
+
+</details>
+
 ## 외부 api 목록
 
 - 주식, 암호화폐 가격: <a href="https://finnhub.io/docs/api">`finnhub`</a>
@@ -102,3 +115,22 @@
 - TypeScript, SCSS 사용, 비동기 로직 최적화
 - jest, react-testing-library를 사용한 TDD(Test Driven Development)
 - playwright를 사용한 E2E testing
+
+## 회고
+
+### 김창민
+
+### 서대원
+
+### 이본행
+
+### 개발자로서 기술적 도전과 비즈니스적 가치 사이의 고민
+
+기술 스택 선정 과정에서 Canvas API를 선택해 직접 차트를 구현하고자 목표를 잡았는데 우리와 유사한 다른 서비스들은 SVG를 사용하거나 상호작용을 잘 지원하는 Canvas 기반 Financial Chart Library를 사용해 서비스를 운영하고 있었습니다. 그런데도 많은 양의 데이터를 실시간으로 보여주는 데 장점이 있다는 이유로 캔버스를 선택하게 되었습니다. 성능 면에서의 이점을 잘 활용하지 못할 테지만 잘되지 않아도 기술을 적용해보고 배워보는 데 초점을 두었습니다. 시간을 두고 학습하면 마우스 좌표를 수동으로 프로그래밍하는 방식으로 상호 작용 기능이 단계별 지원 가능하리라 생각했습니다.
+결과적으로는 일정 문제로 스코프를 조절하게 되었지만, 짧은 기간 내에 새로운 기술을 익혀서 응용하기 위해 고민해보는 경험과 (만약 실제로 서비스를 제공해야 한다면)서비스 제공자로서는 클라이언트에게 당장 가치를 제공할 수 있는 더 간단한 솔루션(e.g. SVG, Library)을 찾을 수 있도록 오버 엔지니어링에 빠지지 않는 게 중요하다는 교훈을 얻었습니다. 기술과 경험을 쌓아서 실무에서는 비즈니스를 고려한 최적의 결정을 내릴 수 있는 개발자가 되어야겠다고 생각했습니다.
+
+### 테스트 코드 작성 경험
+
+이번 프로젝트는 Jest, testing-library, playwright을 공부해 사용해보면서 스스로 본인의 코드에 대해 피드백하고 테스트 코드를 통해 팀원이 다른 팀원이 맡은 모듈의 핵심 기능이 뭔지 빠르게 파악하거나 리팩터링하는 데 도움이 되는 환경을 조성했습니다. 테스트를 작성하면서 걸리는 시간이 짧지 않고 프론트엔드는 상대적으로 더 테스트가 어렵다는 인식에 조금 동의할 수 있었습니다만, 확실한 장점이 있었는데 TDD를 하거나 테스트를 염두에 두게 되면 ARIA를 추가하는 등 의미 있는 요소를 마크업(getByRole() 사용 시)하게 되어 웹 접근성을 지원하고 핵심 기능 구현에 대한 설계를 더 촘촘하게 고려하는 효과가 있었습니다.
+
+### 이희승

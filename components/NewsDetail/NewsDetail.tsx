@@ -3,6 +3,7 @@ import { faComments } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import useCommentForm from 'hooks/useCommentForm';
+import useUser from 'store/modules/user/useUser';
 
 import styles from 'components/NewsDetail/NewsDetail.module.scss';
 
@@ -27,6 +28,7 @@ const NewsDetail = ({
   newsDatePublished,
   newsName,
 }: NewsDetailProps): JSX.Element => {
+  const { isLoggedIn } = useUser();
   const { handleOpen, renderCommentForm } = useCommentForm();
   return (
     <>
@@ -50,26 +52,29 @@ const NewsDetail = ({
             <a href={newsUrl}>...원문보기</a>
           </div>
 
-          <div className={styles.bl_NewsDetail_btnWrapper}>
-            <button
-              onClick={handleOpen}
-              className={styles.bl_NewsDetail_commentBtn}
-            >
-              <FontAwesomeIcon icon={faComments} />
-              댓글 작성
-            </button>
-          </div>
+          {isLoggedIn && (
+            <div className={styles.bl_NewsDetail_btnWrapper}>
+              <button
+                onClick={handleOpen}
+                className={styles.bl_NewsDetail_commentBtn}
+              >
+                <FontAwesomeIcon icon={faComments} />
+                댓글 작성
+              </button>
+            </div>
+          )}
         </section>
-        {renderCommentForm({
-          articleName: newsName,
-          articleUrl: newsUrl,
-          articleImage: {
-            contentURL,
-            width: +width,
-            height: +height,
-          },
-          articleProvider: newsProvider,
-        })}
+        {isLoggedIn &&
+          renderCommentForm({
+            articleName: newsName,
+            articleUrl: newsUrl,
+            articleImage: {
+              contentURL,
+              width: +width,
+              height: +height,
+            },
+            articleProvider: newsProvider,
+          })}
       </article>
     </>
   );

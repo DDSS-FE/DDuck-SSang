@@ -4,10 +4,10 @@ import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChartColumn,
-  faNewspaper,
-  faComments,
   faStar,
   faBars,
+  faComments,
+  faNewspaper,
 } from '@fortawesome/free-solid-svg-icons';
 
 import styles from 'components/NavBar/NavBar.module.scss';
@@ -52,12 +52,7 @@ const NavBar = (): JSX.Element => {
         </li>
         <li>
           <Link href="/comments">
-            <a
-              className={clsx(
-                styles.bl_tabNav_link,
-                router.pathname === '/comments' && styles.is_active
-              )}
-            >
+            <a className={clsx(styles.bl_tabNav_link)}>
               <FontAwesomeIcon
                 className={styles.bl_tabNav_icon}
                 icon={faComments}
