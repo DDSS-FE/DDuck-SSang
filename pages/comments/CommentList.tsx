@@ -47,10 +47,10 @@ export default function CommentList() {
 
   return (
     <ul>
-      {!comments?.data.length ? (
+      {comments && comments.data.length > 0 ? (
         <>
-          {comments?.data.map((comment: ICommentData) => {
-            return (
+          {comments?.data.map(
+            (comment: ICommentData) =>
               likes && (
                 <CommentItem
                   key={comment.id}
@@ -59,8 +59,7 @@ export default function CommentList() {
                   allLikes={likes}
                 />
               )
-            );
-          })}
+          )}
         </>
       ) : (
         <div className="emptyMsg">

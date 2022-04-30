@@ -50,7 +50,7 @@
 
 ## 데모
 
-- [Default demo](https://dd-ss.netlify.app) - Deployed from the `v001` branch
+- [Default demo](https://dd-ss.netlify.app) - Deployed from the `release` branch
 
 <div align="center">
   <img src="https://user-images.githubusercontent.com/59217352/157857278-d2b2de0e-799c-4856-aa99-77e72ff639c9.gif" />
