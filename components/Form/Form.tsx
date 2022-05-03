@@ -161,6 +161,7 @@ export default function Form({ isSignIn }: { isSignIn: boolean }) {
                 취소
               </button>
               <button
+                data-testid="submit"
                 className={styles.el_submit_Btn}
                 disabled={disabled}
                 onClick={isSignIn ? signinSubmit : signupSubmit}

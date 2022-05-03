@@ -1,8 +1,15 @@
 import { NavBar } from 'components/NavBar';
 import { render, screen } from '@testing-library/react';
+import { useRouter } from 'next/router';
+
+jest.mock('next/router');
 
 describe('NavBar', () => {
   describe('Layout', () => {
+    beforeEach(() => {
+      useRouter.mockImplementation(() => ({ pathname: '' }));
+    });
+
     it.each`
       name
       ${'시장'}
