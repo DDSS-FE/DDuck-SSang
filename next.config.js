@@ -22,9 +22,6 @@ module.exports = {
   },
   env: {
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-<<<<<<< HEAD
-    SERVER_API: process.env.NEXT_PUBLIC_SERVER_API,
-=======
     NEXT_PUBLIC_SERVER_API: process.env.NEXT_PUBLIC_SERVER_API,
   },
   async redirects() {
@@ -35,6 +32,5 @@ module.exports = {
         permanent: true,
       },
     ];
->>>>>>> c5cca904cae1112297822716df3c8c27b1bec795
   },
 };
