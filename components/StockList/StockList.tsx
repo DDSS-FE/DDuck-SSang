@@ -35,18 +35,20 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
   const [priceList, getPriceList] = useState(watchlistData);
 
   useEffect(() => {
-    const socket = new WebSocket(
-      `wss://ws.finnhub.io?token=${process.env.NEXT_PUBLIC_FINNHUB_KEY}`
-    );
-    getStocks(socket, setRealtimeData, {
-      indicesToFetch: [...symbolList.stock, ...symbolList.crypto],
-      timeFrame: [new Date(), Infinity],
-      period: 1000,
-    });
-    return () => {
-      socket.close();
-    };
-  }, [setRealtimeData]);
+    if (Array.isArray(watchlistData)) {
+      const socket = new WebSocket(
+        `wss://ws.finnhub.io?token=${process.env.NEXT_PUBLIC_FINNHUB_KEY}`
+      );
+      getStocks(socket, setRealtimeData, {
+        indicesToFetch: [...symbolList.stock, ...symbolList.crypto],
+        timeFrame: [new Date(), Infinity],
+        period: 1000,
+      });
+      return () => {
+        socket.close();
+      };
+    }
+  }, [watchlistData, setRealtimeData]);
 
   const { data: marketStockData } = useAxios<OpenPriceData>(
     `${QUOTE_API}?category=stock`
@@ -57,20 +59,22 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
 
   useEffect(() => {
     const filterSymbolList = (category: 'stock' | 'crypto') =>
-      watchlistData
-        .filter((item: IWatchlistItem) =>
-          symbolList[category].includes(item.symbol)
-        )
-        .map((item: IWatchlistItem) => ({
-          ...(category === 'stock'
-            ? marketStockData
-            : marketCryptoData
-          )?.data.find(
-            (stock: OpenPriceDataItem) => stock.symbol === item.symbol
-          ),
-          id: item.id,
-          category,
-        }));
+      Array.isArray(watchlistData)
+        ? watchlistData
+            ?.filter((item: IWatchlistItem) =>
+              symbolList[category].includes(item.symbol)
+            )
+            .map((item: IWatchlistItem) => ({
+              ...(category === 'stock'
+                ? marketStockData
+                : marketCryptoData
+              )?.data.find(
+                (stock: OpenPriceDataItem) => stock.symbol === item.symbol
+              ),
+              id: item.id,
+              category,
+            }))
+        : [];
     if (marketStockData && marketCryptoData) {
       getPriceList([
         ...filterSymbolList('stock'),
@@ -98,7 +102,7 @@ const StockList = ({ editMode }: { editMode?: boolean }): JSX.Element => {
           )}
         </ul>
       ) : (
-        <div data-testid="no-watchlist-message" className={styles.bl_emptyData}>
+        <div data-testid="no-watchlist-message" className="emptyMsg">
           관심 목록이 없습니다.
         </div>
       )}

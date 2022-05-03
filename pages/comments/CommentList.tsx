@@ -47,18 +47,25 @@ export default function CommentList() {
 
   return (
     <ul>
-      {comments?.data.map((comment: ICommentData) => {
-        return (
-          likes && (
-            <CommentItem
-              key={comment.id}
-              {...comment.attributes}
-              id={comment.id}
-              allLikes={likes}
-            />
-          )
-        );
-      })}
+      {comments && comments.data.length > 0 ? (
+        <>
+          {comments?.data.map(
+            (comment: ICommentData) =>
+              likes && (
+                <CommentItem
+                  key={comment.id}
+                  {...comment.attributes}
+                  id={comment.id}
+                  allLikes={likes}
+                />
+              )
+          )}
+        </>
+      ) : (
+        <div className="emptyMsg">
+          <p>댓글이 없습니다.</p>
+        </div>
+      )}
     </ul>
   );
 }

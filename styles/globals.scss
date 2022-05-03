@@ -83,13 +83,14 @@ table {
   background-color: black !important;
 }
 
-.errorMsg {
+.errorMsg,
+.emptyMsg {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   height: 75vh;
   font-size: 1.5rem;
-  color: #333;
+  color: var(--theme-page-text);
   text-align: center;
 }

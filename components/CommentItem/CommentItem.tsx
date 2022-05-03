@@ -38,7 +38,7 @@ export default function CommentItem({
     !!allLikes?.data.find((likeItem: IAllLikeData) => {
       return (
         likeItem.attributes.comments?.data[0].id === id &&
-        likeItem.attributes.users?.data[0].id === userData.id
+        likeItem.attributes.users?.data[0].id === userData?.id
       );
     })
   );

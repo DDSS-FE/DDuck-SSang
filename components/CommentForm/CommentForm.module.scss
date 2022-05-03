@@ -58,6 +58,8 @@
     overflow: auto;
     width: 100%;
     border: 1px solid rgba(194, 194, 194, 0.752);
+    background: white;
+    color: black;
   }
   &_button_container {
     display: flex;
@@ -82,18 +84,17 @@
       border-radius: 12px;
       font-size: 0.8rem;
       border: none;
-      background: #fcfcfc;
+
+      background-color: rgb(199, 199, 199);
       transition: all 0.25s ease;
     }
     & > .el_submit_Btn:disabled {
-      color: #ff3e4e;
-
       font-weight: 500;
       padding: 11px 28px;
       border-radius: 12px;
       font-size: 0.8rem;
       border: none;
-      background: #fcfcfc;
+      background-color: rgb(199, 199, 199);
       transition: all 0.25s ease;
       &:hover {
         box-shadow: none;
@@ -109,9 +110,9 @@
     }
 
     & > .el_submit_Btn:hover {
-      box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+      box-shadow: 0 10px 20px -10px rgb(199, 199, 199);
       transform: translateY(-5px);
-      background: whitesmoke;
+      background: rgb(234, 234, 234);
     }
   }
 }

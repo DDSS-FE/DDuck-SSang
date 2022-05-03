@@ -36,6 +36,6 @@ describe('MarketDetailHeader 컴포넌트는', () => {
     const priceInfo = await screen.findByTestId('MarketDetailHeader-PriceInfo');
 
     expect(nameWithSymbol).toHaveTextContent(/^애플\(AAPL\)$/);
-    expect(priceInfo).toHaveTextContent(/^1200100 \(-5.01%\)$/);
+    expect(priceInfo).toHaveTextContent('1200100.000 (-5.010%)');
   });
 });
