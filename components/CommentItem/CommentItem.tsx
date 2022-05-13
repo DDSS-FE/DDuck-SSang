@@ -35,7 +35,7 @@ export default function CommentItem({
 }: ICommentItemProps): JSX.Element {
   const { userData } = useUser();
   const [likeIsClicked, setLikeIsClicked] = useState(
-    !!allLikes?.data.find((likeItem: IAllLikeData) => {
+    !!allLikes?.data?.find((likeItem: IAllLikeData) => {
       return (
         likeItem.attributes.comments?.data[0].id === id &&
         likeItem.attributes.users?.data[0].id === userData?.id
@@ -87,6 +87,7 @@ export default function CommentItem({
   );
 
   function toggle() {
+    if (!userData) alert('로그인이 필요합니다.');
     setLikeIsClicked(!likeIsClicked);
     mutatePostLike.mutate();
   }
