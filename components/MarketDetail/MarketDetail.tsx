@@ -7,11 +7,11 @@ import { MarketDetailHeader } from 'components/MarketDetailHeader';
 import { MarketDetailProps } from 'pages/market/[category]/[symbol]';
 
 export const marketDetailNavItems: NavItem[] = [
-  { name: '개요', href: '/overview' },
-  { name: '분석', href: '/analysis' },
-  { name: '주식시장', href: '/stocks' },
-  { name: '경제지표', href: '/' },
-  { name: '경제뉴스', href: '/' },
+  { name: '개요', href: '' },
+  { name: '분석', href: '' },
+  { name: '주식시장', href: '' },
+  { name: '경제지표', href: '' },
+  { name: '경제뉴스', href: '' },
 ];
 
 const MarketDetail = ({ symbol, category }: MarketDetailProps): JSX.Element => {
